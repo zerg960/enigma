@@ -12,37 +12,32 @@ package cuchaz.enigma.mapping;
 
 import java.io.Serializable;
 
-public class ArgumentMapping implements Serializable, Comparable<ArgumentMapping>
-{
-	private static final long serialVersionUID = 8610742471440861315L;
-	
-	private int m_index;
-	private String m_name;
-	
-	// NOTE: this argument order is important for the MethodReader/MethodWriter
-	public ArgumentMapping( int index, String name )
-	{
-		m_index = index;
-		m_name = NameValidator.validateArgumentName( name );
-	}
-	
-	public int getIndex( )
-	{
-		return m_index;
-	}
-	
-	public String getName( )
-	{
-		return m_name;
-	}
-	public void setName( String val )
-	{
-		m_name = NameValidator.validateArgumentName( val );
-	}
-	
-	@Override
-	public int compareTo( ArgumentMapping other )
-	{
-		return Integer.compare( m_index, other.m_index );
-	}
+public class ArgumentMapping implements Serializable, Comparable<ArgumentMapping> {
+    private static final long serialVersionUID = 8610742471440861315L;
+
+    private int m_index;
+    private String m_name;
+
+    // NOTE: this argument order is important for the MethodReader/MethodWriter
+    public ArgumentMapping(int index, String name) {
+	m_index = index;
+	m_name = NameValidator.validateArgumentName(name);
+    }
+
+    public int getIndex() {
+	return m_index;
+    }
+
+    public String getName() {
+	return m_name;
+    }
+
+    public void setName(String val) {
+	m_name = NameValidator.validateArgumentName(val);
+    }
+
+    @Override
+    public int compareTo(ArgumentMapping other) {
+	return Integer.compare(m_index, other.m_index);
+    }
 }

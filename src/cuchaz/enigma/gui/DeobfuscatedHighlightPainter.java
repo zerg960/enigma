@@ -12,11 +12,9 @@ package cuchaz.enigma.gui;
 
 import java.awt.Color;
 
-public class DeobfuscatedHighlightPainter extends BoxHighlightPainter
-{
-	public DeobfuscatedHighlightPainter( )
-	{
-		// green ish
-		super( new Color( 220, 255, 220 ), new Color( 80, 160, 80 ) );
-	}
+public class DeobfuscatedHighlightPainter extends BoxHighlightPainter {
+    public DeobfuscatedHighlightPainter() {
+	// green ish
+	super(new Color(220, 255, 220), new Color(80, 160, 80));
+    }
 }

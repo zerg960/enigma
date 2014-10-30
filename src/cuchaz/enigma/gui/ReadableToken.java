@@ -10,29 +10,26 @@
  ******************************************************************************/
 package cuchaz.enigma.gui;
 
-public class ReadableToken
-{
-	public int line;
-	public int startColumn;
-	public int endColumn;
-	
-	public ReadableToken( int line, int startColumn, int endColumn )
-	{
-		this.line = line;
-		this.startColumn = startColumn;
-		this.endColumn = endColumn;
-	}
-	
-	@Override
-	public String toString( )
-	{
-		StringBuilder buf = new StringBuilder();
-		buf.append( "line " );
-		buf.append( line );
-		buf.append( " columns " );
-		buf.append( startColumn );
-		buf.append( "-" );
-		buf.append( endColumn );
-		return buf.toString();
-	}
+public class ReadableToken {
+    public int line;
+    public int startColumn;
+    public int endColumn;
+
+    public ReadableToken(int line, int startColumn, int endColumn) {
+	this.line = line;
+	this.startColumn = startColumn;
+	this.endColumn = endColumn;
+    }
+
+    @Override
+    public String toString() {
+	StringBuilder buf = new StringBuilder();
+	buf.append("line ");
+	buf.append(line);
+	buf.append(" columns ");
+	buf.append(startColumn);
+	buf.append("-");
+	buf.append(endColumn);
+	return buf.toString();
+    }
 }
