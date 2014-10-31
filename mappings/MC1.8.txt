@@ -1,0 +1,11 @@
+CLASS none/eg net/minecraft/server/DispenseBehaviorItem
+CLASS none/og net/minecraft/server/DispenseBehaviorEmptyBucket
+CLASS none/ajz net/minecraft/server/ItemBow
+CLASS none/alq net/minecraft/server/Item
+CLASS none/amj net/minecraft/server/ItemStack
+CLASS none/amk net/minecraft/server/Items
+	FIELD a null
+CLASS none/aqu net/minecraft/server/World
+CLASS none/atr net/minecraft/server/Block
+CLASS none/bcx net/minecraft/server/TileEntityDispenser
+CLASS none/bof net/minecraft/server/Material
