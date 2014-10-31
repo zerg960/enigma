@@ -1,11 +1,766 @@
+CLASS none/a net/minecraft/server/EnumChatFormat
+	FIELD A A
+	FIELD B B
+	FIELD a BLACK
+	FIELD b DARK_BLUE
+	FIELD c DARK_GREEN
+	FIELD d DARK_AQUA
+	FIELD e DARK_RED
+	FIELD f DARK_PURPLE
+	FIELD g GOLD
+	FIELD h GRAY
+	FIELD i DARK_GRAY
+	FIELD j BLUE
+	FIELD k GREEN
+	FIELD l AQUA
+	FIELD m RED
+	FIELD n LIGHT_PURPLE
+	FIELD o YELLOW
+	FIELD p WHITE
+	FIELD q RANDOM
+	FIELD r BOLD
+	FIELD s STRIKETHROUGH
+	FIELD t UNDERLINE
+	FIELD u ITALIC
+	FIELD v RESET
+	FIELD w w
+	FIELD x deobfuscated_y
+	FIELD y still_obfuscated_y
+	FIELD z z
+	METHOD c isFormat ()Z
+	METHOD toString toString ()Ljava/lang/String;
+	METHOD values values ()[Lnone/a;
+CLASS none/b net/minecraft/server/CrashReport
+CLASS none/j net/minecraft/server/CrashReportSystemDetails
+CLASS none/r net/minecraft/server/CrashReportDetail
+CLASS none/y net/minecraft/server/ICommandDispatcher
+CLASS none/z net/minecraft/server/CommandAbstract
+CLASS none/ac net/minecraft/server/ICommand
+CLASS none/ae net/minecraft/server/ICommandListener
+CLASS none/au net/minecraft/server/CommandAchievement
+CLASS none/aw net/minecraft/server/CommandBanIp
+CLASS none/ax net/minecraft/server/CommandBan
+CLASS none/az net/minecraft/server/CommandClear
+CLASS none/ba net/minecraft/server/CommandClone
+CLASS none/bd net/minecraft/server/CommandDeop
+CLASS none/be net/minecraft/server/CommandDebug
+CLASS none/bf net/minecraft/server/CommandGamemodeDefault
+CLASS none/bg net/minecraft/server/CommandEffect
+CLASS none/bh net/minecraft/server/CommandMe
+CLASS none/bi net/minecraft/server/CommandEnchant
+CLASS none/bm net/minecraft/server/CommandXp
+CLASS none/bn net/minecraft/server/CommandFill
+CLASS none/bo net/minecraft/server/CommandDifficulty
+CLASS none/bp net/minecraft/server/CommandGamemode
+CLASS none/bq net/minecraft/server/CommandGamerule
+CLASS none/br net/minecraft/server/CommandGive
+CLASS none/bs net/minecraft/server/CommandHelp
+CLASS none/bt net/minecraft/server/CommandKick
+CLASS none/bu net/minecraft/server/CommandKill
+CLASS none/bv net/minecraft/server/CommandBanList
+CLASS none/bw net/minecraft/server/CommandList
+CLASS none/bx net/minecraft/server/CommandTell
+CLASS none/by net/minecraft/server/CommandTellRaw
+CLASS none/bz net/minecraft/server/CommandOp
+CLASS none/ca net/minecraft/server/CommandPardonIP
+CLASS none/cb net/minecraft/server/CommandPardon
+CLASS none/cd net/minecraft/server/CommandPlaySound
+CLASS none/ce net/minecraft/server/CommandPublish
+CLASS none/cg net/minecraft/server/CommandSaveAll
+CLASS none/ch net/minecraft/server/CommandSaveOff
+CLASS none/ci net/minecraft/server/CommandSaveOn
+CLASS none/cj net/minecraft/server/CommandSay
+CLASS none/ck net/minecraft/server/CommandScoreboard
+CLASS none/cm net/minecraft/server/CommandSetBlock
+CLASS none/cn net/minecraft/server/CommandSetWorldSpawn
+CLASS none/co net/minecraft/server/CommandIdleTimeout
+CLASS none/cp net/minecraft/server/CommandSpawnpoint
+CLASS none/cq net/minecraft/server/CommandSeed
+CLASS none/cr net/minecraft/server/CommandSpreadPlayers
+CLASS none/cu net/minecraft/server/CommandStop
+CLASS none/cv net/minecraft/server/CommandSummon
+CLASS none/cw net/minecraft/server/CommandTp
+CLASS none/cy net/minecraft/server/CommandTestForBlock
+CLASS none/cz net/minecraft/server/CommandTestFor
+CLASS none/da net/minecraft/server/CommandTime
+CLASS none/dc net/minecraft/server/CommandToggleDownfall
+CLASS none/dd net/minecraft/server/CommandTrigger
+CLASS none/de net/minecraft/server/CommandWeather
+CLASS none/df net/minecraft/server/CommandWhitelist
+CLASS none/di net/minecraft/server/CommandException
+CLASS none/dj net/minecraft/server/ExceptionEntityNotFound
+CLASS none/dk net/minecraft/server/ExceptionInvalidNumber
+CLASS none/dl net/minecraft/server/ExceptionInvalidSyntax
+CLASS none/dm net/minecraft/server/ExceptionPlayerNotFound
+CLASS none/dn net/minecraft/server/ExceptionUnknownCommand
+CLASS none/dp net/minecraft/server/ExceptionUsage
 CLASS none/eg net/minecraft/server/DispenseBehaviorItem
+CLASS none/ei net/minecraft/server/RegistryDefault
+CLASS none/em net/minecraft/server/EnumFacingEnumAxisDirection
+	FIELD a POSITIVE
+	FIELD b NEGATIVE
+CLASS none/eo net/minecraft/server/IDispenseBehavior
+CLASS none/es net/minecraft/server/ILocationSource
+CLASS none/ez net/minecraft/server/IRegistry
+CLASS none/fb net/minecraft/server/RegistrySimple
+CLASS none/fj net/minecraft/server/LocaleLanguage
+CLASS none/fl net/minecraft/server/NBTTagByteArray
+CLASS none/fm net/minecraft/server/NBTTagByte
+CLASS none/fn net/minecraft/server/NBTTagCompound
+CLASS none/fq net/minecraft/server/NBTTagDouble
+CLASS none/fr net/minecraft/server/NBTTagEnd
+CLASS none/fs net/minecraft/server/NBTTagFloat
+CLASS none/ft net/minecraft/server/NBTTagIntArray
+CLASS none/fu net/minecraft/server/NBTTagInt
+CLASS none/fv net/minecraft/server/NBTTagList
+CLASS none/fw net/minecraft/server/NBTTagLong
+CLASS none/fz net/minecraft/server/NBTCompressedStreamTools
+CLASS none/gb net/minecraft/server/NBTTagShort
+CLASS none/gc net/minecraft/server/NBTTagString
+CLASS none/gd net/minecraft/server/NBTBase
+CLASS none/ge net/minecraft/server/NBTNumber
+CLASS none/gn net/minecraft/server/PacketDecrypter
+CLASS none/gr net/minecraft/server/NetworkManager
+CLASS none/hj net/minecraft/server/ChatBaseComponent
+CLASS none/ho net/minecraft/server/IChatBaseComponent
+CLASS none/hr net/minecraft/server/ChatHoverable
+CLASS none/hv net/minecraft/server/ChatModifier
+CLASS none/hw net/minecraft/server/ChatStyleRoot
+CLASS none/hx net/minecraft/server/ChatModifierSerializer
+CLASS none/hy net/minecraft/server/ChatComponentText
+CLASS none/id net/minecraft/server/IPacket
+CLASS none/il net/minecraft/server/PacketPlayOutSpawnEntity
+CLASS none/iu net/minecraft/server/PacketPlayOutTileEntityData
+CLASS none/iv net/minecraft/server/PacketPlayOutBlockAction
+CLASS none/jk net/minecraft/server/PacketPlayOutEntityStatus
+CLASS none/jo net/minecraft/server/PacketPlayOutGameStateChange
+CLASS none/jv net/minecraft/server/PacketPlayOutNamedSoundEffect
+CLASS none/jz net/minecraft/server/PacketPlayOutRelEntityMove
+CLASS none/ka net/minecraft/server/PacketPlayOutRelEntityMoveLook
+CLASS none/kb net/minecraft/server/PacketPlayOutEntityLook
+CLASS none/kd net/minecraft/server/PacketPlayOutAbilities
+CLASS none/ky net/minecraft/server/PacketPlayOutAttachEntity
+CLASS none/kz net/minecraft/server/PacketPlayOutEntityVelocity
+CLASS none/lo net/minecraft/server/PacketPlayOutEntityTeleport
+CLASS none/lr net/minecraft/server/PacketPlayOutEntityEffect
+CLASS none/mi net/minecraft/server/PacketPlayInPositionLook
+CLASS none/mj net/minecraft/server/PacketPlayInLook
+CLASS none/oe net/minecraft/server/DispenseBehaviorArrow
+CLASS none/of net/minecraft/server/DispenseBehaviorFilledBucket
 CLASS none/og net/minecraft/server/DispenseBehaviorEmptyBucket
+CLASS none/oh net/minecraft/server/DispenseBehaviorFlintAndSteel
+CLASS none/oj net/minecraft/server/DispenseBehaviorTNT
+CLASS none/on net/minecraft/server/DispenseBehaviorEgg
+CLASS none/oo net/minecraft/server/DispenseBehaviorSnowBall
+CLASS none/op net/minecraft/server/DispenseBehaviorExpBottle
+CLASS none/oq net/minecraft/server/DispenseBehaviorPotion
+CLASS none/os net/minecraft/server/DispenseBehaviorMonsterEgg
+CLASS none/ot net/minecraft/server/DispenseBehaviorFireworks
+CLASS none/ou net/minecraft/server/DispenseBehaviorFireball
+CLASS none/ov net/minecraft/server/DispenseBehaviorBoat
+CLASS none/pk net/minecraft/server/ScoreboardServer
+CLASS none/qj net/minecraft/server/DemoWorldServer
+CLASS none/qn net/minecraft/server/EntityTracker
+CLASS none/qp net/minecraft/server/WorldManager
+CLASS none/qt net/minecraft/server/WorldServer
+CLASS none/qw net/minecraft/server/EntityPlayer
+CLASS none/tk net/minecraft/server/Achievement
+CLASS none/tl net/minecraft/server/AchievementList
+CLASS none/tq net/minecraft/server/Statistic
+CLASS none/ty net/minecraft/server/StatisticList
+CLASS none/ul net/minecraft/server/InsensitiveStringMap
+CLASS none/ur net/minecraft/server/LongHashMap
+CLASS none/us net/minecraft/server/LongHashMapEntry
+CLASS none/uv net/minecraft/server/MathHelper
+CLASS none/ux net/minecraft/server/ProfilerInfo
+CLASS none/va net/minecraft/server/IEnumBlockPropertyValue
+CLASS none/vl net/minecraft/server/StructurePieceTreasure
+CLASS none/vq net/minecraft/server/IInventory
+CLASS none/wh net/minecraft/server/DamageSource
+CLASS none/wi net/minecraft/server/EntityDamageSource
+CLASS none/wl net/minecraft/server/MobEffectAbsorption
+CLASS none/wm net/minecraft/server/MobEffectAttackDamage
+CLASS none/wn net/minecraft/server/MobEffectHealthBoost
+CLASS none/wq net/minecraft/server/MobEffect
+CLASS none/ws net/minecraft/server/EntityAgeable
+CLASS none/wv net/minecraft/server/Entity
+	METHOD b setPositionRotation_ (DDDFF)V
+CLASS none/xb net/minecraft/server/EntityTypes
+CLASS none/xk net/minecraft/server/EntityExperienceOrb
+CLASS none/xm net/minecraft/server/EntityLiving
+CLASS none/xn net/minecraft/server/EntityInsentient
+CLASS none/xv net/minecraft/server/DataWatcher
+CLASS none/xx net/minecraft/server/EntityTameableAnimal
+CLASS none/xy net/minecraft/server/IAttribute
+CLASS none/ya net/minecraft/server/AttributeModifier
+CLASS none/yb net/minecraft/server/AttributeBase
+CLASS none/yc net/minecraft/server/AttributeMapBase
+CLASS none/ye net/minecraft/server/AttributeModifiable
+CLASS none/yf net/minecraft/server/AttributeMapServer
+CLASS none/yp net/minecraft/server/PathfinderGoalAvoidPlayer
+CLASS none/yr net/minecraft/server/PathfinderGoalBeg
+CLASS none/ys net/minecraft/server/PathfinderGoalBreakDoor
+CLASS none/yt net/minecraft/server/PathfinderGoalBreed
+CLASS none/yv net/minecraft/server/PathfinderGoalDoorInteract
+CLASS none/yw net/minecraft/server/PathfinderGoalEatTile
+CLASS none/yx net/minecraft/server/PathfinderGoalFleeSun
+CLASS none/yy net/minecraft/server/PathfinderGoalFloat
+CLASS none/yz net/minecraft/server/PathfinderGoalFollowOwner
+CLASS none/za net/minecraft/server/PathfinderGoalFollowParent
+CLASS none/zb net/minecraft/server/PathfinderGoal
+CLASS none/zg net/minecraft/server/PathfinderGoalLeapAtTarget
+CLASS none/zh net/minecraft/server/PathfinderGoalLookAtPlayer
+CLASS none/zi net/minecraft/server/PathfinderGoalLookAtTradingPlayer
+CLASS none/zj net/minecraft/server/PathfinderGoalMakeLove
+CLASS none/zl net/minecraft/server/PathfinderGoalMoveIndoors
+CLASS none/zm net/minecraft/server/PathfinderGoalMoveThroughVillage
+CLASS none/zp net/minecraft/server/PathfinderGoalMoveTowardsTarget
+CLASS none/zq net/minecraft/server/PathfinderGoalOcelotAttack
+CLASS none/zt net/minecraft/server/PathfinderGoalOpenDoor
+CLASS none/zu net/minecraft/server/PathfinderGoalPanic
+CLASS none/zv net/minecraft/server/PathfinderGoalPlay
+CLASS none/zx net/minecraft/server/PathfinderGoalRandomLookaround
+CLASS none/zy net/minecraft/server/PathfinderGoalRandomStroll
+CLASS none/zz net/minecraft/server/PathfinderGoalArrowAttack
+CLASS none/aaa net/minecraft/server/PathfinderGoalRestrictOpenDoor
+CLASS none/aab net/minecraft/server/PathfinderGoalRestrictSun
+CLASS none/aad net/minecraft/server/PathfinderGoalSit
+CLASS none/aae net/minecraft/server/PathfinderGoalSwell
+CLASS none/aag net/minecraft/server/PathfinderGoalTempt
+CLASS none/aah net/minecraft/server/PathfinderGoalTradeWithPlayer
+CLASS none/aak net/minecraft/server/PathfinderGoalDefendVillage
+CLASS none/abi net/minecraft/server/Village
+	FIELD a world
+	FIELD b doors
+	FIELD j playerStandings
+	FIELD k aggressors
+CLASS none/abo net/minecraft/server/EntityBat
+CLASS none/abq net/minecraft/server/EntityAnimal
+CLASS none/abr net/minecraft/server/EntityChicken
+CLASS none/abs net/minecraft/server/EntityCow
+CLASS none/abt net/minecraft/server/EntityHorse
+CLASS none/abw net/minecraft/server/EntityGolem
+CLASS none/abx net/minecraft/server/EntityMushroomCow
+CLASS none/aby net/minecraft/server/EntityOcelot
+CLASS none/aca net/minecraft/server/EntityPig
+CLASS none/acl net/minecraft/server/EntitySheep
+CLASS none/acn net/minecraft/server/EntitySnowman
+CLASS none/aco net/minecraft/server/EntitySquid
+CLASS none/acq net/minecraft/server/EntityIronGolem
+CLASS none/act net/minecraft/server/EntityWaterAnimal
+CLASS none/acu net/minecraft/server/EntityWolf
+CLASS none/acz net/minecraft/server/EntityComplexPart
+CLASS none/ada net/minecraft/server/EntityEnderCrystal
+CLASS none/adb net/minecraft/server/EntityEnderDragon
+CLASS none/adf net/minecraft/server/EntityWither
+CLASS none/adj net/minecraft/server/EntityHanging
+CLASS none/adk net/minecraft/server/EntityItemFrame
+CLASS none/adl net/minecraft/server/EntityLeash
+CLASS none/adm net/minecraft/server/EntityPainting
+	METHOD b setPositionRotation_ (DDDFF)V
+CLASS none/ado net/minecraft/server/EntityFishingHook
+CLASS none/ads net/minecraft/server/EntityLightning
+CLASS none/adu net/minecraft/server/EntityBoat
+CLASS none/adv net/minecraft/server/EntityFallingBlock
+CLASS none/adw net/minecraft/server/EntityItem
+CLASS none/adx net/minecraft/server/EntityMinecartAbstract
+CLASS none/aea net/minecraft/server/EntityMinecartChest
+CLASS none/aeb net/minecraft/server/EntityMinecartCommandBlock
+CLASS none/aed net/minecraft/server/EntityMinecartContainer
+CLASS none/aee net/minecraft/server/EntityMinecartFurnace
+CLASS none/aef net/minecraft/server/EntityMinecartHopper
+CLASS none/aeh net/minecraft/server/EntityMinecartMobSpawner
+CLASS none/aej net/minecraft/server/EntityMinecartTNT
+CLASS none/aek net/minecraft/server/EntityTNTPrimed
+CLASS none/aem net/minecraft/server/EntityBlaze
+CLASS none/aeo net/minecraft/server/EntityCaveSpider
+CLASS none/aep net/minecraft/server/EntityCreeper
+CLASS none/aer net/minecraft/server/EntityEnderman
+CLASS none/aew net/minecraft/server/EntityEndermite
+CLASS none/afa net/minecraft/server/EntityGhast
+CLASS none/aff net/minecraft/server/EntityGiantZombie
+CLASS none/afl net/minecraft/server/EntityMagmaCube
+CLASS none/afm net/minecraft/server/EntityMonster
+CLASS none/afo net/minecraft/server/EntityPigZombie
+CLASS none/afr net/minecraft/server/IRangedEntity
+CLASS none/afs net/minecraft/server/GenericAttributes
+CLASS none/aft net/minecraft/server/EntitySilverfish
+CLASS none/afw net/minecraft/server/EntitySkeleton
+CLASS none/afy net/minecraft/server/EntitySlime
+CLASS none/age net/minecraft/server/EntitySpider
+CLASS none/agi net/minecraft/server/EntityWitch
+CLASS none/agj net/minecraft/server/EntityZombie
+CLASS none/agp net/minecraft/server/EntityVillager
+CLASS none/aha net/minecraft/server/PlayerAbilities
+CLASS none/ahb net/minecraft/server/PlayerInventory
+CLASS none/ahd net/minecraft/server/EntityHuman
+CLASS none/ahj net/minecraft/server/EntityArrow
+CLASS none/ahk net/minecraft/server/EntityEnderSignal
+CLASS none/ahl net/minecraft/server/EntityFireball
+CLASS none/ahm net/minecraft/server/EntityFireworks
+CLASS none/ahn net/minecraft/server/EntityLargeFireball
+CLASS none/ahp net/minecraft/server/EntitySmallFireball
+CLASS none/ahq net/minecraft/server/EntitySnowball
+CLASS none/ahr net/minecraft/server/EntityProjectile
+CLASS none/ahs net/minecraft/server/EntityEgg
+CLASS none/ahu net/minecraft/server/EntityThrownExpBottle
+CLASS none/ahw net/minecraft/server/EntityWitherSkull
+CLASS none/ahz net/minecraft/server/FoodMetaData
+CLASS none/aib net/minecraft/server/Container
+CLASS none/aic net/minecraft/server/InventoryHorseChest
+CLASS none/aid net/minecraft/server/ContainerAnvil
+CLASS none/aig net/minecraft/server/ContainerBeacon
+CLASS none/aii net/minecraft/server/ContainerBrewingStand
+CLASS none/aik net/minecraft/server/SlotPotionBottle
+CLASS none/aim net/minecraft/server/ContainerChest
+CLASS none/ain net/minecraft/server/InventoryCrafting
+CLASS none/aio net/minecraft/server/ContainerWorkbench
+CLASS none/aip net/minecraft/server/ContainerDispenser
+CLASS none/aiq net/minecraft/server/ContainerEnchantTable
+CLASS none/aiv net/minecraft/server/ContainerFurnace
+CLASS none/aiw net/minecraft/server/SlotFurnaceResult
+CLASS none/aix net/minecraft/server/ContainerHopper
+CLASS none/aiy net/minecraft/server/ContainerHorse
+CLASS none/ajb net/minecraft/server/ContainerPlayer
+CLASS none/ajf net/minecraft/server/ContainerMerchant
+CLASS none/ajg net/minecraft/server/SlotMerchantResult
+CLASS none/ajh net/minecraft/server/InventoryEnderChest
+CLASS none/ajk net/minecraft/server/Slot
+CLASS none/ajn net/minecraft/server/ItemArmor
+CLASS none/ajr net/minecraft/server/ItemAxe
+CLASS none/ajt net/minecraft/server/ItemBed
+CLASS none/aju net/minecraft/server/ItemBlock
+CLASS none/ajw net/minecraft/server/ItemBoat
+CLASS none/ajy net/minecraft/server/ItemGlassBottle
 CLASS none/ajz net/minecraft/server/ItemBow
+CLASS none/aka net/minecraft/server/ItemSoup
+CLASS none/akb net/minecraft/server/ItemBucket
+CLASS none/akc net/minecraft/server/ItemCarrotStick
+CLASS none/akd net/minecraft/server/ItemCoal
+CLASS none/akf net/minecraft/server/CreativeModeTab
+CLASS none/akg net/minecraft/server/CreativeModeTab1
+CLASS none/akh net/minecraft/server/CreativeModeTab10
+CLASS none/aki net/minecraft/server/CreativeModeTab11
+CLASS none/akj net/minecraft/server/CreativeModeTab12
+CLASS none/akk net/minecraft/server/CreativeModeTab2
+CLASS none/akl net/minecraft/server/CreativeModeTab3
+CLASS none/akm net/minecraft/server/CreativeModeTab4
+CLASS none/akn net/minecraft/server/CreativeModeTab5
+CLASS none/ako net/minecraft/server/CreativeModeTab6
+CLASS none/akp net/minecraft/server/CreativeModeTab7
+CLASS none/akq net/minecraft/server/CreativeModeTab8
+CLASS none/akr net/minecraft/server/CreativeModeTab9
+CLASS none/aks net/minecraft/server/ItemTool
+CLASS none/akt net/minecraft/server/ItemDoor
+CLASS none/akw net/minecraft/server/ItemDye
+CLASS none/aky net/minecraft/server/ItemEgg
+CLASS none/akz net/minecraft/server/ItemMapEmpty
+CLASS none/ala net/minecraft/server/ItemEnchantedBook
+CLASS none/alb net/minecraft/server/ItemEnderEye
+CLASS none/ald net/minecraft/server/ItemExpBottle
+CLASS none/alf net/minecraft/server/ItemFireworksCharge
+CLASS none/alg net/minecraft/server/ItemFireworks
+CLASS none/alh net/minecraft/server/ItemFish
+CLASS none/alj net/minecraft/server/ItemFishingRod
+CLASS none/alk net/minecraft/server/ItemFlintAndSteel
+CLASS none/all net/minecraft/server/ItemFood
+CLASS none/alm net/minecraft/server/ItemGoldenApple
+CLASS none/alo net/minecraft/server/ItemHoe
 CLASS none/alq net/minecraft/server/Item
 CLASS none/amj net/minecraft/server/ItemStack
 CLASS none/amk net/minecraft/server/Items
-	FIELD a null
+	FIELD B GOLD_SWORD
+	FIELD F STRING
+	FIELD G FEATHER
+	FIELD aA SADDLE
+	FIELD ah GOLD_CHESTPLATE
+	FIELD ak FLINT
+	FIELD by NETHER_STALK
+	FIELD ck HORSE_ARMOR_IRON
+	FIELD cl HORSE_ARMOR_GOLD
+	FIELD cm HORSE_ARMOR_DIAMOND
+	FIELD d FLINT_AND_STEEL
+	FIELD f BOW
+	FIELD g ARROW
+	FIELD i DIAMOND
+	FIELD j IRON_INGOT
+	FIELD k GOLD_INGOT
+	FIELD l IRON_SWORD
+	FIELD m WOOD_SWORD
+	FIELD q STONE_SWORD
+	FIELD u DIAMOND_SWORD
+	FIELD y STICK
+CLASS none/aml net/minecraft/server/ItemLeash
+CLASS none/amn net/minecraft/server/ItemWorldMap
+CLASS none/amo net/minecraft/server/ItemMilkBucket
+CLASS none/amt net/minecraft/server/ItemNameTag
+CLASS none/amu net/minecraft/server/ItemPickaxe
+CLASS none/amv net/minecraft/server/ItemPiston
+CLASS none/amw net/minecraft/server/ItemPotion
+CLASS none/amy net/minecraft/server/ItemRecord
+CLASS none/amz net/minecraft/server/ItemRedstone
+CLASS none/ana net/minecraft/server/ItemSaddle
+CLASS none/anb net/minecraft/server/ItemSeedFood
+CLASS none/anc net/minecraft/server/ItemSeeds
+CLASS none/and net/minecraft/server/ItemShears
+CLASS none/ane net/minecraft/server/ItemSpade
+CLASS none/anf net/minecraft/server/ItemSign
+CLASS none/anh net/minecraft/server/ItemSkull
+CLASS none/anl net/minecraft/server/ItemMonsterEgg
+CLASS none/anm net/minecraft/server/ItemSword
+CLASS none/anp net/minecraft/server/ItemWaterLily
+CLASS none/anq net/minecraft/server/ItemBookAndQuill
+CLASS none/anr net/minecraft/server/ItemWrittenBook
+CLASS none/aop net/minecraft/server/CraftingManager
+	METHOD a registerShapedRecipe (Lnone/amj;[Ljava/lang/Object;)Lnone/aos;
+CLASS none/aow net/minecraft/server/RecipesWeapons
+CLASS none/aoz net/minecraft/server/EnchantmentFlameArrows
+CLASS none/apa net/minecraft/server/EnchantmentInfiniteArrows
+CLASS none/apb net/minecraft/server/EnchantmentArrowKnockback
+CLASS none/apc net/minecraft/server/EnchantmentWeaponDamage
+CLASS none/apd net/minecraft/server/EnchantmentDurability
+CLASS none/ape net/minecraft/server/EnchantmentDigging
+CLASS none/apf net/minecraft/server/Enchantment
+CLASS none/apg net/minecraft/server/EnchantmentSlotType
+	FIELD a ALL
+	FIELD b ARMOR
+	FIELD c ARMOR_FEET
+	FIELD d ARMOR_LEGS
+	FIELD e ARMOR_TORSO
+	FIELD f ARMOR_HEAD
+	FIELD g WEAPON
+	FIELD h DIGGER
+	FIELD i FISHING_ROD
+	FIELD j BREAKABLE
+	FIELD k BOW
+CLASS none/aph net/minecraft/server/EnchantmentManager
+CLASS none/apo net/minecraft/server/EnchantmentInstance
+CLASS none/app net/minecraft/server/EnchantmentFire
+CLASS none/apq net/minecraft/server/EnchantmentLure
+CLASS none/apr net/minecraft/server/EnchantmentKnockback
+CLASS none/aps net/minecraft/server/EnchantmentLootBonus
+CLASS none/apt net/minecraft/server/EnchantmentOxygen
+CLASS none/apu net/minecraft/server/EnchantmentProtection
+CLASS none/apv net/minecraft/server/EnchantmentThorns
+CLASS none/apw net/minecraft/server/EnchantmentSilkTouch
+CLASS none/apy net/minecraft/server/EnchantmentWaterWorker
+CLASS none/aqb net/minecraft/server/IMerchant
+CLASS none/aqc net/minecraft/server/MerchantRecipe
+CLASS none/aqm net/minecraft/server/ChunkCoordIntPair
+CLASS none/aqo net/minecraft/server/Explosion
+CLASS none/aqq net/minecraft/server/GameRules
+CLASS none/aqr net/minecraft/server/GameRuleValue
 CLASS none/aqu net/minecraft/server/World
+	FIELD D isStatic_
+	METHOD d add_ (Lnone/wv;)Z
+CLASS none/ara net/minecraft/server/IWorldAccess
+CLASS none/arb net/minecraft/server/WorldSettings
+CLASS none/ard net/minecraft/server/IBlockAccess
+CLASS none/arj net/minecraft/server/ChunkCache
+CLASS none/arl net/minecraft/server/BiomeBeach
+CLASS none/arm net/minecraft/server/BiomeBase
+CLASS none/arr net/minecraft/server/BiomeCache
+CLASS none/ary net/minecraft/server/BiomeDecorator
+CLASS none/asa net/minecraft/server/BiomeDesert
+CLASS none/asb net/minecraft/server/BiomeBigHills
+CLASS none/asd net/minecraft/server/BiomeForest
+CLASS none/asg net/minecraft/server/BiomeHell
+CLASS none/ash net/minecraft/server/BiomeIcePlains
+CLASS none/asi net/minecraft/server/BiomeJungle
+CLASS none/asj net/minecraft/server/BiomeMesa
+CLASS none/ask net/minecraft/server/BiomeMushrooms
+CLASS none/asm net/minecraft/server/BiomeOcean
+CLASS none/asn net/minecraft/server/BiomePlains
+CLASS none/asp net/minecraft/server/BiomeRiver
+CLASS none/asq net/minecraft/server/BiomeSavanna
+CLASS none/ast net/minecraft/server/BiomeSwamp
+CLASS none/asu net/minecraft/server/BiomeTaiga
+CLASS none/asv net/minecraft/server/BiomeTheEnd
+CLASS none/asw net/minecraft/server/BiomeTheEndDecorator
+CLASS none/asy net/minecraft/server/BlockAir
+CLASS none/atg net/minecraft/server/BlockContainer
+CLASS none/ati net/minecraft/server/BlockMinecartTrackAbstract
+CLASS none/atm net/minecraft/server/BlockBeacon
+CLASS none/atp net/minecraft/server/BlockBed
 CLASS none/atr net/minecraft/server/Block
+CLASS none/att net/minecraft/server/StepSoundLadder
+CLASS none/atu net/minecraft/server/StepSoundAnvil
+CLASS none/aty net/minecraft/server/Blocks
+	FIELD bf SMOOTH_BRICK__
+	FIELD e COBBLESTONE
+	FIELD f WOOD
+CLASS none/aua net/minecraft/server/BlockBookshelf
+CLASS none/aub net/minecraft/server/BlockBrewingStand
+CLASS none/auf net/minecraft/server/BlockCactus
+CLASS none/aug net/minecraft/server/BlockCake
+CLASS none/auh net/minecraft/server/BlockCarrots
+CLASS none/aui net/minecraft/server/BlockCauldron
+CLASS none/auj net/minecraft/server/BlockChest
+CLASS none/auk net/minecraft/server/BlockClay
+CLASS none/aul net/minecraft/server/BlockCocoa
+CLASS none/auo net/minecraft/server/BlockCommand
+CLASS none/aup net/minecraft/server/BlockRedstoneComparator
+CLASS none/aus net/minecraft/server/BlockWorkbench
+CLASS none/auu net/minecraft/server/BlockCrops
+CLASS none/auv net/minecraft/server/BlockDaylightDetector
+CLASS none/auw net/minecraft/server/BlockDeadBush
+CLASS none/auy net/minecraft/server/BlockMinecartDetector
+CLASS none/avc net/minecraft/server/BlockDirt
+CLASS none/avd net/minecraft/server/EnumDirtVariant
+	FIELD a DIRT
+	FIELD b COARSE_DIRT
+	FIELD c PODZOL
+CLASS none/ave net/minecraft/server/BlockDispenser
+CLASS none/avf net/minecraft/server/BlockDoor
+CLASS none/avl net/minecraft/server/BlockDragonEgg
+CLASS none/avm net/minecraft/server/BlockDropper
+CLASS none/avn net/minecraft/server/BlockFlowing
+CLASS none/avo net/minecraft/server/BlockEnchantmentTable
+CLASS none/avp net/minecraft/server/BlockEnderPortal
+CLASS none/avq net/minecraft/server/BlockEnderPortalFrame
+CLASS none/avr net/minecraft/server/BlockEnderChest
+CLASS none/avt net/minecraft/server/BlockFalling
+CLASS none/avu net/minecraft/server/BlockSoil
+CLASS none/avv net/minecraft/server/BlockFence
+CLASS none/avw net/minecraft/server/BlockFenceGate
+CLASS none/avx net/minecraft/server/BlockFire
+CLASS none/awd net/minecraft/server/BlockFlowerPot
+CLASS none/awj net/minecraft/server/BlockFurnace
+CLASS none/awl net/minecraft/server/BlockGlass
+CLASS none/awm net/minecraft/server/BlockLightStone
+CLASS none/awo net/minecraft/server/BlockGravel
+CLASS none/awv net/minecraft/server/BlockHardenedClay
+CLASS none/aww net/minecraft/server/BlockHay
+CLASS none/awx net/minecraft/server/BlockHopper
+CLASS none/axb net/minecraft/server/BlockIce
+CLASS none/axc net/minecraft/server/BlockJukeBox
+CLASS none/axd net/minecraft/server/TileEntityRecordPlayer
+CLASS none/axe net/minecraft/server/BlockLadder
+CLASS none/axi net/minecraft/server/BlockLever
+CLASS none/axp net/minecraft/server/BlockMelon
+CLASS none/axr net/minecraft/server/BlockMobSpawner
+CLASS none/axs net/minecraft/server/BlockMonsterEggs
+CLASS none/ayb net/minecraft/server/BlockMushroom
+CLASS none/ayc net/minecraft/server/BlockMycel
+CLASS none/ayd net/minecraft/server/BlockBloodStone
+CLASS none/aye net/minecraft/server/BlockNetherWart
+CLASS none/ayi net/minecraft/server/BlockLog2
+CLASS none/ayn net/minecraft/server/BlockNote
+CLASS none/ayo net/minecraft/server/BlockObsidian
+CLASS none/ayu net/minecraft/server/BlockOre
+CLASS none/ayv net/minecraft/server/BlockPackedIce
+CLASS none/ayy net/minecraft/server/BlockPortal
+CLASS none/aza net/minecraft/server/BlockPotatoes
+CLASS none/azb net/minecraft/server/BlockRedstone
+CLASS none/azc net/minecraft/server/BlockPoweredRail
+CLASS none/azk net/minecraft/server/BlockPumpkin
+CLASS none/azs net/minecraft/server/BlockRedstoneOre
+CLASS none/azt net/minecraft/server/BlockRedstoneWire
+CLASS none/azv net/minecraft/server/BlockRedstoneLamp
+CLASS none/azw net/minecraft/server/BlockRedstoneTorch
+CLASS none/azy net/minecraft/server/BlockReed
+CLASS none/bad net/minecraft/server/BlockSandStone
+CLASS none/baf net/minecraft/server/BlockSapling
+CLASS none/baj net/minecraft/server/BlockSkull
+CLASS none/ban net/minecraft/server/BlockSnowBlock
+CLASS none/bao net/minecraft/server/BlockSnowLayer
+CLASS none/bap net/minecraft/server/BlockSlowSand
+CLASS none/bas net/minecraft/server/BlockStainedGlassPane
+CLASS none/bat net/minecraft/server/BlockStairs
+CLASS none/bav net/minecraft/server/EnumStairsShape
+	FIELD a STRAIGHT
+	FIELD b INNER_LEFT
+	FIELD c INNER_RIGHT
+	FIELD d OUTER_LEFT
+	FIELD e OUTER_RIGHT
+CLASS none/bax net/minecraft/server/BlockStationary
+CLASS none/bay net/minecraft/server/BlockStem
+CLASS none/bbe net/minecraft/server/BlockStoneButton
+CLASS none/bbh net/minecraft/server/BlockLongGrass
+CLASS none/bbj net/minecraft/server/BlockThin
+CLASS none/bbk net/minecraft/server/BlockTNT
+CLASS none/bbl net/minecraft/server/BlockTorch
+CLASS none/bbp net/minecraft/server/BlockTrapdoor
+CLASS none/bbs net/minecraft/server/BlockTripwire
+CLASS none/bbt net/minecraft/server/BlockTripwireHook
+CLASS none/bbv net/minecraft/server/BlockVine
+CLASS none/bbx net/minecraft/server/BlockCobbleWall
+CLASS none/bcb net/minecraft/server/BlockWaterLily
+CLASS none/bcc net/minecraft/server/BlockWeb
+CLASS none/bcd net/minecraft/server/BlockPressurePlateWeighted
+CLASS none/bce net/minecraft/server/BlockWoodButton
+CLASS none/bcg net/minecraft/server/BlockCarpet
+CLASS none/bck net/minecraft/server/TileEntityBeacon
+CLASS none/bcm net/minecraft/server/TileEntity
+CLASS none/bcq net/minecraft/server/TileEntityBrewingStand
+CLASS none/bcr net/minecraft/server/TileEntityChest
+CLASS none/bct net/minecraft/server/TileEntityCommand
+CLASS none/bcv net/minecraft/server/TileEntityComparator
+CLASS none/bcw net/minecraft/server/TileEntityLightDetector
 CLASS none/bcx net/minecraft/server/TileEntityDispenser
+CLASS none/bcy net/minecraft/server/TileEntityDropper
+CLASS none/bcz net/minecraft/server/TileEntityEnchantTable
+CLASS none/bda net/minecraft/server/TileEntityEnderChest
+CLASS none/bdb net/minecraft/server/TileEntityFlowerPot
+CLASS none/bdc net/minecraft/server/TileEntityFurnace
+CLASS none/bde net/minecraft/server/TileEntityHopper
+CLASS none/bdg net/minecraft/server/TileEntityMobSpawner
+CLASS none/bdi net/minecraft/server/TileEntityNote
+CLASS none/bdj net/minecraft/server/TileEntitySign
+CLASS none/bdm net/minecraft/server/TileEntitySkull
+CLASS none/bdn net/minecraft/server/TileEntityEnderPortal
+CLASS none/bds net/minecraft/server/BlockPistonExtension
+CLASS none/bdv net/minecraft/server/TileEntityPiston
+CLASS none/bdx net/minecraft/server/BlockPistonMoving
+CLASS none/bfe net/minecraft/server/IChunkProvider
+CLASS none/bff net/minecraft/server/NibbleArray
+CLASS none/bfg net/minecraft/server/EmptyChunk
+CLASS none/bfm net/minecraft/server/ChunkSection
+CLASS none/bfq net/minecraft/server/IChunkLoader
+CLASS none/bfv net/minecraft/server/RegionFile
+CLASS none/bfx net/minecraft/server/RegionFileCache
+CLASS none/bge net/minecraft/server/WorldProviderHell
+CLASS none/bgg net/minecraft/server/WorldProviderNormal
+CLASS none/bgh net/minecraft/server/WorldProviderTheEnd
+CLASS none/bgj net/minecraft/server/WorldGenCanyon
+CLASS none/bgq net/minecraft/server/ChunkProviderFlat
+CLASS none/bgs net/minecraft/server/WorldGenCaves
+CLASS none/bgu net/minecraft/server/WorldGenCavesHell
+CLASS none/bgw net/minecraft/server/ChunkProviderTheEnd
+CLASS none/bhd net/minecraft/server/WorldGenBigTree
+CLASS none/bhh net/minecraft/server/WorldGenBonusChest
+CLASS none/bhj net/minecraft/server/WorldGenCactus
+CLASS none/bhl net/minecraft/server/WorldGenClay
+CLASS none/bhm net/minecraft/server/WorldGenDeadBush
+CLASS none/bho net/minecraft/server/WorldGenTallPlant
+CLASS none/bhq net/minecraft/server/WorldGenFlowers
+CLASS none/bhu net/minecraft/server/WorldGenHellLava
+CLASS none/bhv net/minecraft/server/WorldGenHugeMushroom
+CLASS none/bhy net/minecraft/server/WorldGenLakes
+CLASS none/bia net/minecraft/server/WorldGenJungleTree
+CLASS none/bid net/minecraft/server/WorldGenMelon
+CLASS none/bie net/minecraft/server/WorldGenDungeons
+CLASS none/bif net/minecraft/server/WorldGenMinable
+CLASS none/bih net/minecraft/server/WorldGenPumpkin
+CLASS none/bii net/minecraft/server/WorldGenReed
+CLASS none/bil net/minecraft/server/WorldGenAcaciaTree
+CLASS none/bim net/minecraft/server/WorldGenEnder
+CLASS none/bin net/minecraft/server/WorldGenLiquids
+CLASS none/bip net/minecraft/server/WorldGenSwampTree
+CLASS none/bir net/minecraft/server/WorldGenTrees
+CLASS none/bis net/minecraft/server/WorldGenVines
+CLASS none/bit net/minecraft/server/WorldGenWaterLily
+CLASS none/biv net/minecraft/server/WorldGenFlatInfo
+CLASS none/biw net/minecraft/server/WorldGenFlatLayerInfo
+CLASS none/bjb net/minecraft/server/StructureBoundingBox
+CLASS none/bjd net/minecraft/server/WorldGenMineshaft
+CLASS none/bjg net/minecraft/server/WorldGenMineshaftCorridor
+CLASS none/bjk net/minecraft/server/WorldGenMineshaftStart
+CLASS none/bjl net/minecraft/server/WorldGenNether
+CLASS none/bjm net/minecraft/server/WorldGenNetherStart
+CLASS none/bkb net/minecraft/server/WorldGenNetherPiece
+CLASS none/bln net/minecraft/server/WorldGenScatteredPiece
+CLASS none/blo net/minecraft/server/WorldGenWitchHut
+CLASS none/blp net/minecraft/server/WorldGenStronghold
+CLASS none/blr net/minecraft/server/WorldGenStrongholdPieces
+CLASS none/bmk net/minecraft/server/WorldGenStrongholdPiece
+CLASS none/bmm net/minecraft/server/StructureGenerator
+CLASS none/bms net/minecraft/server/StructurePiece
+CLASS none/bmw net/minecraft/server/WorldGenVillage
+CLASS none/bni net/minecraft/server/WorldGenVillageTemple
+CLASS none/bnu net/minecraft/server/NoiseGeneratorPerlin
+CLASS none/bnw net/minecraft/server/NoiseGenerator3
+CLASS none/boc net/minecraft/server/MaterialDecoration
+	METHOD a isBuildable_ ()Z
+	METHOD b blocksLight_ ()Z
+	METHOD c isSolid_ ()Z
+CLASS none/bod net/minecraft/server/MaterialFire
+	METHOD a isBuildable_ ()Z
+	METHOD b blocksLight_ ()Z
+	METHOD c isSolid_ ()Z
+CLASS none/boe net/minecraft/server/MaterialLiquid
+	METHOD a isBuildable_ ()Z
+	METHOD c isSolid_ ()Z
+	METHOD d isLiquid ()Z
 CLASS none/bof net/minecraft/server/Material
+	FIELD A CACTUS
+	FIELD B CLAY
+	FIELD C PUMPKIN
+	FIELD D DRAGON_EGG
+	FIELD E PORTAL
+	FIELD F CAKE
+	FIELD G WEB
+	FIELD H PISTON
+	FIELD J canBurn
+	FIELD K null
+	FIELD a AIR
+	FIELD b GRASS
+	FIELD c EARTH
+	FIELD d WOOD
+	FIELD e STONE
+	FIELD f ORE
+	FIELD g HEAVY
+	FIELD h WATER
+	FIELD i LAVA
+	FIELD j LEAVES
+	FIELD k PLANT
+	FIELD l REPLACEABLE_PLANT
+	FIELD m SPONGE
+	FIELD n CLOTH
+	FIELD o FIRE
+	FIELD p SAND
+	FIELD q ORIENTABLE
+	FIELD r WOOL
+	FIELD s SHATTERABLE
+	FIELD t BUILDABLE_GLASS
+	FIELD u TNT
+	FIELD v CORAL
+	FIELD w ICE
+	FIELD x SNOW_LAYER
+	FIELD y PACKED_ICE
+	FIELD z SNOW_BLOCK
+	METHOD a isBuildable_ ()Z
+	METHOD b blocksLight_ ()Z
+	METHOD c isSolid_ ()Z
+	METHOD d isLiquid ()Z
+	METHOD h isBurnable ()Z
+	METHOD j isReplaceable ()Z
+	METHOD l isAlwaysDestroyable ()Z
+	METHOD m getPushReaction ()I
+CLASS none/bog net/minecraft/server/MaterialWeb
+	METHOD c isSolid_ ()Z
+CLASS none/boh net/minecraft/server/MaterialMapColor
+CLASS none/boi net/minecraft/server/MaterialPortal
+	METHOD a isBuildable_ ()Z
+	METHOD b blocksLight_ ()Z
+	METHOD c isSolid_ ()Z
+CLASS none/bok net/minecraft/server/GenLayerDeepOcean
+CLASS none/boy net/minecraft/server/IntCache
+CLASS none/bpa net/minecraft/server/GenLayer
+CLASS none/bpp net/minecraft/server/GenLayerZoom
+CLASS none/bqe net/minecraft/server/WorldMap
+CLASS none/bqo net/minecraft/server/WorldData
+CLASS none/brl net/minecraft/server/IPlayerFileData
+CLASS none/brt net/minecraft/server/AxisAlignedBB
+CLASS none/bru net/minecraft/server/MovingObjectPosition
+CLASS none/brw net/minecraft/server/Vec3D
+CLASS none/bry net/minecraft/server/ScoreboardObjective
+CLASS none/brz net/minecraft/server/ScoreboardTeam
+CLASS none/bsa net/minecraft/server/ScoreboardScore
+CLASS none/bsb net/minecraft/server/ScoreboardComparator
+CLASS none/bsd net/minecraft/server/Scoreboard
+CLASS none/bsj net/minecraft/server/ScoreboardHealthCriteria
+CLASS none/bsk net/minecraft/server/IScoreboardCriteria
+CLASS none/bsm net/minecraft/server/ScoreboardStatisticCriteria
+CLASS none/arr$ars net/minecraft/server/BiomeCacheBlock
+CLASS com/google/gson/JsonObject com/google/gson/JsonObject
+CLASS com/google/gson/JsonElement com/google/gson/JsonElement
+CLASS com/google/common/collect/Maps com/google/common/collect/Maps
+	METHOD newHashMap newHashMap ()Ljava/util/HashMap;
+CLASS com/google/gson/JsonSerializer com/google/gson/JsonSerializer
+CLASS com/google/common/base/Function com/google/common/base/Function
+CLASS com/google/common/collect/Lists com/google/common/collect/Lists
+	METHOD newArrayList newArrayList ()Ljava/util/ArrayList;
+CLASS com/google/common/base/Predicate com/google/common/base/Predicate
+CLASS com/google/gson/JsonDeserializer com/google/gson/JsonDeserializer
+CLASS com/google/gson/JsonDeserializationContext com/google/gson/JsonDeserializationContext
