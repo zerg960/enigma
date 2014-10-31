@@ -6,7 +6,6 @@
   <name>Enigma</name>
   <description>Java deobfuscation GUI</description>
   <build>
-    <sourceDirectory>src</sourceDirectory>
     <testSourceDirectory>test</testSourceDirectory>
     <plugins>
       <plugin>

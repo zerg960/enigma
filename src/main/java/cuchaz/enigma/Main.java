@@ -12,10 +12,13 @@ package cuchaz.enigma;
 
 import java.io.File;
 
+import javax.swing.UIManager;
+
 import cuchaz.enigma.gui.Gui;
 
 public class Main {
     public static void main(String[] args) throws Exception {
+	UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
 	Gui gui = new Gui();
 
 	// parse command-line args
