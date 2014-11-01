@@ -36,21 +36,36 @@ CLASS none/r net/minecraft/server/CrashReportDetail
 CLASS none/u net/minecraft/server/ReportedException
 	METHOD getCause getCause ()Ljava/lang/Throwable;
 	METHOD getMessage getMessage ()Ljava/lang/String;
+CLASS none/v net/minecraft/server/SharedConstants
 CLASS none/y net/minecraft/server/ICommandDispatcher
 CLASS none/z net/minecraft/server/CommandAbstract
+CLASS none/ab net/minecraft/server/CommandHandler
 CLASS none/ac net/minecraft/server/ICommand
+CLASS none/ad net/minecraft/server/ICommandHandler
 CLASS none/ae net/minecraft/server/ICommandListener
+CLASS none/af net/minecraft/server/CommandResultStats__
+CLASS none/ag net/minecraft/server/EnumResultStatsType__
+	FIELD a SUCCESS_COUNT
+	FIELD b AFFECTED_BLOCKS
+	FIELD c AFFECTED_ENTITIES
+	FIELD d AFFECTED_ITEMS
+	FIELD e QUERY_RESULT
+CLASS none/am net/minecraft/server/EntityIsPlayerPredicate
 CLASS none/au net/minecraft/server/CommandAchievement
 CLASS none/aw net/minecraft/server/CommandBanIp
 CLASS none/ax net/minecraft/server/CommandBan
+CLASS none/ay net/minecraft/server/CommandBlockData
 CLASS none/az net/minecraft/server/CommandClear
 CLASS none/ba net/minecraft/server/CommandClone
+CLASS none/bc net/minecraft/server/CommandCompare
 CLASS none/bd net/minecraft/server/CommandDeop
 CLASS none/be net/minecraft/server/CommandDebug
 CLASS none/bf net/minecraft/server/CommandGamemodeDefault
 CLASS none/bg net/minecraft/server/CommandEffect
 CLASS none/bh net/minecraft/server/CommandMe
 CLASS none/bi net/minecraft/server/CommandEnchant
+CLASS none/bj net/minecraft/server/CommandEntityData
+CLASS none/bk net/minecraft/server/CommandExecuteAt
 CLASS none/bm net/minecraft/server/CommandXp
 CLASS none/bn net/minecraft/server/CommandFill
 CLASS none/bo net/minecraft/server/CommandDifficulty
@@ -74,6 +89,7 @@ CLASS none/ch net/minecraft/server/CommandSaveOff
 CLASS none/ci net/minecraft/server/CommandSaveOn
 CLASS none/cj net/minecraft/server/CommandSay
 CLASS none/ck net/minecraft/server/CommandScoreboard
+CLASS none/cl net/minecraft/server/CommandDispatcher
 CLASS none/cm net/minecraft/server/CommandSetBlock
 CLASS none/cn net/minecraft/server/CommandSetWorldSpawn
 CLASS none/co net/minecraft/server/CommandIdleTimeout
@@ -86,6 +102,7 @@ CLASS none/cw net/minecraft/server/CommandTp
 CLASS none/cy net/minecraft/server/CommandTestForBlock
 CLASS none/cz net/minecraft/server/CommandTestFor
 CLASS none/da net/minecraft/server/CommandTime
+CLASS none/db net/minecraft/server/CommandTitle
 CLASS none/dc net/minecraft/server/CommandToggleDownfall
 CLASS none/dd net/minecraft/server/CommandTrigger
 CLASS none/de net/minecraft/server/CommandWeather
@@ -116,6 +133,16 @@ CLASS none/fj net/minecraft/server/LocaleLanguage
 CLASS none/fl net/minecraft/server/NBTTagByteArray
 CLASS none/fm net/minecraft/server/NBTTagByte
 CLASS none/fn net/minecraft/server/NBTTagCompound
+	METHOD a setInt (Ljava/lang/String;I)V
+	METHOD a setString (Ljava/lang/String;Ljava/lang/String;)V
+	METHOD a set (Ljava/lang/String;Lnone/gd;)V
+	METHOD a setBoolean (Ljava/lang/String;Z)V
+	METHOD c hasKey (Ljava/lang/String;)Z
+	METHOD c getList (Ljava/lang/String;I)Lnone/fv;
+	METHOD f genInt (Ljava/lang/String;)I
+	METHOD j getString (Ljava/lang/String;)Ljava/lang/String;
+	METHOD l getIntArray (Ljava/lang/String;)[I
+	METHOD n getBoolean (Ljava/lang/String;)Z
 CLASS none/fq net/minecraft/server/NBTTagDouble
 CLASS none/fr net/minecraft/server/NBTTagEnd
 CLASS none/fs net/minecraft/server/NBTTagFloat
@@ -139,6 +166,7 @@ CLASS none/hv net/minecraft/server/ChatModifier
 CLASS none/hw net/minecraft/server/ChatStyleRoot
 CLASS none/hx net/minecraft/server/ChatModifierSerializer
 CLASS none/hy net/minecraft/server/ChatComponentText
+CLASS none/hz net/minecraft/server/ChatMessage__
 CLASS none/id net/minecraft/server/IPacket
 CLASS none/il net/minecraft/server/PacketPlayOutSpawnEntity
 CLASS none/iu net/minecraft/server/PacketPlayOutTileEntityData
@@ -170,6 +198,7 @@ CLASS none/ot net/minecraft/server/DispenseBehaviorFireworks
 CLASS none/ou net/minecraft/server/DispenseBehaviorFireball
 CLASS none/ov net/minecraft/server/DispenseBehaviorBoat
 CLASS none/pk net/minecraft/server/ScoreboardServer
+CLASS none/pn net/minecraft/server/DedicatedPlayerList__
 CLASS none/qj net/minecraft/server/DemoWorldServer
 CLASS none/qn net/minecraft/server/EntityTracker
 CLASS none/qp net/minecraft/server/WorldManager
@@ -178,6 +207,7 @@ CLASS none/qt net/minecraft/server/WorldServer
 	METHOD a entityJoinedWorld (Lnone/wv;Z)V
 	METHOD i tickEntities ()V
 CLASS none/qw net/minecraft/server/EntityPlayer
+CLASS none/sn net/minecraft/server/PlayerList__
 CLASS none/tk net/minecraft/server/Achievement
 CLASS none/tl net/minecraft/server/AchievementList
 CLASS none/tq net/minecraft/server/Statistic
@@ -504,6 +534,7 @@ CLASS none/aqu net/minecraft/server/World
 	METHOD l getLightLevel__maybe (Lnone/dt;)I
 	METHOD m getHighestBlockYAt__maybe (Lnone/dt;)Lnone/dt;
 	METHOD p getType__maybe (Lnone/dt;)Lnone/bec;
+	METHOD v getWorldChunkManager__ ()Lnone/arz;
 CLASS none/ara net/minecraft/server/IWorldAccess
 CLASS none/arb net/minecraft/server/WorldSettings
 CLASS none/ard net/minecraft/server/IBlockAccess
@@ -515,8 +546,12 @@ CLASS none/arj net/minecraft/server/ChunkCache
 	METHOD p getType__maybe (Lnone/dt;)Lnone/bec;
 CLASS none/arl net/minecraft/server/BiomeBeach
 CLASS none/arm net/minecraft/server/BiomeBase
+	FIELD G DESERT_HILLS__
+	FIELD r DESERT__
+	FIELD v SWAMPLAND__
 CLASS none/arr net/minecraft/server/BiomeCache
 CLASS none/ary net/minecraft/server/BiomeDecorator
+CLASS none/arz net/minecraft/server/WorldChunkManager
 CLASS none/asa net/minecraft/server/BiomeDesert
 CLASS none/asb net/minecraft/server/BiomeBigHills
 CLASS none/asd net/minecraft/server/BiomeForest
@@ -553,9 +588,12 @@ CLASS none/att net/minecraft/server/StepSoundLadder
 CLASS none/atu net/minecraft/server/StepSoundAnvil
 CLASS none/aty net/minecraft/server/Blocks
 	FIELD a AIR
+	FIELD aO FENCE__
 	FIELD ab FIRE__
 	FIELD b STONE
 	FIELD bf SMOOTH_BRICK__
+	FIELD by NETHER_BRICK
+	FIELD bz NETHER_FENCE__
 	FIELD c GRASS
 	FIELD d DIRT
 	FIELD e COBBLESTONE
@@ -649,6 +687,11 @@ CLASS none/axi net/minecraft/server/BlockLever
 	METHOD a doPhysics__maybe (Lnone/aqu;Lnone/dt;Lnone/bec;Lnone/atr;)V
 CLASS none/axl
 	METHOD a doPhysics__maybe (Lnone/aqu;Lnone/dt;Lnone/bec;Lnone/atr;)V
+CLASS none/axo net/minecraft/server/EnumLogAxis
+	FIELD a X
+	FIELD b Y
+	FIELD c Z
+	FIELD d NONE
 CLASS none/axp net/minecraft/server/BlockMelon
 CLASS none/axr net/minecraft/server/BlockMobSpawner
 CLASS none/axs net/minecraft/server/BlockMonsterEggs
@@ -794,20 +837,64 @@ CLASS none/biv net/minecraft/server/WorldGenFlatInfo
 CLASS none/biw net/minecraft/server/WorldGenFlatLayerInfo
 CLASS none/bjb net/minecraft/server/StructureBoundingBox
 CLASS none/bjd net/minecraft/server/WorldGenMineshaft
+CLASS none/bje net/minecraft/server/WorldGenMineshaftPieces
 CLASS none/bjg net/minecraft/server/WorldGenMineshaftCorridor
+CLASS none/bjh net/minecraft/server/WorldGenMineshaftCross
+CLASS none/bji net/minecraft/server/WorldGenMineshaftRoom
+CLASS none/bjj net/minecraft/server/WorldGenMineshaftStairs
 CLASS none/bjk net/minecraft/server/WorldGenMineshaftStart
 CLASS none/bjl net/minecraft/server/WorldGenNether
 CLASS none/bjm net/minecraft/server/WorldGenNetherStart
+CLASS none/bjn net/minecraft/server/WorldGenNetherPieces
+CLASS none/bjp net/minecraft/server/WorldGenNetherPiece1
+CLASS none/bjq net/minecraft/server/WorldGenNetherPiece2
+CLASS none/bjr net/minecraft/server/WorldGenNetherPiece3
+CLASS none/bjs net/minecraft/server/WorldGenNetherPiece4
+CLASS none/bjt net/minecraft/server/WorldGenNetherPiece5
+CLASS none/bju net/minecraft/server/WorldGenNetherPiece6
+CLASS none/bjv net/minecraft/server/WorldGenNetherPiece7
+CLASS none/bjw net/minecraft/server/WorldGenNetherPiece8
+CLASS none/bjx net/minecraft/server/WorldGenNetherPiece9
+CLASS none/bjy net/minecraft/server/WorldGenNetherPiece10
+CLASS none/bjz net/minecraft/server/WorldGenNetherPiece11
+CLASS none/bka net/minecraft/server/WorldGenNetherPiece12
 CLASS none/bkb net/minecraft/server/WorldGenNetherPiece
+CLASS none/bkc net/minecraft/server/WorldGenNetherPieceWeight
+CLASS none/bkd net/minecraft/server/WorldGenNetherPiece13
+CLASS none/bke net/minecraft/server/WorldGenNetherPiece16
+CLASS none/bkf net/minecraft/server/WorldGenNetherPiece15
+CLASS none/bkh net/minecraft/server/WorldGenOceanMonumentStart
+CLASS none/blh net/minecraft/server/WorldGenLargeFeatureStart
+CLASS none/bli net/minecraft/server/WorldGenRegistration
+CLASS none/blk net/minecraft/server/WorldGenPyramidPiece
+CLASS none/bll net/minecraft/server/WorldGenJungleTemple
 CLASS none/bln net/minecraft/server/WorldGenScatteredPiece
 CLASS none/blo net/minecraft/server/WorldGenWitchHut
 CLASS none/blp net/minecraft/server/WorldGenStronghold
+CLASS none/blq net/minecraft/server/WorldGenStronghold2Start
 CLASS none/blr net/minecraft/server/WorldGenStrongholdPieces
 CLASS none/bmk net/minecraft/server/WorldGenStrongholdPiece
 CLASS none/bmm net/minecraft/server/StructureGenerator
+CLASS none/bmq net/minecraft/server/WorldGenFactory
 CLASS none/bms net/minecraft/server/StructurePiece
+CLASS none/bmv net/minecraft/server/StructureStart
 CLASS none/bmw net/minecraft/server/WorldGenVillage
+CLASS none/bmx net/minecraft/server/WorldGenVillageStart
+CLASS none/bmy net/minecraft/server/WorldGenVillagePieces
+CLASS none/bna net/minecraft/server/WorldGenVillageLibrary
+CLASS none/bnb net/minecraft/server/WorldGenVillageFarm2
+CLASS none/bnc net/minecraft/server/WorldGenVillageFarm
+CLASS none/bnd net/minecraft/server/WorldGenVillageLight
+CLASS none/bne net/minecraft/server/WorldGenVillagePieceWeight
+CLASS none/bnf net/minecraft/server/WorldGenVillageButcher
+CLASS none/bng net/minecraft/server/WorldGenVillageHouse
+CLASS none/bnh net/minecraft/server/WorldGenVillageHut
 CLASS none/bni net/minecraft/server/WorldGenVillageTemple
+CLASS none/bnj net/minecraft/server/WorldGenVillageBlacksmith
+CLASS none/bnk net/minecraft/server/WorldGenVillageStartPiece
+CLASS none/bnl net/minecraft/server/WorldGenVillageRoad
+CLASS none/bnm net/minecraft/server/WorldGenVillageHouse2
+CLASS none/bnp net/minecraft/server/WorldGenVillageWell
 CLASS none/bnu net/minecraft/server/NoiseGeneratorPerlin
 CLASS none/bnw net/minecraft/server/NoiseGenerator3
 CLASS none/boc net/minecraft/server/MaterialDecoration
@@ -882,6 +969,7 @@ CLASS none/bqe net/minecraft/server/WorldMap
 CLASS none/bqo net/minecraft/server/WorldData
 CLASS none/bqy net/minecraft/server/IDataManager
 CLASS none/brl net/minecraft/server/IPlayerFileData
+CLASS none/brp net/minecraft/server/FileIOThread
 CLASS none/brt net/minecraft/server/AxisAlignedBB
 CLASS none/bru net/minecraft/server/MovingObjectPosition
 CLASS none/brw net/minecraft/server/Vec3D
@@ -902,6 +990,7 @@ CLASS com/google/gson/JsonSerializer com/google/gson/JsonSerializer
 CLASS com/google/common/base/Function com/google/common/base/Function
 CLASS com/google/common/collect/Lists com/google/common/collect/Lists
 	METHOD newArrayList newArrayList ()Ljava/util/ArrayList;
+CLASS org/apache/logging/log4j/Logger org/apache/logging/log4j/Logger
 CLASS com/google/common/base/Predicate com/google/common/base/Predicate
 CLASS com/google/gson/JsonDeserializer com/google/gson/JsonDeserializer
 CLASS com/google/common/collect/ImmutableSet com/google/common/collect/ImmutableSet
