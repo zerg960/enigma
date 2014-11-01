@@ -33,6 +33,9 @@ CLASS none/a net/minecraft/server/EnumChatFormat
 CLASS none/b net/minecraft/server/CrashReport
 CLASS none/j net/minecraft/server/CrashReportSystemDetails
 CLASS none/r net/minecraft/server/CrashReportDetail
+CLASS none/u net/minecraft/server/ReportedException
+	METHOD getCause getCause ()Ljava/lang/Throwable;
+	METHOD getMessage getMessage ()Ljava/lang/String;
 CLASS none/y net/minecraft/server/ICommandDispatcher
 CLASS none/z net/minecraft/server/CommandAbstract
 CLASS none/ac net/minecraft/server/ICommand
@@ -94,6 +97,9 @@ CLASS none/dl net/minecraft/server/ExceptionInvalidSyntax
 CLASS none/dm net/minecraft/server/ExceptionPlayerNotFound
 CLASS none/dn net/minecraft/server/ExceptionUnknownCommand
 CLASS none/dp net/minecraft/server/ExceptionUsage
+CLASS none/dy
+	METHOD n getBlockX__maybe ()I
+	METHOD p getBlockY__maybe ()I
 CLASS none/eg net/minecraft/server/DispenseBehaviorItem
 CLASS none/ei net/minecraft/server/RegistryDefault
 CLASS none/em net/minecraft/server/EnumFacingEnumAxisDirection
@@ -103,6 +109,9 @@ CLASS none/eo net/minecraft/server/IDispenseBehavior
 CLASS none/es net/minecraft/server/ILocationSource
 CLASS none/ez net/minecraft/server/IRegistry
 CLASS none/fb net/minecraft/server/RegistrySimple
+CLASS none/fd
+	METHOD n getBlockX__maybe ()I
+	METHOD p getBlockY__maybe ()I
 CLASS none/fj net/minecraft/server/LocaleLanguage
 CLASS none/fl net/minecraft/server/NBTTagByteArray
 CLASS none/fm net/minecraft/server/NBTTagByte
@@ -119,6 +128,8 @@ CLASS none/gb net/minecraft/server/NBTTagShort
 CLASS none/gc net/minecraft/server/NBTTagString
 CLASS none/gd net/minecraft/server/NBTBase
 CLASS none/ge net/minecraft/server/NBTNumber
+CLASS none/gh net/minecraft/server/MojangsonTypeParser
+CLASS none/gj net/minecraft/server/MojangsonListParser
 CLASS none/gn net/minecraft/server/PacketDecrypter
 CLASS none/gr net/minecraft/server/NetworkManager
 CLASS none/hj net/minecraft/server/ChatBaseComponent
@@ -163,6 +174,9 @@ CLASS none/qj net/minecraft/server/DemoWorldServer
 CLASS none/qn net/minecraft/server/EntityTracker
 CLASS none/qp net/minecraft/server/WorldManager
 CLASS none/qt net/minecraft/server/WorldServer
+	METHOD a createExplosion__ (Lnone/wv;DDDFZZ)Lnone/aqo;
+	METHOD a entityJoinedWorld (Lnone/wv;Z)V
+	METHOD i tickEntities ()V
 CLASS none/qw net/minecraft/server/EntityPlayer
 CLASS none/tk net/minecraft/server/Achievement
 CLASS none/tl net/minecraft/server/AchievementList
@@ -172,6 +186,7 @@ CLASS none/ul net/minecraft/server/InsensitiveStringMap
 CLASS none/ur net/minecraft/server/LongHashMap
 CLASS none/us net/minecraft/server/LongHashMapEntry
 CLASS none/uv net/minecraft/server/MathHelper
+	METHOD c floor (D)I
 CLASS none/ux net/minecraft/server/ProfilerInfo
 CLASS none/va net/minecraft/server/IEnumBlockPropertyValue
 CLASS none/vl net/minecraft/server/StructurePieceTreasure
@@ -184,6 +199,17 @@ CLASS none/wn net/minecraft/server/MobEffectHealthBoost
 CLASS none/wq net/minecraft/server/MobEffect
 CLASS none/ws net/minecraft/server/EntityAgeable
 CLASS none/wv net/minecraft/server/Entity
+	FIELD B lastPitch__
+	FIELD I dead__
+	FIELD R lastYaw__
+	FIELD W ticksLived_
+	FIELD l passenger__
+	FIELD m vehicle__
+	FIELD s locX__
+	FIELD t locY__
+	FIELD u locZ__
+	FIELD y yaw__
+	FIELD z pitch__
 	METHOD b setPositionRotation_ (DDDFF)V
 CLASS none/xb net/minecraft/server/EntityTypes
 CLASS none/xk net/minecraft/server/EntityExperienceOrb
@@ -451,12 +477,42 @@ CLASS none/aqo net/minecraft/server/Explosion
 CLASS none/aqq net/minecraft/server/GameRules
 CLASS none/aqr net/minecraft/server/GameRuleValue
 CLASS none/aqu net/minecraft/server/World
-	FIELD D isStatic_
+	FIELD B methodProfiler
+	FIELD C scoreboard
+	FIELD D isStatic
+	FIELD f entityList__
+	FIELD h tileEntityList__
+	FIELD s random
+	FIELD t worldProvider__
+	FIELD w dataManager
+	METHOD a getChunkAt__ (II)Lnone/bfh;
+	METHOD a isChunkLoaded__maybe (IIZ)Z
+	METHOD a rayTrace (Lnone/brw;Lnone/brw;ZZZ)Lnone/bru;
+	METHOD a setTypeAndData__ (Lnone/dt;Lnone/bec;I)Z
+	METHOD a explode__ (Lnone/wv;DDDFZ)Lnone/aqo;
+	METHOD a createExplosion__ (Lnone/wv;DDDFZZ)Lnone/aqo;
+	METHOD a entityJoinedWorld (Lnone/wv;Z)V
+	METHOD b update__ (Lnone/dt;Lnone/atr;)V
+	METHOD b getEntities__ (Lnone/wv;Lnone/brt;)Ljava/util/List;
+	METHOD d containsLiquid (Lnone/brt;)Z
 	METHOD d add_ (Lnone/wv;)Z
+	METHOD e isLoaded__ (Lnone/dt;)Z
+	METHOD f getChunkAtWorldCoords__ (Lnone/dt;)Lnone/bfh;
+	METHOD g playerJoinedWorld (Lnone/wv;)V
+	METHOD h notify__ (Lnone/dt;)V
+	METHOD i tickEntities ()V
+	METHOD l getLightLevel__maybe (Lnone/dt;)I
+	METHOD m getHighestBlockYAt__maybe (Lnone/dt;)Lnone/dt;
+	METHOD p getType__maybe (Lnone/dt;)Lnone/bec;
 CLASS none/ara net/minecraft/server/IWorldAccess
 CLASS none/arb net/minecraft/server/WorldSettings
 CLASS none/ard net/minecraft/server/IBlockAccess
+	METHOD p getType__maybe (Lnone/dt;)Lnone/bec;
+CLASS none/arf net/minecraft/server/EnumSkyBlock
+	FIELD a SKY
+	FIELD b BLOCK
 CLASS none/arj net/minecraft/server/ChunkCache
+	METHOD p getType__maybe (Lnone/dt;)Lnone/bec;
 CLASS none/arl net/minecraft/server/BiomeBeach
 CLASS none/arm net/minecraft/server/BiomeBase
 CLASS none/arr net/minecraft/server/BiomeCache
@@ -478,41 +534,87 @@ CLASS none/asu net/minecraft/server/BiomeTaiga
 CLASS none/asv net/minecraft/server/BiomeTheEnd
 CLASS none/asw net/minecraft/server/BiomeTheEndDecorator
 CLASS none/asy net/minecraft/server/BlockAir
+CLASS none/atd
+	METHOD a doPhysics__maybe (Lnone/aqu;Lnone/dt;Lnone/bec;Lnone/atr;)V
+CLASS none/ate
+	METHOD a doPhysics__maybe (Lnone/aqu;Lnone/dt;Lnone/bec;Lnone/atr;)V
 CLASS none/atg net/minecraft/server/BlockContainer
+CLASS none/ath
+	METHOD a doPhysics__maybe (Lnone/aqu;Lnone/dt;Lnone/bec;Lnone/atr;)V
 CLASS none/ati net/minecraft/server/BlockMinecartTrackAbstract
+	METHOD a doPhysics__maybe (Lnone/aqu;Lnone/dt;Lnone/bec;Lnone/atr;)V
 CLASS none/atm net/minecraft/server/BlockBeacon
+	METHOD a doPhysics__maybe (Lnone/aqu;Lnone/dt;Lnone/bec;Lnone/atr;)V
 CLASS none/atp net/minecraft/server/BlockBed
+	METHOD a doPhysics__maybe (Lnone/aqu;Lnone/dt;Lnone/bec;Lnone/atr;)V
 CLASS none/atr net/minecraft/server/Block
+	METHOD a doPhysics__maybe (Lnone/aqu;Lnone/dt;Lnone/bec;Lnone/atr;)V
 CLASS none/att net/minecraft/server/StepSoundLadder
 CLASS none/atu net/minecraft/server/StepSoundAnvil
 CLASS none/aty net/minecraft/server/Blocks
+	FIELD a AIR
+	FIELD ab FIRE__
+	FIELD b STONE
 	FIELD bf SMOOTH_BRICK__
+	FIELD c GRASS
+	FIELD d DIRT
 	FIELD e COBBLESTONE
 	FIELD f WOOD
+	FIELD g SAPLING
+	FIELD h BEDROCK
+	FIELD i WATER
+	FIELD j STATIONARY_WATER
+	FIELD k LAVA
+	FIELD l STATIONARY_LAVA
+	FIELD m SAND
+	FIELD n GRAVEL
+	FIELD o GOLD_ORE
+	FIELD p IRON_ORE
+	FIELD q COAL_ORE
+	FIELD r LOG
+	FIELD s LOG2
+	FIELD t LEAVES
+	FIELD u LEAVES2
+	FIELD v SPONGE
+	FIELD w GLASS
 CLASS none/aua net/minecraft/server/BlockBookshelf
 CLASS none/aub net/minecraft/server/BlockBrewingStand
+CLASS none/auc
+	METHOD a doPhysics__maybe (Lnone/aqu;Lnone/dt;Lnone/bec;Lnone/atr;)V
+CLASS none/aud
+	METHOD a doPhysics__maybe (Lnone/aqu;Lnone/dt;Lnone/bec;Lnone/atr;)V
 CLASS none/auf net/minecraft/server/BlockCactus
+	METHOD a doPhysics__maybe (Lnone/aqu;Lnone/dt;Lnone/bec;Lnone/atr;)V
 CLASS none/aug net/minecraft/server/BlockCake
+	METHOD a doPhysics__maybe (Lnone/aqu;Lnone/dt;Lnone/bec;Lnone/atr;)V
 CLASS none/auh net/minecraft/server/BlockCarrots
 CLASS none/aui net/minecraft/server/BlockCauldron
 CLASS none/auj net/minecraft/server/BlockChest
+	METHOD a doPhysics__maybe (Lnone/aqu;Lnone/dt;Lnone/bec;Lnone/atr;)V
 CLASS none/auk net/minecraft/server/BlockClay
 CLASS none/aul net/minecraft/server/BlockCocoa
+	METHOD a doPhysics__maybe (Lnone/aqu;Lnone/dt;Lnone/bec;Lnone/atr;)V
 CLASS none/auo net/minecraft/server/BlockCommand
+	METHOD a doPhysics__maybe (Lnone/aqu;Lnone/dt;Lnone/bec;Lnone/atr;)V
 CLASS none/aup net/minecraft/server/BlockRedstoneComparator
 CLASS none/aus net/minecraft/server/BlockWorkbench
 CLASS none/auu net/minecraft/server/BlockCrops
 CLASS none/auv net/minecraft/server/BlockDaylightDetector
 CLASS none/auw net/minecraft/server/BlockDeadBush
 CLASS none/auy net/minecraft/server/BlockMinecartDetector
+CLASS none/ava
+	METHOD a doPhysics__maybe (Lnone/aqu;Lnone/dt;Lnone/bec;Lnone/atr;)V
 CLASS none/avc net/minecraft/server/BlockDirt
 CLASS none/avd net/minecraft/server/EnumDirtVariant
 	FIELD a DIRT
 	FIELD b COARSE_DIRT
 	FIELD c PODZOL
 CLASS none/ave net/minecraft/server/BlockDispenser
+	METHOD a doPhysics__maybe (Lnone/aqu;Lnone/dt;Lnone/bec;Lnone/atr;)V
 CLASS none/avf net/minecraft/server/BlockDoor
+	METHOD a doPhysics__maybe (Lnone/aqu;Lnone/dt;Lnone/bec;Lnone/atr;)V
 CLASS none/avl net/minecraft/server/BlockDragonEgg
+	METHOD a doPhysics__maybe (Lnone/aqu;Lnone/dt;Lnone/bec;Lnone/atr;)V
 CLASS none/avm net/minecraft/server/BlockDropper
 CLASS none/avn net/minecraft/server/BlockFlowing
 CLASS none/avo net/minecraft/server/BlockEnchantmentTable
@@ -520,11 +622,16 @@ CLASS none/avp net/minecraft/server/BlockEnderPortal
 CLASS none/avq net/minecraft/server/BlockEnderPortalFrame
 CLASS none/avr net/minecraft/server/BlockEnderChest
 CLASS none/avt net/minecraft/server/BlockFalling
+	METHOD a doPhysics__maybe (Lnone/aqu;Lnone/dt;Lnone/bec;Lnone/atr;)V
 CLASS none/avu net/minecraft/server/BlockSoil
+	METHOD a doPhysics__maybe (Lnone/aqu;Lnone/dt;Lnone/bec;Lnone/atr;)V
 CLASS none/avv net/minecraft/server/BlockFence
 CLASS none/avw net/minecraft/server/BlockFenceGate
+	METHOD a doPhysics__maybe (Lnone/aqu;Lnone/dt;Lnone/bec;Lnone/atr;)V
 CLASS none/avx net/minecraft/server/BlockFire
+	METHOD a doPhysics__maybe (Lnone/aqu;Lnone/dt;Lnone/bec;Lnone/atr;)V
 CLASS none/awd net/minecraft/server/BlockFlowerPot
+	METHOD a doPhysics__maybe (Lnone/aqu;Lnone/dt;Lnone/bec;Lnone/atr;)V
 CLASS none/awj net/minecraft/server/BlockFurnace
 CLASS none/awl net/minecraft/server/BlockGlass
 CLASS none/awm net/minecraft/server/BlockLightStone
@@ -532,11 +639,16 @@ CLASS none/awo net/minecraft/server/BlockGravel
 CLASS none/awv net/minecraft/server/BlockHardenedClay
 CLASS none/aww net/minecraft/server/BlockHay
 CLASS none/awx net/minecraft/server/BlockHopper
+	METHOD a doPhysics__maybe (Lnone/aqu;Lnone/dt;Lnone/bec;Lnone/atr;)V
 CLASS none/axb net/minecraft/server/BlockIce
 CLASS none/axc net/minecraft/server/BlockJukeBox
 CLASS none/axd net/minecraft/server/TileEntityRecordPlayer
 CLASS none/axe net/minecraft/server/BlockLadder
+	METHOD a doPhysics__maybe (Lnone/aqu;Lnone/dt;Lnone/bec;Lnone/atr;)V
 CLASS none/axi net/minecraft/server/BlockLever
+	METHOD a doPhysics__maybe (Lnone/aqu;Lnone/dt;Lnone/bec;Lnone/atr;)V
+CLASS none/axl
+	METHOD a doPhysics__maybe (Lnone/aqu;Lnone/dt;Lnone/bec;Lnone/atr;)V
 CLASS none/axp net/minecraft/server/BlockMelon
 CLASS none/axr net/minecraft/server/BlockMobSpawner
 CLASS none/axs net/minecraft/server/BlockMonsterEggs
@@ -546,25 +658,34 @@ CLASS none/ayd net/minecraft/server/BlockBloodStone
 CLASS none/aye net/minecraft/server/BlockNetherWart
 CLASS none/ayi net/minecraft/server/BlockLog2
 CLASS none/ayn net/minecraft/server/BlockNote
+	METHOD a doPhysics__maybe (Lnone/aqu;Lnone/dt;Lnone/bec;Lnone/atr;)V
 CLASS none/ayo net/minecraft/server/BlockObsidian
 CLASS none/ayu net/minecraft/server/BlockOre
 CLASS none/ayv net/minecraft/server/BlockPackedIce
 CLASS none/ayy net/minecraft/server/BlockPortal
+	METHOD a doPhysics__maybe (Lnone/aqu;Lnone/dt;Lnone/bec;Lnone/atr;)V
 CLASS none/aza net/minecraft/server/BlockPotatoes
 CLASS none/azb net/minecraft/server/BlockRedstone
 CLASS none/azc net/minecraft/server/BlockPoweredRail
 CLASS none/azk net/minecraft/server/BlockPumpkin
 CLASS none/azs net/minecraft/server/BlockRedstoneOre
 CLASS none/azt net/minecraft/server/BlockRedstoneWire
+	METHOD a doPhysics__maybe (Lnone/aqu;Lnone/dt;Lnone/bec;Lnone/atr;)V
 CLASS none/azv net/minecraft/server/BlockRedstoneLamp
+	METHOD a doPhysics__maybe (Lnone/aqu;Lnone/dt;Lnone/bec;Lnone/atr;)V
 CLASS none/azw net/minecraft/server/BlockRedstoneTorch
+	METHOD a doPhysics__maybe (Lnone/aqu;Lnone/dt;Lnone/bec;Lnone/atr;)V
 CLASS none/azy net/minecraft/server/BlockReed
+	METHOD a doPhysics__maybe (Lnone/aqu;Lnone/dt;Lnone/bec;Lnone/atr;)V
 CLASS none/bad net/minecraft/server/BlockSandStone
 CLASS none/baf net/minecraft/server/BlockSapling
 CLASS none/baj net/minecraft/server/BlockSkull
 CLASS none/ban net/minecraft/server/BlockSnowBlock
 CLASS none/bao net/minecraft/server/BlockSnowLayer
+	METHOD a doPhysics__maybe (Lnone/aqu;Lnone/dt;Lnone/bec;Lnone/atr;)V
 CLASS none/bap net/minecraft/server/BlockSlowSand
+CLASS none/baq
+	METHOD a doPhysics__maybe (Lnone/aqu;Lnone/dt;Lnone/bec;Lnone/atr;)V
 CLASS none/bas net/minecraft/server/BlockStainedGlassPane
 CLASS none/bat net/minecraft/server/BlockStairs
 CLASS none/bav net/minecraft/server/EnumStairsShape
@@ -573,23 +694,35 @@ CLASS none/bav net/minecraft/server/EnumStairsShape
 	FIELD c INNER_RIGHT
 	FIELD d OUTER_LEFT
 	FIELD e OUTER_RIGHT
+CLASS none/baw
+	METHOD a doPhysics__maybe (Lnone/aqu;Lnone/dt;Lnone/bec;Lnone/atr;)V
 CLASS none/bax net/minecraft/server/BlockStationary
+	METHOD a doPhysics__maybe (Lnone/aqu;Lnone/dt;Lnone/bec;Lnone/atr;)V
 CLASS none/bay net/minecraft/server/BlockStem
 CLASS none/bbe net/minecraft/server/BlockStoneButton
 CLASS none/bbh net/minecraft/server/BlockLongGrass
 CLASS none/bbj net/minecraft/server/BlockThin
 CLASS none/bbk net/minecraft/server/BlockTNT
+	METHOD a doPhysics__maybe (Lnone/aqu;Lnone/dt;Lnone/bec;Lnone/atr;)V
 CLASS none/bbl net/minecraft/server/BlockTorch
+	METHOD a doPhysics__maybe (Lnone/aqu;Lnone/dt;Lnone/bec;Lnone/atr;)V
 CLASS none/bbp net/minecraft/server/BlockTrapdoor
+	METHOD a doPhysics__maybe (Lnone/aqu;Lnone/dt;Lnone/bec;Lnone/atr;)V
 CLASS none/bbs net/minecraft/server/BlockTripwire
+	METHOD a doPhysics__maybe (Lnone/aqu;Lnone/dt;Lnone/bec;Lnone/atr;)V
 CLASS none/bbt net/minecraft/server/BlockTripwireHook
+	METHOD a doPhysics__maybe (Lnone/aqu;Lnone/dt;Lnone/bec;Lnone/atr;)V
 CLASS none/bbv net/minecraft/server/BlockVine
+	METHOD a doPhysics__maybe (Lnone/aqu;Lnone/dt;Lnone/bec;Lnone/atr;)V
 CLASS none/bbx net/minecraft/server/BlockCobbleWall
+CLASS none/bbz
+	METHOD a doPhysics__maybe (Lnone/aqu;Lnone/dt;Lnone/bec;Lnone/atr;)V
 CLASS none/bcb net/minecraft/server/BlockWaterLily
 CLASS none/bcc net/minecraft/server/BlockWeb
 CLASS none/bcd net/minecraft/server/BlockPressurePlateWeighted
 CLASS none/bce net/minecraft/server/BlockWoodButton
 CLASS none/bcg net/minecraft/server/BlockCarpet
+	METHOD a doPhysics__maybe (Lnone/aqu;Lnone/dt;Lnone/bec;Lnone/atr;)V
 CLASS none/bck net/minecraft/server/TileEntityBeacon
 CLASS none/bcm net/minecraft/server/TileEntity
 CLASS none/bcq net/minecraft/server/TileEntityBrewingStand
@@ -609,12 +742,19 @@ CLASS none/bdi net/minecraft/server/TileEntityNote
 CLASS none/bdj net/minecraft/server/TileEntitySign
 CLASS none/bdm net/minecraft/server/TileEntitySkull
 CLASS none/bdn net/minecraft/server/TileEntityEnderPortal
+CLASS none/bdq
+	METHOD a doPhysics__maybe (Lnone/aqu;Lnone/dt;Lnone/bec;Lnone/atr;)V
 CLASS none/bds net/minecraft/server/BlockPistonExtension
+	METHOD a doPhysics__maybe (Lnone/aqu;Lnone/dt;Lnone/bec;Lnone/atr;)V
 CLASS none/bdv net/minecraft/server/TileEntityPiston
 CLASS none/bdx net/minecraft/server/BlockPistonMoving
+	METHOD a doPhysics__maybe (Lnone/aqu;Lnone/dt;Lnone/bec;Lnone/atr;)V
 CLASS none/bfe net/minecraft/server/IChunkProvider
 CLASS none/bff net/minecraft/server/NibbleArray
 CLASS none/bfg net/minecraft/server/EmptyChunk
+	METHOD a getBrightness__maybe (Lnone/arf;Lnone/dt;)I
+CLASS none/bfh net/minecraft/server/Chunk
+	METHOD a getBrightness__maybe (Lnone/arf;Lnone/dt;)I
 CLASS none/bfm net/minecraft/server/ChunkSection
 CLASS none/bfq net/minecraft/server/IChunkLoader
 CLASS none/bfv net/minecraft/server/RegionFile
@@ -673,14 +813,14 @@ CLASS none/bnw net/minecraft/server/NoiseGenerator3
 CLASS none/boc net/minecraft/server/MaterialDecoration
 	METHOD a isBuildable_ ()Z
 	METHOD b blocksLight_ ()Z
-	METHOD c isSolid_ ()Z
+	METHOD c isSolid ()Z
 CLASS none/bod net/minecraft/server/MaterialFire
 	METHOD a isBuildable_ ()Z
 	METHOD b blocksLight_ ()Z
-	METHOD c isSolid_ ()Z
+	METHOD c isSolid ()Z
 CLASS none/boe net/minecraft/server/MaterialLiquid
 	METHOD a isBuildable_ ()Z
-	METHOD c isSolid_ ()Z
+	METHOD c isSolid ()Z
 	METHOD d isLiquid ()Z
 CLASS none/bof net/minecraft/server/Material
 	FIELD A CACTUS
@@ -721,25 +861,26 @@ CLASS none/bof net/minecraft/server/Material
 	FIELD z SNOW_BLOCK
 	METHOD a isBuildable_ ()Z
 	METHOD b blocksLight_ ()Z
-	METHOD c isSolid_ ()Z
+	METHOD c isSolid ()Z
 	METHOD d isLiquid ()Z
 	METHOD h isBurnable ()Z
 	METHOD j isReplaceable ()Z
 	METHOD l isAlwaysDestroyable ()Z
 	METHOD m getPushReaction ()I
 CLASS none/bog net/minecraft/server/MaterialWeb
-	METHOD c isSolid_ ()Z
+	METHOD c isSolid ()Z
 CLASS none/boh net/minecraft/server/MaterialMapColor
 CLASS none/boi net/minecraft/server/MaterialPortal
 	METHOD a isBuildable_ ()Z
 	METHOD b blocksLight_ ()Z
-	METHOD c isSolid_ ()Z
+	METHOD c isSolid ()Z
 CLASS none/bok net/minecraft/server/GenLayerDeepOcean
 CLASS none/boy net/minecraft/server/IntCache
 CLASS none/bpa net/minecraft/server/GenLayer
 CLASS none/bpp net/minecraft/server/GenLayerZoom
 CLASS none/bqe net/minecraft/server/WorldMap
 CLASS none/bqo net/minecraft/server/WorldData
+CLASS none/bqy net/minecraft/server/IDataManager
 CLASS none/brl net/minecraft/server/IPlayerFileData
 CLASS none/brt net/minecraft/server/AxisAlignedBB
 CLASS none/bru net/minecraft/server/MovingObjectPosition
@@ -763,4 +904,5 @@ CLASS com/google/common/collect/Lists com/google/common/collect/Lists
 	METHOD newArrayList newArrayList ()Ljava/util/ArrayList;
 CLASS com/google/common/base/Predicate com/google/common/base/Predicate
 CLASS com/google/gson/JsonDeserializer com/google/gson/JsonDeserializer
+CLASS com/google/common/collect/ImmutableSet com/google/common/collect/ImmutableSet
 CLASS com/google/gson/JsonDeserializationContext com/google/gson/JsonDeserializationContext
