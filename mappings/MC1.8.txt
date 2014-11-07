@@ -330,10 +330,12 @@ CLASS none/qp net/minecraft/server/WorldManager
 CLASS none/qq net/minecraft/server/PlayerChunkMap
 CLASS none/qs net/minecraft/server/ChunkProviderServer
 CLASS none/qt net/minecraft/server/WorldServer
+	METHOD a broadcastEntityEffect_ (Lnone/wv;B)V
 	METHOD a createExplosion__ (Lnone/wv;DDDFZZ)Lnone/aqo;
 	METHOD a entityJoinedWorld (Lnone/wv;Z)V
 	METHOD i tickEntities ()V
 CLASS none/qw net/minecraft/server/EntityPlayer
+	METHOD a mount_ (Lnone/wv;)V
 CLASS none/qx net/minecraft/server/PlayerInteractManager
 CLASS none/qy
 	METHOD a broadcast_ (Lnone/id;)V
@@ -460,14 +462,15 @@ CLASS none/wv net/minecraft/server/Entity
 	FIELD I dead__
 	FIELD R lastYaw__
 	FIELD W ticksLived_
-	FIELD l passenger_
+	FIELD l passenger
 	FIELD m vehicle_
-	FIELD o world_
+	FIELD o world
 	FIELD s locX__
 	FIELD t locY__
 	FIELD u locZ__
 	FIELD y yaw__
 	FIELD z pitch__
+	METHOD a mount_ (Lnone/wv;)V
 	METHOD b setPositionRotation_ (DDDFF)V
 	METHOD d_ getName ()Ljava/lang/String;
 	METHOD e getWorld ()Lnone/aqu;
@@ -476,7 +479,13 @@ CLASS none/xc net/minecraft/server/MonsterEggInfo
 CLASS none/xk net/minecraft/server/EntityExperienceOrb
 CLASS none/xl net/minecraft/server/EntityFlying
 CLASS none/xm net/minecraft/server/EntityLiving
+	METHOD a mount_ (Lnone/wv;)V
+	METHOD bc ()Lnone/xm;
+	METHOD by getMonsterType ()Lnone/xs;
 CLASS none/xn net/minecraft/server/EntityInsentient
+	METHOD d setGoalTarget_ (Lnone/xm;)V
+	METHOD p getControllerLook_ ()Lnone/ym;
+	METHOD s getNavigation_ ()Lnone/aaz;
 CLASS none/xo
 	FIELD a ON_GROUND
 	FIELD b IN_AIR
@@ -487,7 +496,7 @@ CLASS none/xp
 	FIELD c AMBIENT
 	FIELD d WATER_CREATURE
 CLASS none/xq net/minecraft/server/GroupDataEntity
-CLASS none/xs
+CLASS none/xs net/minecraft/server/EnumMonsterType
 	FIELD a UNDEFINED
 	FIELD b UNDEAD
 	FIELD c ARTHROPOD
@@ -498,6 +507,7 @@ CLASS none/xu net/minecraft/server/EntityCreature
 CLASS none/xv net/minecraft/server/DataWatcher
 CLASS none/xx net/minecraft/server/EntityTameableAnimal
 	METHOD b getOwnerName ()Ljava/lang/String;
+	METHOD cj isTamed_ ()Z
 	METHOD l_ getOwner ()Lnone/wv;
 CLASS none/xy net/minecraft/server/IAttribute
 CLASS none/xz net/minecraft/server/AttributeInstance
@@ -545,43 +555,100 @@ CLASS none/zy net/minecraft/server/PathfinderGoalRandomStroll
 CLASS none/zz net/minecraft/server/PathfinderGoalArrowAttack
 CLASS none/aaa net/minecraft/server/PathfinderGoalRestrictOpenDoor
 CLASS none/aab net/minecraft/server/PathfinderGoalRestrictSun
+CLASS none/aac net/minecraft/server/PathfinderGoalTame
+	FIELD a entity
 CLASS none/aad net/minecraft/server/PathfinderGoalSit
 CLASS none/aae net/minecraft/server/PathfinderGoalSwell
+CLASS none/aaf net/minecraft/server/PathfinderGoalTakeFlower
 CLASS none/aag net/minecraft/server/PathfinderGoalTempt
 CLASS none/aah net/minecraft/server/PathfinderGoalTradeWithPlayer
 CLASS none/aak net/minecraft/server/PathfinderGoalDefendVillage
+CLASS none/aaq net/minecraft/server/PathfinderGoalNearestAttackableTarget
+CLASS none/aas net/minecraft/server/DistanceComparator
+CLASS none/aaw net/minecraft/server/PathfinderGoalTarget
+CLASS none/abd net/minecraft/server/EntitySenses
+	FIELD a entity
+	FIELD b seenEntities
+	FIELD c unseenEntities
+	METHOD a canSee (Lnone/wv;)Z
+CLASS none/abf net/minecraft/server/RandomPositionGenerator
 CLASS none/abi net/minecraft/server/Village
 	FIELD a world
 	FIELD b doors
 	FIELD j playerStandings
 	FIELD k aggressors
+CLASS none/abk net/minecraft/server/VillageSiege
+CLASS none/abn net/minecraft/server/EntityAmbient
 CLASS none/abo net/minecraft/server/EntityBat
 CLASS none/abq net/minecraft/server/EntityAnimal
 CLASS none/abr net/minecraft/server/EntityChicken
 CLASS none/abs net/minecraft/server/EntityCow
 CLASS none/abt net/minecraft/server/EntityHorse
+	METHOD cA getTemper ()I
+	METHOD cG getMaxDomestication ()I
 	METHOD d_ getName ()Ljava/lang/String;
+CLASS none/abu net/minecraft/server/EntitySelectorHorse
 CLASS none/abw net/minecraft/server/EntityGolem
 CLASS none/abx net/minecraft/server/EntityMushroomCow
 CLASS none/aby net/minecraft/server/EntityOcelot
 	METHOD d_ getName ()Ljava/lang/String;
 CLASS none/aca net/minecraft/server/EntityPig
+CLASS none/ace
+	FIELD a NONE
+	FIELD b HOP
+	FIELD c STEP
+	FIELD d SPRINT
+	FIELD e ATTACK
 CLASS none/acl net/minecraft/server/EntitySheep
 CLASS none/acn net/minecraft/server/EntitySnowman
 CLASS none/aco net/minecraft/server/EntitySquid
 CLASS none/acq net/minecraft/server/EntityIronGolem
 CLASS none/act net/minecraft/server/EntityWaterAnimal
 CLASS none/acu net/minecraft/server/EntityWolf
+	METHOD d setGoalTarget_ (Lnone/xm;)V
+CLASS none/acy net/minecraft/server/IComplex
 CLASS none/acz net/minecraft/server/EntityComplexPart
 CLASS none/ada net/minecraft/server/EntityEnderCrystal
 CLASS none/adb net/minecraft/server/EntityEnderDragon
 CLASS none/adf net/minecraft/server/EntityWither
+	METHOD a mount_ (Lnone/wv;)V
+	METHOD by getMonsterType ()Lnone/xs;
+CLASS none/adg net/minecraft/server/EntitySelectorNotUndead
 CLASS none/adj net/minecraft/server/EntityHanging
 CLASS none/adk net/minecraft/server/EntityItemFrame
 CLASS none/adl net/minecraft/server/EntityLeash
 CLASS none/adm net/minecraft/server/EntityPainting
 	METHOD b setPositionRotation_ (DDDFF)V
+CLASS none/adn
+	FIELD a KEBAB
+	FIELD b AZTEC
+	FIELD c ALBAN
+	FIELD d AZTEC_2
+	FIELD e BOMB
+	FIELD f PLANT
+	FIELD g WASTELAND
+	FIELD h POOL
+	FIELD i COURBET
+	FIELD j SEA
+	FIELD k SUNSET
+	FIELD l CREEBET
+	FIELD m WANDERER
+	FIELD n GRAHAM
+	FIELD o MATCH
+	FIELD p BUST
+	FIELD q STAGE
+	FIELD r VOID
+	FIELD s SKULL_AND_ROSES
+	FIELD t WITHER
+	FIELD u FIGHTERS
+	FIELD v POINTER
+	FIELD w PIGSCENE
+	FIELD x BURNING_SKULL
+	FIELD y SKELETON
+	FIELD z DONKEY_KONG
 CLASS none/ado net/minecraft/server/EntityFishingHook
+CLASS none/adp net/minecraft/server/PossibleFishingResult
+CLASS none/adr net/minecraft/server/EntityWeather
 CLASS none/ads net/minecraft/server/EntityLightning
 CLASS none/adu net/minecraft/server/EntityBoat
 CLASS none/adv net/minecraft/server/EntityFallingBlock
@@ -589,6 +656,14 @@ CLASS none/adw net/minecraft/server/EntityItem
 	METHOD d_ getName ()Ljava/lang/String;
 CLASS none/adx net/minecraft/server/EntityMinecartAbstract
 	METHOD d_ getName ()Ljava/lang/String;
+CLASS none/adz
+	FIELD a RIDEABLE
+	FIELD b CHEST
+	FIELD c FURNACE
+	FIELD d TNT
+	FIELD e SPAWNER
+	FIELD f HOPPER
+	FIELD g COMMAND_BLOCK
 CLASS none/aea net/minecraft/server/EntityMinecartChest
 CLASS none/aeb net/minecraft/server/EntityMinecartCommandBlock
 	CLASS aec
@@ -606,19 +681,27 @@ CLASS none/aeo net/minecraft/server/EntityCaveSpider
 CLASS none/aep net/minecraft/server/EntityCreeper
 CLASS none/aer net/minecraft/server/EntityEnderman
 CLASS none/aew net/minecraft/server/EntityEndermite
+	METHOD by getMonsterType ()Lnone/xs;
+CLASS none/aex net/minecraft/server/IMonster
+CLASS none/aey net/minecraft/server/EntitySelectorMonster
 CLASS none/afa net/minecraft/server/EntityGhast
 CLASS none/aff net/minecraft/server/EntityGiantZombie
 CLASS none/afl net/minecraft/server/EntityMagmaCube
 CLASS none/afm net/minecraft/server/EntityMonster
 CLASS none/afo net/minecraft/server/EntityPigZombie
+	METHOD a mount_ (Lnone/wv;)V
 CLASS none/afr net/minecraft/server/IRangedEntity
 CLASS none/afs net/minecraft/server/GenericAttributes
 CLASS none/aft net/minecraft/server/EntitySilverfish
+	METHOD by getMonsterType ()Lnone/xs;
 CLASS none/afw net/minecraft/server/EntitySkeleton
+	METHOD by getMonsterType ()Lnone/xs;
 CLASS none/afy net/minecraft/server/EntitySlime
 CLASS none/age net/minecraft/server/EntitySpider
+	METHOD by getMonsterType ()Lnone/xs;
 CLASS none/agi net/minecraft/server/EntityWitch
 CLASS none/agj net/minecraft/server/EntityZombie
+	METHOD by getMonsterType ()Lnone/xs;
 CLASS none/agp net/minecraft/server/EntityVillager
 CLASS none/aha net/minecraft/server/PlayerAbilities
 CLASS none/ahb net/minecraft/server/PlayerInventory
@@ -801,6 +884,7 @@ CLASS none/aqu net/minecraft/server/World
 	METHOD a isChunkLoaded__maybe (IIZ)Z
 	METHOD a rayTrace (Lnone/brw;Lnone/brw;ZZZ)Lnone/bru;
 	METHOD a setTypeAndData__ (Lnone/dt;Lnone/bec;I)Z
+	METHOD a broadcastEntityEffect_ (Lnone/wv;B)V
 	METHOD a explode__ (Lnone/wv;DDDFZ)Lnone/aqo;
 	METHOD a createExplosion__ (Lnone/wv;DDDFZZ)Lnone/aqo;
 	METHOD a entityJoinedWorld (Lnone/wv;Z)V
