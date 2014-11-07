@@ -28,14 +28,14 @@ CLASS none/a net/minecraft/server/EnumChatFormat
 	FIELD y still_obfuscated_y
 	FIELD z z
 	METHOD c isFormat ()Z
-	METHOD toString toString ()Ljava/lang/String;
-	METHOD values values ()[Lnone/a;
+	METHOD toString ()Ljava/lang/String;
+	METHOD values ()[Lnone/a;
 CLASS none/b net/minecraft/server/CrashReport
 CLASS none/j net/minecraft/server/CrashReportSystemDetails
 CLASS none/r net/minecraft/server/CrashReportDetail
 CLASS none/u net/minecraft/server/ReportedException
-	METHOD getCause getCause ()Ljava/lang/Throwable;
-	METHOD getMessage getMessage ()Ljava/lang/String;
+	METHOD getCause ()Ljava/lang/Throwable;
+	METHOD getMessage ()Ljava/lang/String;
 CLASS none/v net/minecraft/server/SharedConstants
 CLASS none/y net/minecraft/server/ICommandDispatcher
 CLASS none/z net/minecraft/server/CommandAbstract
@@ -43,6 +43,8 @@ CLASS none/ab net/minecraft/server/CommandHandler
 CLASS none/ac net/minecraft/server/ICommand
 CLASS none/ad net/minecraft/server/ICommandHandler
 CLASS none/ae net/minecraft/server/ICommandListener
+	METHOD d_ getName ()Ljava/lang/String;
+	METHOD e getWorld ()Lnone/aqu;
 CLASS none/af net/minecraft/server/CommandResultStats__
 CLASS none/ag net/minecraft/server/EnumResultStatsType__
 	FIELD a SUCCESS_COUNT
@@ -66,6 +68,9 @@ CLASS none/bh net/minecraft/server/CommandMe
 CLASS none/bi net/minecraft/server/CommandEnchant
 CLASS none/bj net/minecraft/server/CommandEntityData
 CLASS none/bk net/minecraft/server/CommandExecuteAt
+	CLASS bl
+		METHOD d_ getName ()Ljava/lang/String;
+		METHOD e getWorld ()Lnone/aqu;
 CLASS none/bm net/minecraft/server/CommandXp
 CLASS none/bn net/minecraft/server/CommandFill
 CLASS none/bo net/minecraft/server/CommandDifficulty
@@ -82,8 +87,10 @@ CLASS none/by net/minecraft/server/CommandTellRaw
 CLASS none/bz net/minecraft/server/CommandOp
 CLASS none/ca net/minecraft/server/CommandPardonIP
 CLASS none/cb net/minecraft/server/CommandPardon
+CLASS none/cc net/minecraft/server/CommandParticle
 CLASS none/cd net/minecraft/server/CommandPlaySound
 CLASS none/ce net/minecraft/server/CommandPublish
+CLASS none/cf net/minecraft/server/CommandReplaceItem
 CLASS none/cg net/minecraft/server/CommandSaveAll
 CLASS none/ch net/minecraft/server/CommandSaveOff
 CLASS none/ci net/minecraft/server/CommandSaveOn
@@ -96,6 +103,8 @@ CLASS none/co net/minecraft/server/CommandIdleTimeout
 CLASS none/cp net/minecraft/server/CommandSpawnpoint
 CLASS none/cq net/minecraft/server/CommandSeed
 CLASS none/cr net/minecraft/server/CommandSpreadPlayers
+CLASS none/cs net/minecraft/server/Location2D
+CLASS none/ct net/minecraft/server/CommandStats
 CLASS none/cu net/minecraft/server/CommandStop
 CLASS none/cv net/minecraft/server/CommandSummon
 CLASS none/cw net/minecraft/server/CommandTp
@@ -117,18 +126,28 @@ CLASS none/dp net/minecraft/server/ExceptionUsage
 CLASS none/dy
 	METHOD n getBlockX__maybe ()I
 	METHOD p getBlockY__maybe ()I
+CLASS none/dz net/minecraft/server/ISourceBlock
 CLASS none/eg net/minecraft/server/DispenseBehaviorItem
+CLASS none/eh net/minecraft/server/RegistryBlocks
 CLASS none/ei net/minecraft/server/RegistryDefault
+CLASS none/ej net/minecraft/server/EnumFacing
 CLASS none/em net/minecraft/server/EnumFacingEnumAxisDirection
 	FIELD a POSITIVE
 	FIELD b NEGATIVE
 CLASS none/eo net/minecraft/server/IDispenseBehavior
+CLASS none/eq net/minecraft/server/Registry
+CLASS none/er net/minecraft/server/RegistryID
 CLASS none/es net/minecraft/server/ILocationSource
+CLASS none/et net/minecraft/server/ISource
+CLASS none/ev net/minecraft/server/RegistryMaterials
+CLASS none/ew net/minecraft/server/EnumParticleType
+CLASS none/ex net/minecraft/server/IPosition
 CLASS none/ez net/minecraft/server/IRegistry
 CLASS none/fb net/minecraft/server/RegistrySimple
 CLASS none/fd
 	METHOD n getBlockX__maybe ()I
 	METHOD p getBlockY__maybe ()I
+CLASS none/fi net/minecraft/server/LocaleI18n
 CLASS none/fj net/minecraft/server/LocaleLanguage
 CLASS none/fl net/minecraft/server/NBTTagByteArray
 CLASS none/fm net/minecraft/server/NBTTagByte
@@ -155,35 +174,127 @@ CLASS none/gb net/minecraft/server/NBTTagShort
 CLASS none/gc net/minecraft/server/NBTTagString
 CLASS none/gd net/minecraft/server/NBTBase
 CLASS none/ge net/minecraft/server/NBTNumber
+CLASS none/gg net/minecraft/server/MojangsonParser
 CLASS none/gh net/minecraft/server/MojangsonTypeParser
+CLASS none/gi net/minecraft/server/MojangsonCompoundParser
 CLASS none/gj net/minecraft/server/MojangsonListParser
+CLASS none/gk net/minecraft/server/MojangsonPrimitiveParser
+CLASS none/gm net/minecraft/server/PacketEncryptionHandler
 CLASS none/gn net/minecraft/server/PacketDecrypter
+CLASS none/go net/minecraft/server/PacketEncrypter
+CLASS none/gp
+	METHOD decode (Lio/netty/channel/ChannelHandlerContext;Lio/netty/buffer/ByteBuf;Ljava/util/List;)V
 CLASS none/gr net/minecraft/server/NetworkManager
+CLASS none/gx net/minecraft/server/QueuedPacket
+CLASS none/gy net/minecraft/server/EnumProtocol
+	FIELD a HANDSHAKING
+	FIELD b PLAY
+	FIELD c STATUS
+	FIELD d LOGIN
+CLASS none/hd net/minecraft/server/PacketDataSerializer
+	METHOD isReadable ()Z
+	METHOD markReaderIndex ()Lio/netty/buffer/ByteBuf;
+	METHOD readByte ()B
+	METHOD readBytes (I)Lio/netty/buffer/ByteBuf;
+	METHOD readableBytes ()I
+	METHOD release ()Z
+	METHOD resetReaderIndex ()Lio/netty/buffer/ByteBuf;
+CLASS none/he net/minecraft/server/PacketDecoder
+	METHOD decode (Lio/netty/channel/ChannelHandlerContext;Lio/netty/buffer/ByteBuf;Ljava/util/List;)V
+CLASS none/hf net/minecraft/server/PacketEncoder
+CLASS none/hg net/minecraft/server/PacketListener
+CLASS none/hh net/minecraft/server/PacketSplitter
+	METHOD decode (Lio/netty/channel/ChannelHandlerContext;Lio/netty/buffer/ByteBuf;Ljava/util/List;)V
+CLASS none/hi net/minecraft/server/PacketPrepender
 CLASS none/hj net/minecraft/server/ChatBaseComponent
+CLASS none/hk net/minecraft/server/ChatFunction1
+CLASS none/hm net/minecraft/server/ChatClickable
+CLASS none/hn net/minecraft/server/EnumClickAction
 CLASS none/ho net/minecraft/server/IChatBaseComponent
+CLASS none/hp net/minecraft/server/ChatSerializer
 CLASS none/hr net/minecraft/server/ChatHoverable
+CLASS none/ht net/minecraft/server/ChatComponentScore
+CLASS none/hu net/minecraft/server/ChatComponentSelector
 CLASS none/hv net/minecraft/server/ChatModifier
 CLASS none/hw net/minecraft/server/ChatStyleRoot
 CLASS none/hx net/minecraft/server/ChatModifierSerializer
 CLASS none/hy net/minecraft/server/ChatComponentText
-CLASS none/hz net/minecraft/server/ChatMessage__
+CLASS none/hz net/minecraft/server/ChatMessage
 CLASS none/id net/minecraft/server/IPacket
+CLASS none/ie net/minecraft/server/EnumPacketDirection
+	FIELD a SERVERBOUND
+	FIELD b CLIENTBOUND
+CLASS none/ik net/minecraft/server/PacketPlayOutListener
 CLASS none/il net/minecraft/server/PacketPlayOutSpawnEntity
+CLASS none/io net/minecraft/server/PacketPlayOutSpawnEntityLiving
 CLASS none/iu net/minecraft/server/PacketPlayOutTileEntityData
 CLASS none/iv net/minecraft/server/PacketPlayOutBlockAction
 CLASS none/jk net/minecraft/server/PacketPlayOutEntityStatus
 CLASS none/jo net/minecraft/server/PacketPlayOutGameStateChange
+CLASS none/jp net/minecraft/server/PacketPlayOutKeepAlive
 CLASS none/jv net/minecraft/server/PacketPlayOutNamedSoundEffect
 CLASS none/jz net/minecraft/server/PacketPlayOutRelEntityMove
 CLASS none/ka net/minecraft/server/PacketPlayOutRelEntityMoveLook
 CLASS none/kb net/minecraft/server/PacketPlayOutEntityLook
 CLASS none/kd net/minecraft/server/PacketPlayOutAbilities
+CLASS none/kq net/minecraft/server/PacketPlayOutEntityHeadRotation
 CLASS none/ky net/minecraft/server/PacketPlayOutAttachEntity
 CLASS none/kz net/minecraft/server/PacketPlayOutEntityVelocity
+CLASS none/lg
+	FIELD a CHANGE
+	FIELD b REMOVE
+CLASS none/lk
+	FIELD a TITLE
+	FIELD b SUBTITLE
+	FIELD c TIMES
+	FIELD d CLEAR
+	FIELD e RESET
 CLASS none/lo net/minecraft/server/PacketPlayOutEntityTeleport
 CLASS none/lr net/minecraft/server/PacketPlayOutEntityEffect
+CLASS none/ls net/minecraft/server/PacketPlayInListener
+CLASS none/lw
+	FIELD a PERFORM_RESPAWN
+	FIELD b REQUEST_STATS
+	FIELD c OPEN_INVENTORY_ACHIEVEMENT
+CLASS none/me
+	FIELD a INTERACT
+	FIELD b ATTACK
+	FIELD c INTERACT_AT
 CLASS none/mi net/minecraft/server/PacketPlayInPositionLook
 CLASS none/mj net/minecraft/server/PacketPlayInLook
+CLASS none/mm
+	FIELD a START_DESTROY_BLOCK
+	FIELD b ABORT_DESTROY_BLOCK
+	FIELD c STOP_DESTROY_BLOCK
+	FIELD d DROP_ALL_ITEMS
+	FIELD e DROP_ITEM
+	FIELD f RELEASE_USE_ITEM
+CLASS none/mo
+	FIELD a START_SNEAKING
+	FIELD b STOP_SNEAKING
+	FIELD c STOP_SLEEPING
+	FIELD d START_SPRINTING
+	FIELD e STOP_SPRINTING
+	FIELD f RIDING_JUMP
+	FIELD g OPEN_INVENTORY
+CLASS none/mr
+	FIELD a SUCCESSFULLY_LOADED
+	FIELD b DECLINED
+	FIELD c FAILED_DOWNLOAD
+	FIELD d ACCEPTED
+CLASS none/na net/minecraft/server/PacketHandshakingInListener
+CLASS none/nh
+CLASS none/np net/minecraft/server/ServerPing
+	METHOD a setFavicon (Ljava/lang/String;)V
+	METHOD a setMOTD (Lnone/ho;)V
+	METHOD a setPlayerSample (Lnone/nq;)V
+	METHOD a setServerInfo (Lnone/nt;)V
+CLASS none/nq net/minecraft/server/ServerPingPlayerSample
+CLASS none/nr net/minecraft/server/ServerPingPlayerSampleSerializer
+CLASS none/ns net/minecraft/server/ServerPingSerializer
+CLASS none/nt net/minecraft/server/ServerPingServerData
+CLASS none/nu net/minecraft/server/ServerPingServerDataSerializer
+CLASS none/oc net/minecraft/server/DispenseBehaviorProjectile
 CLASS none/oe net/minecraft/server/DispenseBehaviorArrow
 CLASS none/of net/minecraft/server/DispenseBehaviorFilledBucket
 CLASS none/og net/minecraft/server/DispenseBehaviorEmptyBucket
@@ -197,66 +308,216 @@ CLASS none/os net/minecraft/server/DispenseBehaviorMonsterEgg
 CLASS none/ot net/minecraft/server/DispenseBehaviorFireworks
 CLASS none/ou net/minecraft/server/DispenseBehaviorFireball
 CLASS none/ov net/minecraft/server/DispenseBehaviorBoat
+CLASS none/oz net/minecraft/server/ServerCommand
+CLASS none/pj net/minecraft/server/IMinecraftServer
+	METHOD F getVersion_ ()Ljava/lang/String;
+	METHOD I getPlayers_ ()[Ljava/lang/String;
+	METHOD K getPlugins_ ()Ljava/lang/String;
+	METHOD L isDebugging_ ()Z
+	METHOD e info (Ljava/lang/String;)V
+	METHOD f warning (Ljava/lang/String;)V
+	METHOD h error (Ljava/lang/String;)V
+	METHOD i debug (Ljava/lang/String;)V
 CLASS none/pk net/minecraft/server/ScoreboardServer
+CLASS none/pl net/minecraft/server/PropertyManager
 CLASS none/pn net/minecraft/server/DedicatedPlayerList__
+CLASS none/po net/minecraft/server/DedicatedServer
+	METHOD ac getSnooperEnabled ()Z
 CLASS none/qj net/minecraft/server/DemoWorldServer
+CLASS none/qk net/minecraft/server/DemoPlayerInteractManager
 CLASS none/qn net/minecraft/server/EntityTracker
 CLASS none/qp net/minecraft/server/WorldManager
+CLASS none/qq net/minecraft/server/PlayerChunkMap
+CLASS none/qs net/minecraft/server/ChunkProviderServer
 CLASS none/qt net/minecraft/server/WorldServer
 	METHOD a createExplosion__ (Lnone/wv;DDDFZZ)Lnone/aqo;
 	METHOD a entityJoinedWorld (Lnone/wv;Z)V
 	METHOD i tickEntities ()V
 CLASS none/qw net/minecraft/server/EntityPlayer
+CLASS none/qx net/minecraft/server/PlayerInteractManager
+CLASS none/qy
+	METHOD a broadcast_ (Lnone/id;)V
+	METHOD b broadcastIncludingSelf_ (Lnone/id;)V
+	METHOD d clear_ (Lnone/qw;)V
+CLASS none/rc net/minecraft/server/ServerConnection
+CLASS none/rj net/minecraft/server/PlayerConnection
+	FIELD d minecraftServer
+	FIELD l chatThrottle
+CLASS none/rp net/minecraft/server/ProtocolOrdinalWrapper
+CLASS none/rq net/minecraft/server/LoginListener
+CLASS none/rt
+	FIELD a HELLO
+	FIELD b KEY
+	FIELD c AUTHENTICATING
+	FIELD d READY_TO_ACCEPT
+	FIELD e ACCEPTED
 CLASS none/sn net/minecraft/server/PlayerList__
+CLASS none/ta net/minecraft/server/RemoteStatusReply
+	FIELD a buffer
+	FIELD b stream
+	METHOD a getBytes ()[B
+	METHOD a write (I)V
+	METHOD a write (Ljava/lang/String;)V
+	METHOD a write (S)V
+	METHOD a write ([B)V
+	METHOD b reset ()V
+CLASS none/tb net/minecraft/server/StatusChallengeUtils
+CLASS none/tc net/minecraft/server/RemoteControlCommandListener
+	FIELD a instance
+	METHOD d_ getName ()Ljava/lang/String;
+	METHOD e getWorld ()Lnone/aqu;
+	METHOD h getInstance ()Lnone/tc;
+CLASS none/te net/minecraft/server/RemoteConnectionThread
+	FIELD a running
+	FIELD b server
+	FIELD d thread
+	METHOD a debug (Ljava/lang/String;)V
+	METHOD b info (Ljava/lang/String;)V
+	METHOD c warning (Ljava/lang/String;)V
+	METHOD d error (Ljava/lang/String;)V
+CLASS none/tf net/minecraft/server/RemoteStatusListener
+	FIELD h clearedTime
+	FIELD i bindPort
+	FIELD n socket
+	FIELD r hostname
+	FIELD s motd
+	FIELD v cachedReply
+	METHOD a send ([BLjava/net/DatagramPacket;)V
+	METHOD b getFullReply (Ljava/net/DatagramPacket;)[B
+CLASS none/th net/minecraft/server/RemoteControlSession
+CLASS none/ti net/minecraft/server/RemoteControlListener
 CLASS none/tk net/minecraft/server/Achievement
 CLASS none/tl net/minecraft/server/AchievementList
+CLASS none/tn net/minecraft/server/CounterStatistic
 CLASS none/tq net/minecraft/server/Statistic
+CLASS none/tv net/minecraft/server/Counter
+CLASS none/tw net/minecraft/server/StatisticWrapper
+CLASS none/tx net/minecraft/server/IJsonStatistic
 CLASS none/ty net/minecraft/server/StatisticList
+CLASS none/tz net/minecraft/server/StatisticManager
+CLASS none/ug net/minecraft/server/MinecraftEncryption
+CLASS none/uh net/minecraft/server/ChatDeserializer
+CLASS none/ui net/minecraft/server/HttpUtilities
 CLASS none/ul net/minecraft/server/InsensitiveStringMap
+CLASS none/um net/minecraft/server/IntHashMap
+CLASS none/un net/minecraft/server/IntHashMapEntry
 CLASS none/ur net/minecraft/server/LongHashMap
 CLASS none/us net/minecraft/server/LongHashMapEntry
+CLASS none/ut net/minecraft/server/ChatTypeAdapterFactory
 CLASS none/uv net/minecraft/server/MathHelper
+	METHOD a sin_ (F)F
+	METHOD b cos_ (F)F
 	METHOD c floor (D)I
 CLASS none/ux net/minecraft/server/ProfilerInfo
+CLASS none/uy net/minecraft/server/IProgressUpdate
 CLASS none/va net/minecraft/server/IEnumBlockPropertyValue
+CLASS none/vb net/minecraft/server/UtilColor
+CLASS none/vi net/minecraft/server/Tuple
+CLASS none/vj net/minecraft/server/WeightedRandom
+CLASS none/vk net/minecraft/server/WeightedRandomChoice
 CLASS none/vl net/minecraft/server/StructurePieceTreasure
 CLASS none/vq net/minecraft/server/IInventory
+CLASS none/wa net/minecraft/server/InventorySubcontainer
+CLASS none/wb net/minecraft/server/MojangStatisticsGenerator
+CLASS none/wd net/minecraft/server/IMojangStatistics
+	METHOD ac getSnooperEnabled ()Z
+CLASS none/wf net/minecraft/server/CombatEntry
+CLASS none/wg net/minecraft/server/CombatTracker
 CLASS none/wh net/minecraft/server/DamageSource
+	FIELD a FIRE
+	FIELD c BURN
+	FIELD d LAVA
+	FIELD e STUCK
+	FIELD f DROWN
+	FIELD g STARVE
+	FIELD h CACTUS
+	FIELD i FALL
+	FIELD j OUT_OF_WORLD
+	FIELD k GENERIC
+	FIELD l MAGIC
+	FIELD m WITHER
+	FIELD n ANVIL
+	FIELD o FALLING_BLOCK
+	FIELD p translationIndex
+	METHOD j getEntity_ ()Lnone/wv;
 CLASS none/wi net/minecraft/server/EntityDamageSource
+	METHOD j getEntity_ ()Lnone/wv;
+CLASS none/wj net/minecraft/server/EntityDamageSourceIndirect
+	FIELD r owner
+	METHOD j getEntity_ ()Lnone/wv;
 CLASS none/wl net/minecraft/server/MobEffectAbsorption
 CLASS none/wm net/minecraft/server/MobEffectAttackDamage
 CLASS none/wn net/minecraft/server/MobEffectHealthBoost
+CLASS none/wo net/minecraft/server/InstantMobEffect
+	METHOD b isInstant ()Z
+CLASS none/wp net/minecraft/server/MobEffectList
+	METHOD b isInstant ()Z
 CLASS none/wq net/minecraft/server/MobEffect
 CLASS none/ws net/minecraft/server/EntityAgeable
+CLASS none/wt net/minecraft/server/IAnimal
 CLASS none/wv net/minecraft/server/Entity
 	FIELD B lastPitch__
 	FIELD I dead__
 	FIELD R lastYaw__
 	FIELD W ticksLived_
-	FIELD l passenger__
-	FIELD m vehicle__
+	FIELD l passenger_
+	FIELD m vehicle_
+	FIELD o world_
 	FIELD s locX__
 	FIELD t locY__
 	FIELD u locZ__
 	FIELD y yaw__
 	FIELD z pitch__
 	METHOD b setPositionRotation_ (DDDFF)V
+	METHOD d_ getName ()Ljava/lang/String;
+	METHOD e getWorld ()Lnone/aqu;
 CLASS none/xb net/minecraft/server/EntityTypes
+CLASS none/xc net/minecraft/server/MonsterEggInfo
 CLASS none/xk net/minecraft/server/EntityExperienceOrb
+CLASS none/xl net/minecraft/server/EntityFlying
 CLASS none/xm net/minecraft/server/EntityLiving
 CLASS none/xn net/minecraft/server/EntityInsentient
+CLASS none/xo
+	FIELD a ON_GROUND
+	FIELD b IN_AIR
+	FIELD c IN_WATER
+CLASS none/xp
+	FIELD a MONSTER
+	FIELD b CREATURE
+	FIELD c AMBIENT
+	FIELD d WATER_CREATURE
+CLASS none/xq net/minecraft/server/GroupDataEntity
+CLASS none/xs
+	FIELD a UNDEFINED
+	FIELD b UNDEAD
+	FIELD c ARTHROPOD
+CLASS none/xt net/minecraft/server/EntityOwnable
+	METHOD b getOwnerName ()Ljava/lang/String;
+	METHOD l_ getOwner ()Lnone/wv;
+CLASS none/xu net/minecraft/server/EntityCreature
 CLASS none/xv net/minecraft/server/DataWatcher
 CLASS none/xx net/minecraft/server/EntityTameableAnimal
+	METHOD b getOwnerName ()Ljava/lang/String;
+	METHOD l_ getOwner ()Lnone/wv;
 CLASS none/xy net/minecraft/server/IAttribute
+CLASS none/xz net/minecraft/server/AttributeInstance
+	METHOD e getValue_ ()D
 CLASS none/ya net/minecraft/server/AttributeModifier
 CLASS none/yb net/minecraft/server/AttributeBase
 CLASS none/yc net/minecraft/server/AttributeMapBase
 CLASS none/ye net/minecraft/server/AttributeModifiable
+	METHOD e getValue_ ()D
 CLASS none/yf net/minecraft/server/AttributeMapServer
+CLASS none/yg net/minecraft/server/AttributeRanged
+CLASS none/yj net/minecraft/server/EntityAIBodyControl
+CLASS none/yl net/minecraft/server/ControllerJump
+CLASS none/ym net/minecraft/server/ControllerLook
+CLASS none/yn net/minecraft/server/ControllerMove
 CLASS none/yp net/minecraft/server/PathfinderGoalAvoidPlayer
 CLASS none/yr net/minecraft/server/PathfinderGoalBeg
 CLASS none/ys net/minecraft/server/PathfinderGoalBreakDoor
 CLASS none/yt net/minecraft/server/PathfinderGoalBreed
+CLASS none/yu net/minecraft/server/PathfinderGoalPassengerCarrotStick
 CLASS none/yv net/minecraft/server/PathfinderGoalDoorInteract
 CLASS none/yw net/minecraft/server/PathfinderGoalEatTile
 CLASS none/yx net/minecraft/server/PathfinderGoalFleeSun
@@ -264,14 +525,18 @@ CLASS none/yy net/minecraft/server/PathfinderGoalFloat
 CLASS none/yz net/minecraft/server/PathfinderGoalFollowOwner
 CLASS none/za net/minecraft/server/PathfinderGoalFollowParent
 CLASS none/zb net/minecraft/server/PathfinderGoal
+CLASS none/zf net/minecraft/server/PathfinderGoalInteract
 CLASS none/zg net/minecraft/server/PathfinderGoalLeapAtTarget
 CLASS none/zh net/minecraft/server/PathfinderGoalLookAtPlayer
 CLASS none/zi net/minecraft/server/PathfinderGoalLookAtTradingPlayer
 CLASS none/zj net/minecraft/server/PathfinderGoalMakeLove
+CLASS none/zk net/minecraft/server/PathfinderGoalMeleeAttack
 CLASS none/zl net/minecraft/server/PathfinderGoalMoveIndoors
 CLASS none/zm net/minecraft/server/PathfinderGoalMoveThroughVillage
+CLASS none/zo net/minecraft/server/PathfinderGoalMoveTowardsRestriction
 CLASS none/zp net/minecraft/server/PathfinderGoalMoveTowardsTarget
 CLASS none/zq net/minecraft/server/PathfinderGoalOcelotAttack
+CLASS none/zs net/minecraft/server/PathfinderGoalOfferFlower
 CLASS none/zt net/minecraft/server/PathfinderGoalOpenDoor
 CLASS none/zu net/minecraft/server/PathfinderGoalPanic
 CLASS none/zv net/minecraft/server/PathfinderGoalPlay
@@ -295,9 +560,11 @@ CLASS none/abq net/minecraft/server/EntityAnimal
 CLASS none/abr net/minecraft/server/EntityChicken
 CLASS none/abs net/minecraft/server/EntityCow
 CLASS none/abt net/minecraft/server/EntityHorse
+	METHOD d_ getName ()Ljava/lang/String;
 CLASS none/abw net/minecraft/server/EntityGolem
 CLASS none/abx net/minecraft/server/EntityMushroomCow
 CLASS none/aby net/minecraft/server/EntityOcelot
+	METHOD d_ getName ()Ljava/lang/String;
 CLASS none/aca net/minecraft/server/EntityPig
 CLASS none/acl net/minecraft/server/EntitySheep
 CLASS none/acn net/minecraft/server/EntitySnowman
@@ -319,12 +586,18 @@ CLASS none/ads net/minecraft/server/EntityLightning
 CLASS none/adu net/minecraft/server/EntityBoat
 CLASS none/adv net/minecraft/server/EntityFallingBlock
 CLASS none/adw net/minecraft/server/EntityItem
+	METHOD d_ getName ()Ljava/lang/String;
 CLASS none/adx net/minecraft/server/EntityMinecartAbstract
+	METHOD d_ getName ()Ljava/lang/String;
 CLASS none/aea net/minecraft/server/EntityMinecartChest
 CLASS none/aeb net/minecraft/server/EntityMinecartCommandBlock
+	CLASS aec
+		METHOD e getWorld ()Lnone/aqu;
 CLASS none/aed net/minecraft/server/EntityMinecartContainer
+	METHOD d_ getName ()Ljava/lang/String;
 CLASS none/aee net/minecraft/server/EntityMinecartFurnace
 CLASS none/aef net/minecraft/server/EntityMinecartHopper
+CLASS none/aeg net/minecraft/server/EntityMinecartRideable
 CLASS none/aeh net/minecraft/server/EntityMinecartMobSpawner
 CLASS none/aej net/minecraft/server/EntityMinecartTNT
 CLASS none/aek net/minecraft/server/EntityTNTPrimed
@@ -350,16 +623,23 @@ CLASS none/agp net/minecraft/server/EntityVillager
 CLASS none/aha net/minecraft/server/PlayerAbilities
 CLASS none/ahb net/minecraft/server/PlayerInventory
 CLASS none/ahd net/minecraft/server/EntityHuman
+	METHOD d_ getName ()Ljava/lang/String;
 CLASS none/ahj net/minecraft/server/EntityArrow
+	METHOD c shoot (DDDFF)V
 CLASS none/ahk net/minecraft/server/EntityEnderSignal
 CLASS none/ahl net/minecraft/server/EntityFireball
 CLASS none/ahm net/minecraft/server/EntityFireworks
 CLASS none/ahn net/minecraft/server/EntityLargeFireball
+CLASS none/aho net/minecraft/server/IProjectile
+	METHOD c shoot (DDDFF)V
 CLASS none/ahp net/minecraft/server/EntitySmallFireball
 CLASS none/ahq net/minecraft/server/EntitySnowball
 CLASS none/ahr net/minecraft/server/EntityProjectile
+	METHOD c shoot (DDDFF)V
 CLASS none/ahs net/minecraft/server/EntityEgg
+CLASS none/aht net/minecraft/server/EntityEnderPearl
 CLASS none/ahu net/minecraft/server/EntityThrownExpBottle
+CLASS none/ahv net/minecraft/server/EntityPotion
 CLASS none/ahw net/minecraft/server/EntityWitherSkull
 CLASS none/ahz net/minecraft/server/FoodMetaData
 CLASS none/aib net/minecraft/server/Container
@@ -502,6 +782,8 @@ CLASS none/apw net/minecraft/server/EnchantmentSilkTouch
 CLASS none/apy net/minecraft/server/EnchantmentWaterWorker
 CLASS none/aqb net/minecraft/server/IMerchant
 CLASS none/aqc net/minecraft/server/MerchantRecipe
+CLASS none/aqf
+	METHOD d_ getName ()Ljava/lang/String;
 CLASS none/aqm net/minecraft/server/ChunkCoordIntPair
 CLASS none/aqo net/minecraft/server/Explosion
 CLASS none/aqq net/minecraft/server/GameRules
@@ -522,10 +804,11 @@ CLASS none/aqu net/minecraft/server/World
 	METHOD a explode__ (Lnone/wv;DDDFZ)Lnone/aqo;
 	METHOD a createExplosion__ (Lnone/wv;DDDFZZ)Lnone/aqo;
 	METHOD a entityJoinedWorld (Lnone/wv;Z)V
+	METHOD b triggerEffect (ILnone/dt;I)V
 	METHOD b update__ (Lnone/dt;Lnone/atr;)V
 	METHOD b getEntities__ (Lnone/wv;Lnone/brt;)Ljava/util/List;
 	METHOD d containsLiquid (Lnone/brt;)Z
-	METHOD d add_ (Lnone/wv;)Z
+	METHOD d add_or_addEntity_ (Lnone/wv;)Z
 	METHOD e isLoaded__ (Lnone/dt;)Z
 	METHOD f getChunkAtWorldCoords__ (Lnone/dt;)Lnone/bfh;
 	METHOD g playerJoinedWorld (Lnone/wv;)V
@@ -549,6 +832,8 @@ CLASS none/arm net/minecraft/server/BiomeBase
 	FIELD G DESERT_HILLS__
 	FIELD r DESERT__
 	FIELD v SWAMPLAND__
+CLASS none/arq net/minecraft/server/BiomeMeta
+	METHOD toString ()Ljava/lang/String;
 CLASS none/arr net/minecraft/server/BiomeCache
 CLASS none/ary net/minecraft/server/BiomeDecorator
 CLASS none/arz net/minecraft/server/WorldChunkManager
@@ -586,12 +871,15 @@ CLASS none/atr net/minecraft/server/Block
 	METHOD a doPhysics__maybe (Lnone/aqu;Lnone/dt;Lnone/bec;Lnone/atr;)V
 CLASS none/att net/minecraft/server/StepSoundLadder
 CLASS none/atu net/minecraft/server/StepSoundAnvil
+CLASS none/atx net/minecraft/server/StepSound
 CLASS none/aty net/minecraft/server/Blocks
 	FIELD a AIR
 	FIELD aO FENCE__
 	FIELD ab FIRE__
+	FIELD au LADDER
 	FIELD b STONE
 	FIELD bf SMOOTH_BRICK__
+	FIELD bn VINE
 	FIELD by NETHER_BRICK
 	FIELD bz NETHER_FENCE__
 	FIELD c GRASS
@@ -635,6 +923,7 @@ CLASS none/aul net/minecraft/server/BlockCocoa
 CLASS none/auo net/minecraft/server/BlockCommand
 	METHOD a doPhysics__maybe (Lnone/aqu;Lnone/dt;Lnone/bec;Lnone/atr;)V
 CLASS none/aup net/minecraft/server/BlockRedstoneComparator
+CLASS none/aur net/minecraft/server/EnumComparatorMode
 CLASS none/aus net/minecraft/server/BlockWorkbench
 CLASS none/auu net/minecraft/server/BlockCrops
 CLASS none/auv net/minecraft/server/BlockDaylightDetector
@@ -771,6 +1060,8 @@ CLASS none/bcm net/minecraft/server/TileEntity
 CLASS none/bcq net/minecraft/server/TileEntityBrewingStand
 CLASS none/bcr net/minecraft/server/TileEntityChest
 CLASS none/bct net/minecraft/server/TileEntityCommand
+	CLASS bcu
+		METHOD e getWorld ()Lnone/aqu;
 CLASS none/bcv net/minecraft/server/TileEntityComparator
 CLASS none/bcw net/minecraft/server/TileEntityLightDetector
 CLASS none/bcx net/minecraft/server/TileEntityDispenser
@@ -783,6 +1074,12 @@ CLASS none/bde net/minecraft/server/TileEntityHopper
 CLASS none/bdg net/minecraft/server/TileEntityMobSpawner
 CLASS none/bdi net/minecraft/server/TileEntityNote
 CLASS none/bdj net/minecraft/server/TileEntitySign
+	CLASS bdk
+		METHOD d_ getName ()Ljava/lang/String;
+		METHOD e getWorld ()Lnone/aqu;
+	CLASS bdl
+		METHOD d_ getName ()Ljava/lang/String;
+		METHOD e getWorld ()Lnone/aqu;
 CLASS none/bdm net/minecraft/server/TileEntitySkull
 CLASS none/bdn net/minecraft/server/TileEntityEnderPortal
 CLASS none/bdq
@@ -799,6 +1096,7 @@ CLASS none/bfg net/minecraft/server/EmptyChunk
 CLASS none/bfh net/minecraft/server/Chunk
 	METHOD a getBrightness__maybe (Lnone/arf;Lnone/dt;)I
 CLASS none/bfm net/minecraft/server/ChunkSection
+CLASS none/bfn net/minecraft/server/OldNibbleArray
 CLASS none/bfq net/minecraft/server/IChunkLoader
 CLASS none/bfv net/minecraft/server/RegionFile
 CLASS none/bfx net/minecraft/server/RegionFileCache
@@ -830,6 +1128,7 @@ CLASS none/bil net/minecraft/server/WorldGenAcaciaTree
 CLASS none/bim net/minecraft/server/WorldGenEnder
 CLASS none/bin net/minecraft/server/WorldGenLiquids
 CLASS none/bip net/minecraft/server/WorldGenSwampTree
+CLASS none/biq net/minecraft/server/WorldGenGrass
 CLASS none/bir net/minecraft/server/WorldGenTrees
 CLASS none/bis net/minecraft/server/WorldGenVines
 CLASS none/bit net/minecraft/server/WorldGenWaterLily
@@ -965,9 +1264,12 @@ CLASS none/bok net/minecraft/server/GenLayerDeepOcean
 CLASS none/boy net/minecraft/server/IntCache
 CLASS none/bpa net/minecraft/server/GenLayer
 CLASS none/bpp net/minecraft/server/GenLayerZoom
+CLASS none/bpv net/minecraft/server/PathEntity
 CLASS none/bqe net/minecraft/server/WorldMap
+CLASS none/bqn net/minecraft/server/WorldLoader
 CLASS none/bqo net/minecraft/server/WorldData
 CLASS none/bqy net/minecraft/server/IDataManager
+CLASS none/bra net/minecraft/server/Convertable
 CLASS none/brl net/minecraft/server/IPlayerFileData
 CLASS none/brp net/minecraft/server/FileIOThread
 CLASS none/brt net/minecraft/server/AxisAlignedBB
@@ -978,20 +1280,151 @@ CLASS none/brz net/minecraft/server/ScoreboardTeam
 CLASS none/bsa net/minecraft/server/ScoreboardScore
 CLASS none/bsb net/minecraft/server/ScoreboardComparator
 CLASS none/bsd net/minecraft/server/Scoreboard
+CLASS none/bsg net/minecraft/server/EnumTeamVisibility
+	FIELD a ALWAYS
+	FIELD b NEVER
+	FIELD c HIDE_FOR_OTHER_TEAMS
+	FIELD d HIDE_FOR_OWN_TEAM
 CLASS none/bsj net/minecraft/server/ScoreboardHealthCriteria
 CLASS none/bsk net/minecraft/server/IScoreboardCriteria
 CLASS none/bsm net/minecraft/server/ScoreboardStatisticCriteria
 CLASS none/arr$ars net/minecraft/server/BiomeCacheBlock
+CLASS io/netty/buffer/ByteBuf io/netty/buffer/ByteBuf
+	METHOD isReadable ()Z
+	METHOD markReaderIndex ()Lio/netty/buffer/ByteBuf;
+	METHOD readByte ()B
+	METHOD readBytes (I)Lio/netty/buffer/ByteBuf;
+	METHOD readableBytes ()I
+	METHOD resetReaderIndex ()Lio/netty/buffer/ByteBuf;
+CLASS io/netty/buffer/Unpooled io/netty/buffer/Unpooled
+	METHOD wrappedBuffer ([B)Lio/netty/buffer/ByteBuf;
 CLASS com/google/gson/JsonObject com/google/gson/JsonObject
 CLASS com/google/gson/JsonElement com/google/gson/JsonElement
+CLASS io/netty/buffer/EmptyByteBuf
+	METHOD isReadable ()Z
+	METHOD markReaderIndex ()Lio/netty/buffer/ByteBuf;
+	METHOD readByte ()B
+	METHOD readBytes (I)Lio/netty/buffer/ByteBuf;
+	METHOD readableBytes ()I
+	METHOD release ()Z
+	METHOD resetReaderIndex ()Lio/netty/buffer/ByteBuf;
 CLASS com/google/common/collect/Maps com/google/common/collect/Maps
-	METHOD newHashMap newHashMap ()Ljava/util/HashMap;
+	METHOD newHashMap ()Ljava/util/HashMap;
 CLASS com/google/gson/JsonSerializer com/google/gson/JsonSerializer
+CLASS io/netty/buffer/SwappedByteBuf
+	METHOD isReadable ()Z
+	METHOD markReaderIndex ()Lio/netty/buffer/ByteBuf;
+	METHOD readByte ()B
+	METHOD readBytes (I)Lio/netty/buffer/ByteBuf;
+	METHOD readableBytes ()I
+	METHOD release ()Z
+	METHOD resetReaderIndex ()Lio/netty/buffer/ByteBuf;
+CLASS io/netty/buffer/WrappedByteBuf
+	METHOD isReadable ()Z
+	METHOD markReaderIndex ()Lio/netty/buffer/ByteBuf;
+	METHOD readByte ()B
+	METHOD readBytes (I)Lio/netty/buffer/ByteBuf;
+	METHOD readableBytes ()I
+	METHOD release ()Z
+	METHOD resetReaderIndex ()Lio/netty/buffer/ByteBuf;
+CLASS io/netty/util/ReferenceCounted
+	METHOD release ()Z
 CLASS com/google/common/base/Function com/google/common/base/Function
 CLASS com/google/common/collect/Lists com/google/common/collect/Lists
-	METHOD newArrayList newArrayList ()Ljava/util/ArrayList;
+	METHOD newArrayList ()Ljava/util/ArrayList;
+CLASS io/netty/buffer/AbstractByteBuf
+	METHOD isReadable ()Z
+	METHOD markReaderIndex ()Lio/netty/buffer/ByteBuf;
+	METHOD readByte ()B
+	METHOD readBytes (I)Lio/netty/buffer/ByteBuf;
+	METHOD readableBytes ()I
+	METHOD resetReaderIndex ()Lio/netty/buffer/ByteBuf;
+CLASS io/netty/handler/ssl/SslHandler
+	METHOD decode (Lio/netty/channel/ChannelHandlerContext;Lio/netty/buffer/ByteBuf;Ljava/util/List;)V
 CLASS org/apache/logging/log4j/Logger org/apache/logging/log4j/Logger
+	METHOD isDebugEnabled ()Z
+CLASS org/apache/logging/log4j/Marker org/apache/logging/log4j/Marker
 CLASS com/google/common/base/Predicate com/google/common/base/Predicate
 CLASS com/google/gson/JsonDeserializer com/google/gson/JsonDeserializer
+CLASS io/netty/buffer/CompositeByteBuf
+	METHOD markReaderIndex ()Lio/netty/buffer/ByteBuf;
+	METHOD resetReaderIndex ()Lio/netty/buffer/ByteBuf;
+CLASS io/netty/buffer/UnreleasableByteBuf
+	METHOD release ()Z
+CLASS net/minecraft/server/MinecraftServer
+	FIELD b methodProfiler
+	METHOD M getServer ()Lnet/minecraft/server/MinecraftServer;
+	METHOD ac getSnooperEnabled ()Z
+	METHOD d_ getName ()Ljava/lang/String;
+	METHOD e getWorld ()Lnone/aqu;
+	METHOD e setSpawnAnimals (Z)V
+	METHOD f setSpawnNPCs (Z)V
+	METHOD g setPvP (Z)V
 CLASS com/google/common/collect/ImmutableSet com/google/common/collect/ImmutableSet
+CLASS io/netty/buffer/AbstractDerivedByteBuf
+	METHOD release ()Z
+CLASS io/netty/buffer/SimpleLeakAwareByteBuf
+	METHOD release ()Z
+CLASS io/netty/channel/ChannelHandlerContext io/netty/channel/ChannelHandlerContext
+CLASS io/netty/util/AbstractReferenceCounted
+	METHOD release ()Z
+CLASS io/netty/buffer/AdvancedLeakAwareByteBuf
+	METHOD readByte ()B
+	METHOD readBytes (I)Lio/netty/buffer/ByteBuf;
+	METHOD release ()Z
 CLASS com/google/gson/JsonDeserializationContext com/google/gson/JsonDeserializationContext
+CLASS io/netty/handler/codec/spdy/SpdyFrameCodec
+	METHOD decode (Lio/netty/channel/ChannelHandlerContext;Lio/netty/buffer/ByteBuf;Ljava/util/List;)V
+CLASS io/netty/handler/codec/ByteToMessageDecoder io/netty/handler/codec/ByteToMessageDecoder
+	METHOD decode (Lio/netty/channel/ChannelHandlerContext;Lio/netty/buffer/ByteBuf;Ljava/util/List;)V
+CLASS org/apache/logging/log4j/spi/AbstractLogger
+	METHOD isDebugEnabled ()Z
+CLASS io/netty/handler/codec/LineBasedFrameDecoder
+	METHOD decode (Lio/netty/channel/ChannelHandlerContext;Lio/netty/buffer/ByteBuf;Ljava/util/List;)V
+CLASS io/netty/handler/codec/ReplayingDecoderBuffer
+	METHOD isReadable ()Z
+	METHOD markReaderIndex ()Lio/netty/buffer/ByteBuf;
+	METHOD readByte ()B
+	METHOD readBytes (I)Lio/netty/buffer/ByteBuf;
+	METHOD readableBytes ()I
+	METHOD release ()Z
+	METHOD resetReaderIndex ()Lio/netty/buffer/ByteBuf;
+CLASS io/netty/handler/codec/http/HttpObjectDecoder
+	METHOD decode (Lio/netty/channel/ChannelHandlerContext;Lio/netty/buffer/ByteBuf;Ljava/util/List;)V
+CLASS io/netty/handler/codec/spdy/SpdyOrHttpChooser
+	METHOD decode (Lio/netty/channel/ChannelHandlerContext;Lio/netty/buffer/ByteBuf;Ljava/util/List;)V
+CLASS io/netty/handler/codec/CorruptedFrameException io/netty/handler/codec/CorruptedFrameException
+CLASS io/netty/handler/codec/FixedLengthFrameDecoder
+	METHOD decode (Lio/netty/channel/ChannelHandlerContext;Lio/netty/buffer/ByteBuf;Ljava/util/List;)V
+CLASS io/netty/buffer/AbstractReferenceCountedByteBuf
+	METHOD release ()Z
+CLASS io/netty/handler/codec/compression/JZlibDecoder
+	METHOD decode (Lio/netty/channel/ChannelHandlerContext;Lio/netty/buffer/ByteBuf;Ljava/util/List;)V
+CLASS io/netty/handler/codec/DelimiterBasedFrameDecoder
+	METHOD decode (Lio/netty/channel/ChannelHandlerContext;Lio/netty/buffer/ByteBuf;Ljava/util/List;)V
+CLASS io/netty/handler/codec/compression/JdkZlibDecoder
+	METHOD decode (Lio/netty/channel/ChannelHandlerContext;Lio/netty/buffer/ByteBuf;Ljava/util/List;)V
+CLASS io/netty/handler/codec/LengthFieldBasedFrameDecoder
+	METHOD decode (Lio/netty/channel/ChannelHandlerContext;Lio/netty/buffer/ByteBuf;Ljava/util/List;)V
+CLASS io/netty/handler/codec/socks/SocksCmdRequestDecoder
+	METHOD decode (Lio/netty/channel/ChannelHandlerContext;Lio/netty/buffer/ByteBuf;Ljava/util/List;)V
+CLASS io/netty/handler/codec/socks/SocksAuthRequestDecoder
+	METHOD decode (Lio/netty/channel/ChannelHandlerContext;Lio/netty/buffer/ByteBuf;Ljava/util/List;)V
+CLASS io/netty/handler/codec/socks/SocksCmdResponseDecoder
+	METHOD decode (Lio/netty/channel/ChannelHandlerContext;Lio/netty/buffer/ByteBuf;Ljava/util/List;)V
+CLASS io/netty/handler/codec/socks/SocksInitRequestDecoder
+	METHOD decode (Lio/netty/channel/ChannelHandlerContext;Lio/netty/buffer/ByteBuf;Ljava/util/List;)V
+CLASS io/netty/handler/codec/socks/SocksAuthResponseDecoder
+	METHOD decode (Lio/netty/channel/ChannelHandlerContext;Lio/netty/buffer/ByteBuf;Ljava/util/List;)V
+CLASS io/netty/handler/codec/socks/SocksInitResponseDecoder
+	METHOD decode (Lio/netty/channel/ChannelHandlerContext;Lio/netty/buffer/ByteBuf;Ljava/util/List;)V
+CLASS io/netty/handler/codec/compression/SnappyFramedDecoder
+	METHOD decode (Lio/netty/channel/ChannelHandlerContext;Lio/netty/buffer/ByteBuf;Ljava/util/List;)V
+CLASS io/netty/handler/codec/protobuf/ProtobufVarint32FrameDecoder
+	METHOD decode (Lio/netty/channel/ChannelHandlerContext;Lio/netty/buffer/ByteBuf;Ljava/util/List;)V
+CLASS io/netty/handler/codec/http/websocketx/WebSocket00FrameDecoder
+	METHOD decode (Lio/netty/channel/ChannelHandlerContext;Lio/netty/buffer/ByteBuf;Ljava/util/List;)V
+CLASS io/netty/handler/codec/http/websocketx/WebSocket08FrameDecoder
+	METHOD decode (Lio/netty/channel/ChannelHandlerContext;Lio/netty/buffer/ByteBuf;Ljava/util/List;)V
+CLASS io/netty/handler/codec/marshalling/CompatibleMarshallingDecoder
+	METHOD decode (Lio/netty/channel/ChannelHandlerContext;Lio/netty/buffer/ByteBuf;Ljava/util/List;)V
