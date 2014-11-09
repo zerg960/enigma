@@ -335,6 +335,7 @@ CLASS none/qt net/minecraft/server/WorldServer
 	METHOD a entityJoinedWorld (Lnone/wv;Z)V
 	METHOD i tickEntities ()V
 CLASS none/qw net/minecraft/server/EntityPlayer
+	METHOD a setContainerData_ (Lnone/aib;II)V
 	METHOD a mount_ (Lnone/wv;)V
 CLASS none/qx net/minecraft/server/PlayerInteractManager
 CLASS none/qy
@@ -419,7 +420,15 @@ CLASS none/vj net/minecraft/server/WeightedRandom
 CLASS none/vk net/minecraft/server/WeightedRandomChoice
 CLASS none/vl net/minecraft/server/StructurePieceTreasure
 CLASS none/vq net/minecraft/server/IInventory
+	METHOD a getItem_ (I)Lnone/amj;
+	METHOD a setItem_ (ILnone/amj;)V
+	METHOD n_ getSize_ ()I
+	METHOD p_ getMaxStackSize_ ()I
 CLASS none/wa net/minecraft/server/InventorySubcontainer
+	METHOD a getItem_ (I)Lnone/amj;
+	METHOD a setItem_ (ILnone/amj;)V
+	METHOD n_ getSize_ ()I
+	METHOD p_ getMaxStackSize_ ()I
 CLASS none/wb net/minecraft/server/MojangStatisticsGenerator
 CLASS none/wd net/minecraft/server/IMojangStatistics
 	METHOD ac getSnooperEnabled ()Z
@@ -472,6 +481,7 @@ CLASS none/wv net/minecraft/server/Entity
 	FIELD z pitch__
 	METHOD a mount_ (Lnone/wv;)V
 	METHOD b setPositionRotation_ (DDDFF)V
+	METHOD c setEquipment_ (ILnone/amj;)V
 	METHOD d_ getName ()Ljava/lang/String;
 	METHOD e getWorld ()Lnone/aqu;
 CLASS none/xb net/minecraft/server/EntityTypes
@@ -482,7 +492,9 @@ CLASS none/xm net/minecraft/server/EntityLiving
 	METHOD a mount_ (Lnone/wv;)V
 	METHOD bc ()Lnone/xm;
 	METHOD by getMonsterType ()Lnone/xs;
+	METHOD c setEquipment_ (ILnone/amj;)V
 CLASS none/xn net/minecraft/server/EntityInsentient
+	METHOD c setEquipment_ (ILnone/amj;)V
 	METHOD d setGoalTarget_ (Lnone/xm;)V
 	METHOD p getControllerLook_ ()Lnone/ym;
 	METHOD s getNavigation_ ()Lnone/aaz;
@@ -614,6 +626,8 @@ CLASS none/adf net/minecraft/server/EntityWither
 	METHOD a mount_ (Lnone/wv;)V
 	METHOD by getMonsterType ()Lnone/xs;
 CLASS none/adg net/minecraft/server/EntitySelectorNotUndead
+CLASS none/adi
+	METHOD c setEquipment_ (ILnone/amj;)V
 CLASS none/adj net/minecraft/server/EntityHanging
 CLASS none/adk net/minecraft/server/EntityItemFrame
 CLASS none/adl net/minecraft/server/EntityLeash
@@ -686,6 +700,7 @@ CLASS none/aex net/minecraft/server/IMonster
 CLASS none/aey net/minecraft/server/EntitySelectorMonster
 CLASS none/afa net/minecraft/server/EntityGhast
 CLASS none/aff net/minecraft/server/EntityGiantZombie
+CLASS none/afg net/minecraft/server/EntityGuardian
 CLASS none/afl net/minecraft/server/EntityMagmaCube
 CLASS none/afm net/minecraft/server/EntityMonster
 CLASS none/afo net/minecraft/server/EntityPigZombie
@@ -696,17 +711,38 @@ CLASS none/aft net/minecraft/server/EntitySilverfish
 	METHOD by getMonsterType ()Lnone/xs;
 CLASS none/afw net/minecraft/server/EntitySkeleton
 	METHOD by getMonsterType ()Lnone/xs;
+	METHOD c setEquipment_ (ILnone/amj;)V
 CLASS none/afy net/minecraft/server/EntitySlime
 CLASS none/age net/minecraft/server/EntitySpider
 	METHOD by getMonsterType ()Lnone/xs;
+CLASS none/agg net/minecraft/server/GroupDataSpider
 CLASS none/agi net/minecraft/server/EntityWitch
 CLASS none/agj net/minecraft/server/EntityZombie
 	METHOD by getMonsterType ()Lnone/xs;
+CLASS none/agk net/minecraft/server/EmptyClass
+CLASS none/ago net/minecraft/server/NPC
 CLASS none/agp net/minecraft/server/EntityVillager
 CLASS none/aha net/minecraft/server/PlayerAbilities
 CLASS none/ahb net/minecraft/server/PlayerInventory
+	METHOD a getItem_ (I)Lnone/amj;
+	METHOD a setItem_ (ILnone/amj;)V
+	METHOD n_ getSize_ ()I
+	METHOD p_ getMaxStackSize_ ()I
 CLASS none/ahd net/minecraft/server/EntityHuman
+	METHOD a drop_ (Lnone/amj;Z)Lnone/adw;
+	METHOD c setEquipment_ (ILnone/amj;)V
 	METHOD d_ getName ()Ljava/lang/String;
+CLASS none/ahf
+	FIELD a OK
+	FIELD b NOT_POSSIBLE_HERE
+	FIELD c NOT_POSSIBLE_NOW
+	FIELD d TOO_FAR_AWAY
+	FIELD e OTHER_PROBLEM
+	FIELD f NOT_SAFE
+CLASS none/ahg
+	FIELD a FULL
+	FIELD b SYSTEM
+	FIELD c HIDDEN
 CLASS none/ahj net/minecraft/server/EntityArrow
 	METHOD c shoot (DDDFF)V
 CLASS none/ahk net/minecraft/server/EntityEnderSignal
@@ -731,25 +767,57 @@ CLASS none/aid net/minecraft/server/ContainerAnvil
 CLASS none/aig net/minecraft/server/ContainerBeacon
 CLASS none/aii net/minecraft/server/ContainerBrewingStand
 CLASS none/aik net/minecraft/server/SlotPotionBottle
+CLASS none/ail net/minecraft/server/ICrafting_
+	METHOD a setContainerData_ (Lnone/aib;II)V
 CLASS none/aim net/minecraft/server/ContainerChest
 CLASS none/ain net/minecraft/server/InventoryCrafting
+	METHOD a getItem_ (I)Lnone/amj;
+	METHOD a setItem_ (ILnone/amj;)V
+	METHOD n_ getSize_ ()I
+	METHOD p_ getMaxStackSize_ ()I
 CLASS none/aio net/minecraft/server/ContainerWorkbench
 CLASS none/aip net/minecraft/server/ContainerDispenser
 CLASS none/aiq net/minecraft/server/ContainerEnchantTable
+	CLASS air
+		METHOD p_ getMaxStackSize_ ()I
 CLASS none/aiv net/minecraft/server/ContainerFurnace
 CLASS none/aiw net/minecraft/server/SlotFurnaceResult
 CLASS none/aix net/minecraft/server/ContainerHopper
 CLASS none/aiy net/minecraft/server/ContainerHorse
 CLASS none/ajb net/minecraft/server/ContainerPlayer
+CLASS none/aje net/minecraft/server/InventoryMerchant
+	METHOD a getItem_ (I)Lnone/amj;
+	METHOD a setItem_ (ILnone/amj;)V
+	METHOD d_ getInventoryName_ ()Ljava/lang/String;
+	METHOD n_ getSize_ ()I
+	METHOD p_ getMaxStackSize_ ()I
 CLASS none/ajf net/minecraft/server/ContainerMerchant
 CLASS none/ajg net/minecraft/server/SlotMerchantResult
 CLASS none/ajh net/minecraft/server/InventoryEnderChest
+CLASS none/aji net/minecraft/server/InventoryCraftResult
+	FIELD a items_
+	METHOD a getItem_ (I)Lnone/amj;
+	METHOD a setItem_ (ILnone/amj;)V
+	METHOD d_ getInventoryName_ ()Ljava/lang/String;
+	METHOD n_ getSize_ ()I
+	METHOD p_ getMaxStackSize_ ()I
+CLASS none/ajj net/minecraft/server/SlotResult
 CLASS none/ajk net/minecraft/server/Slot
 CLASS none/ajn net/minecraft/server/ItemArmor
+CLASS none/ajo net/minecraft/server/DispenseBehaviorArmor
+CLASS none/ajp
+	FIELD a LEATHER
+	FIELD b CHAIN
+	FIELD c IRON
+	FIELD d GOLD
+	FIELD e DIAMOND
+CLASS none/ajq net/minecraft/server/ItemArmorStand
 CLASS none/ajr net/minecraft/server/ItemAxe
+CLASS none/ajs net/minecraft/server/ItemBanner
 CLASS none/ajt net/minecraft/server/ItemBed
 CLASS none/aju net/minecraft/server/ItemBlock
 CLASS none/ajw net/minecraft/server/ItemBoat
+CLASS none/ajx net/minecraft/server/ItemBook_
 CLASS none/ajy net/minecraft/server/ItemGlassBottle
 CLASS none/ajz net/minecraft/server/ItemBow
 CLASS none/aka net/minecraft/server/ItemSoup
@@ -787,6 +855,7 @@ CLASS none/alm net/minecraft/server/ItemGoldenApple
 CLASS none/alo net/minecraft/server/ItemHoe
 CLASS none/alq net/minecraft/server/Item
 CLASS none/amj net/minecraft/server/ItemStack
+	FIELD b count_
 CLASS none/amk net/minecraft/server/Items
 	FIELD B GOLD_SWORD
 	FIELD F STRING
@@ -865,6 +934,7 @@ CLASS none/apw net/minecraft/server/EnchantmentSilkTouch
 CLASS none/apy net/minecraft/server/EnchantmentWaterWorker
 CLASS none/aqb net/minecraft/server/IMerchant
 CLASS none/aqc net/minecraft/server/MerchantRecipe
+CLASS none/aqd net/minecraft/server/MerchantRecipeList
 CLASS none/aqf
 	METHOD d_ getName ()Ljava/lang/String;
 CLASS none/aqm net/minecraft/server/ChunkCoordIntPair
@@ -882,6 +952,7 @@ CLASS none/aqu net/minecraft/server/World
 	FIELD w dataManager
 	METHOD a getChunkAt__ (II)Lnone/bfh;
 	METHOD a isChunkLoaded__maybe (IIZ)Z
+	METHOD a mayPlace__ (Lnone/atr;Lnone/dt;ZLnone/ej;Lnone/wv;Lnone/amj;)Z
 	METHOD a rayTrace (Lnone/brw;Lnone/brw;ZZZ)Lnone/bru;
 	METHOD a setTypeAndData__ (Lnone/dt;Lnone/bec;I)Z
 	METHOD a broadcastEntityEffect_ (Lnone/wv;B)V
@@ -1140,15 +1211,27 @@ CLASS none/bce net/minecraft/server/BlockWoodButton
 CLASS none/bcg net/minecraft/server/BlockCarpet
 	METHOD a doPhysics__maybe (Lnone/aqu;Lnone/dt;Lnone/bec;Lnone/atr;)V
 CLASS none/bck net/minecraft/server/TileEntityBeacon
+	METHOD a getItem_ (I)Lnone/amj;
+	METHOD a setItem_ (ILnone/amj;)V
+	METHOD n_ getSize_ ()I
+	METHOD p_ getMaxStackSize_ ()I
 CLASS none/bcm net/minecraft/server/TileEntity
 CLASS none/bcq net/minecraft/server/TileEntityBrewingStand
 CLASS none/bcr net/minecraft/server/TileEntityChest
+	METHOD a getItem_ (I)Lnone/amj;
+	METHOD a setItem_ (ILnone/amj;)V
+	METHOD n_ getSize_ ()I
+	METHOD p_ getMaxStackSize_ ()I
 CLASS none/bct net/minecraft/server/TileEntityCommand
 	CLASS bcu
 		METHOD e getWorld ()Lnone/aqu;
 CLASS none/bcv net/minecraft/server/TileEntityComparator
 CLASS none/bcw net/minecraft/server/TileEntityLightDetector
 CLASS none/bcx net/minecraft/server/TileEntityDispenser
+	METHOD a getItem_ (I)Lnone/amj;
+	METHOD a setItem_ (ILnone/amj;)V
+	METHOD n_ getSize_ ()I
+	METHOD p_ getMaxStackSize_ ()I
 CLASS none/bcy net/minecraft/server/TileEntityDropper
 CLASS none/bcz net/minecraft/server/TileEntityEnchantTable
 CLASS none/bda net/minecraft/server/TileEntityEnderChest
@@ -1173,6 +1256,10 @@ CLASS none/bds net/minecraft/server/BlockPistonExtension
 CLASS none/bdv net/minecraft/server/TileEntityPiston
 CLASS none/bdx net/minecraft/server/BlockPistonMoving
 	METHOD a doPhysics__maybe (Lnone/aqu;Lnone/dt;Lnone/bec;Lnone/atr;)V
+CLASS none/bec
+	METHOD c getMaterial__ ()Lnone/atr;
+CLASS none/beg
+	METHOD c getMaterial__ ()Lnone/atr;
 CLASS none/bfe net/minecraft/server/IChunkProvider
 CLASS none/bff net/minecraft/server/NibbleArray
 CLASS none/bfg net/minecraft/server/EmptyChunk
