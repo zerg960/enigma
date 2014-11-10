@@ -131,6 +131,12 @@ CLASS none/eg net/minecraft/server/DispenseBehaviorItem
 CLASS none/eh net/minecraft/server/RegistryBlocks
 CLASS none/ei net/minecraft/server/RegistryDefault
 CLASS none/ej net/minecraft/server/EnumFacing
+	FIELD a DOWN
+	FIELD b UP
+	FIELD c NORTH
+	FIELD d SOUTH
+	FIELD e WEST
+	FIELD f EAST
 CLASS none/em net/minecraft/server/EnumFacingEnumAxisDirection
 	FIELD a POSITIVE
 	FIELD b NEGATIVE
@@ -152,15 +158,23 @@ CLASS none/fj net/minecraft/server/LocaleLanguage
 CLASS none/fl net/minecraft/server/NBTTagByteArray
 CLASS none/fm net/minecraft/server/NBTTagByte
 CLASS none/fn net/minecraft/server/NBTTagCompound
+	METHOD a setByte (Ljava/lang/String;B)V
 	METHOD a setInt (Ljava/lang/String;I)V
+	METHOD a setLong (Ljava/lang/String;J)V
 	METHOD a setString (Ljava/lang/String;Ljava/lang/String;)V
 	METHOD a set (Ljava/lang/String;Lnone/gd;)V
 	METHOD a setBoolean (Ljava/lang/String;Z)V
+	METHOD a setByteArray (Ljava/lang/String;[B)V
+	METHOD a setIntArray (Ljava/lang/String;[I)V
+	METHOD b hasKeyOfType (Ljava/lang/String;I)Z
 	METHOD c hasKey (Ljava/lang/String;)Z
 	METHOD c getList (Ljava/lang/String;I)Lnone/fv;
-	METHOD f genInt (Ljava/lang/String;)I
+	METHOD d getByte (Ljava/lang/String;)B
+	METHOD f getInt (Ljava/lang/String;)I
 	METHOD j getString (Ljava/lang/String;)Ljava/lang/String;
+	METHOD k getByteArray (Ljava/lang/String;)[B
 	METHOD l getIntArray (Ljava/lang/String;)[I
+	METHOD m getCompound (Ljava/lang/String;)Lnone/fn;
 	METHOD n getBoolean (Ljava/lang/String;)Z
 CLASS none/fq net/minecraft/server/NBTTagDouble
 CLASS none/fr net/minecraft/server/NBTTagEnd
@@ -168,6 +182,7 @@ CLASS none/fs net/minecraft/server/NBTTagFloat
 CLASS none/ft net/minecraft/server/NBTTagIntArray
 CLASS none/fu net/minecraft/server/NBTTagInt
 CLASS none/fv net/minecraft/server/NBTTagList
+	METHOD a add_ (Lnone/gd;)V
 CLASS none/fw net/minecraft/server/NBTTagLong
 CLASS none/fz net/minecraft/server/NBTCompressedStreamTools
 CLASS none/gb net/minecraft/server/NBTTagShort
@@ -329,6 +344,8 @@ CLASS none/qn net/minecraft/server/EntityTracker
 CLASS none/qp net/minecraft/server/WorldManager
 CLASS none/qq net/minecraft/server/PlayerChunkMap
 CLASS none/qs net/minecraft/server/ChunkProviderServer
+	METHOD d getOrCreateChunk (II)Lnone/bfh;
+	METHOD f getName ()Ljava/lang/String;
 CLASS none/qt net/minecraft/server/WorldServer
 	METHOD a broadcastEntityEffect_ (Lnone/wv;B)V
 	METHOD a createExplosion__ (Lnone/wv;DDDFZZ)Lnone/aqo;
@@ -464,6 +481,7 @@ CLASS none/wo net/minecraft/server/InstantMobEffect
 CLASS none/wp net/minecraft/server/MobEffectList
 	METHOD b isInstant ()Z
 CLASS none/wq net/minecraft/server/MobEffect
+	METHOD e isAmbient_ ()Z
 CLASS none/ws net/minecraft/server/EntityAgeable
 CLASS none/wt net/minecraft/server/IAnimal
 CLASS none/wv net/minecraft/server/Entity
@@ -723,12 +741,14 @@ CLASS none/agk net/minecraft/server/EmptyClass
 CLASS none/ago net/minecraft/server/NPC
 CLASS none/agp net/minecraft/server/EntityVillager
 CLASS none/aha net/minecraft/server/PlayerAbilities
+	FIELD d canInstantlyBuild_
 CLASS none/ahb net/minecraft/server/PlayerInventory
 	METHOD a getItem_ (I)Lnone/amj;
 	METHOD a setItem_ (ILnone/amj;)V
 	METHOD n_ getSize_ ()I
 	METHOD p_ getMaxStackSize_ ()I
 CLASS none/ahd net/minecraft/server/EntityHuman
+	FIELD by abilities_
 	METHOD a drop_ (Lnone/amj;Z)Lnone/adw;
 	METHOD c setEquipment_ (ILnone/amj;)V
 	METHOD d_ getName ()Ljava/lang/String;
@@ -803,6 +823,8 @@ CLASS none/aji net/minecraft/server/InventoryCraftResult
 	METHOD p_ getMaxStackSize_ ()I
 CLASS none/ajj net/minecraft/server/SlotResult
 CLASS none/ajk net/minecraft/server/Slot
+CLASS none/ajm
+	METHOD a filterData_ (I)I
 CLASS none/ajn net/minecraft/server/ItemArmor
 CLASS none/ajo net/minecraft/server/DispenseBehaviorArmor
 CLASS none/ajp
@@ -816,6 +838,7 @@ CLASS none/ajr net/minecraft/server/ItemAxe
 CLASS none/ajs net/minecraft/server/ItemBanner
 CLASS none/ajt net/minecraft/server/ItemBed
 CLASS none/aju net/minecraft/server/ItemBlock
+	METHOD a getName_ ()Ljava/lang/String;
 CLASS none/ajw net/minecraft/server/ItemBoat
 CLASS none/ajx net/minecraft/server/ItemBook_
 CLASS none/ajy net/minecraft/server/ItemGlassBottle
@@ -839,7 +862,26 @@ CLASS none/akq net/minecraft/server/CreativeModeTab8
 CLASS none/akr net/minecraft/server/CreativeModeTab9
 CLASS none/aks net/minecraft/server/ItemTool
 CLASS none/akt net/minecraft/server/ItemDoor
+CLASS none/akv net/minecraft/server/EnumDyeColor
+	FIELD a WHITE
+	FIELD b ORANGE
+	FIELD c MAGENTA
+	FIELD d LIGHT_BLUE
+	FIELD e YELLOW
+	FIELD f LIME
+	FIELD g PINK
+	FIELD h GRAY
+	FIELD i SILVER
+	FIELD j CYAN
+	FIELD k PURPLE
+	FIELD l BLUE
+	FIELD m BROWN
+	FIELD n GREEN
+	FIELD o RED
+	FIELD p BLACK
 CLASS none/akw net/minecraft/server/ItemDye
+CLASS none/akx
+	METHOD a filterData_ (I)I
 CLASS none/aky net/minecraft/server/ItemEgg
 CLASS none/akz net/minecraft/server/ItemMapEmpty
 CLASS none/ala net/minecraft/server/ItemEnchantedBook
@@ -854,22 +896,88 @@ CLASS none/all net/minecraft/server/ItemFood
 CLASS none/alm net/minecraft/server/ItemGoldenApple
 CLASS none/alo net/minecraft/server/ItemHoe
 CLASS none/alq net/minecraft/server/Item
+	FIELD h maxStackSize_
+	METHOD a getName_ ()Ljava/lang/String;
+	METHOD a filterData_ (I)I
+	METHOD a getItemOf_ (Lnone/atr;)Lnone/alq;
+	METHOD d setMaxDurability_ (I)Lnone/alq;
+CLASS none/ami
+	FIELD a WOOD
+	FIELD b STONE
+	FIELD c IRON
+	FIELD d EMERALD
+	FIELD e GOLD
 CLASS none/amj net/minecraft/server/ItemStack
 	FIELD b count_
+	METHOD b getItem_ ()Lnone/alq;
+	METHOD d setTag_ (Lnone/fn;)V
+	METHOD k cloneItemStack_ ()Lnone/amj;
+	METHOD o getTag_ ()Lnone/fn;
 CLASS none/amk net/minecraft/server/Items
+	FIELD A MUSHROOM_SOUP_
 	FIELD B GOLD_SWORD
 	FIELD F STRING
 	FIELD G FEATHER
+	FIELD H SULPHUR_
+	FIELD O WHEAT_
+	FIELD Q LEATHER_HELMET_
+	FIELD R LEATHER_CHESTPLATE_
+	FIELD S LEATHER_LEGGINGS_
+	FIELD T LEATHER_BOOTS_
+	FIELD Y IRON_HELMET_
+	FIELD Z IRON_CHESTPLATE_
 	FIELD aA SADDLE
+	FIELD aC REDSTONE_
+	FIELD aF LEATHER_
+	FIELD aH CLAY_BRICK_
+	FIELD aI CLAY_BALL_
+	FIELD aK PAPER_
+	FIELD aM SLIME_BALL_
+	FIELD aP EGG_
+	FIELD aT GLOWSTONE_DUST_
+	FIELD aU RAW_FISH_
+	FIELD aV COOKED_FISH_
+	FIELD aW INK_SACK_
+	FIELD aY SUGAR_
+	FIELD aa IRON_LEGGINGS_
+	FIELD ab IRON_BOOTS_
+	FIELD ac DIAMOND_HELMET_
+	FIELD ad DIAMOND_CHESTPLATE_
+	FIELD ae DIAMOND_LEGGINGS_
+	FIELD af DIAMOND_BOOTS_
+	FIELD ag GOLD_HELMET_
 	FIELD ah GOLD_CHESTPLATE
+	FIELD ai GOLD_LEGGINGS_
+	FIELD aj GOLD_BOOTS_
 	FIELD ak FLINT
+	FIELD bB SPIDER_EYE_
+	FIELD bC FERMENTED_SPIDER_EYE_
+	FIELD bD BLAZE_POWDER_
+	FIELD bE MAGMA_CREAM_
+	FIELD bL FIREBALL_
+	FIELD bO EMERALD_
+	FIELD bR CARROT_
+	FIELD bS POTATO_
+	FIELD bT POTATO_BAKED_
+	FIELD bX SKULL_
+	FIELD bc COOKIE_
+	FIELD bf MELON_
+	FIELD bg PUMPKIN_SEEDS_
+	FIELD bh MELON_SEEDS_
+	FIELD bv BLAZE_ROD_
+	FIELD bx GOLD_NUGGET_
 	FIELD by NETHER_STALK
+	FIELD ca PUMPKIN_PIE_
+	FIELD cb FIREWORKS_
+	FIELD cc FIREWORKS_CHARGE_
+	FIELD cg QUARTZ_
 	FIELD ck HORSE_ARMOR_IRON
 	FIELD cl HORSE_ARMOR_GOLD
 	FIELD cm HORSE_ARMOR_DIAMOND
 	FIELD d FLINT_AND_STEEL
 	FIELD f BOW
 	FIELD g ARROW
+	FIELD h COAL_
 	FIELD i DIAMOND
 	FIELD j IRON_INGOT
 	FIELD k GOLD_INGOT
@@ -878,13 +986,24 @@ CLASS none/amk net/minecraft/server/Items
 	FIELD q STONE_SWORD
 	FIELD u DIAMOND_SWORD
 	FIELD y STICK
+	FIELD z BOWL_
 CLASS none/aml net/minecraft/server/ItemLeash
+CLASS none/amm net/minecraft/server/ItemLeaves
+	METHOD a filterData_ (I)I
 CLASS none/amn net/minecraft/server/ItemWorldMap
 CLASS none/amo net/minecraft/server/ItemMilkBucket
+CLASS none/amr
+	METHOD a filterData_ (I)I
 CLASS none/amt net/minecraft/server/ItemNameTag
 CLASS none/amu net/minecraft/server/ItemPickaxe
 CLASS none/amv net/minecraft/server/ItemPiston
+	METHOD a filterData_ (I)I
 CLASS none/amw net/minecraft/server/ItemPotion
+CLASS none/amx
+	FIELD a COMMON
+	FIELD b UNCOMMON
+	FIELD c RARE
+	FIELD d EPIC
 CLASS none/amy net/minecraft/server/ItemRecord
 CLASS none/amz net/minecraft/server/ItemRedstone
 CLASS none/ana net/minecraft/server/ItemSaddle
@@ -894,13 +1013,42 @@ CLASS none/and net/minecraft/server/ItemShears
 CLASS none/ane net/minecraft/server/ItemSpade
 CLASS none/anf net/minecraft/server/ItemSign
 CLASS none/anh net/minecraft/server/ItemSkull
+	METHOD a filterData_ (I)I
+CLASS none/ani net/minecraft/server/ItemStep
+	METHOD a filterData_ (I)I
+CLASS none/anj
+	METHOD a filterData_ (I)I
+CLASS none/ank net/minecraft/server/ItemSnowball
 CLASS none/anl net/minecraft/server/ItemMonsterEgg
 CLASS none/anm net/minecraft/server/ItemSword
+CLASS none/ann net/minecraft/server/ItemWithAuxData_
+	METHOD a filterData_ (I)I
+CLASS none/ano
+	FIELD a NONE
+	FIELD b EAT
+	FIELD c DRINK
+	FIELD d BLOCK
+	FIELD e BOW
 CLASS none/anp net/minecraft/server/ItemWaterLily
 CLASS none/anq net/minecraft/server/ItemBookAndQuill
 CLASS none/anr net/minecraft/server/ItemWrittenBook
+CLASS none/ans net/minecraft/server/PotionBrewer
+	FIELD o effectDurations_
+	FIELD p effectAmplifiers_
+	FIELD r appearances_
+CLASS none/aoa net/minecraft/server/RecipeArmorDye_
+CLASS none/aob net/minecraft/server/RecipesArmor
+CLASS none/aod net/minecraft/server/EmptyClass2
+CLASS none/aoh net/minecraft/server/RecipesDyes
+CLASS none/aoi net/minecraft/server/RecipeFireworks
+CLASS none/aoj net/minecraft/server/RecipesFood
+CLASS none/aok net/minecraft/server/RecipesFurnace
+	FIELD b recipes_
+	METHOD b getRecipes_ ()Ljava/util/Map;
+CLASS none/aoo net/minecraft/server/IRecipe
 CLASS none/aop net/minecraft/server/CraftingManager
 	METHOD a registerShapedRecipe (Lnone/amj;[Ljava/lang/Object;)Lnone/aos;
+	METHOD b registerShapelessRecipe_ (Lnone/amj;[Ljava/lang/Object;)V
 CLASS none/aow net/minecraft/server/RecipesWeapons
 CLASS none/aoz net/minecraft/server/EnchantmentFlameArrows
 CLASS none/apa net/minecraft/server/EnchantmentInfiniteArrows
@@ -950,19 +1098,24 @@ CLASS none/aqu net/minecraft/server/World
 	FIELD s random
 	FIELD t worldProvider__
 	FIELD w dataManager
+	METHOD J getSeed_ ()J
+	METHOD K getTime ()J
+	METHOD a makeSound_ (DDDLjava/lang/String;FF)V
 	METHOD a getChunkAt__ (II)Lnone/bfh;
 	METHOD a isChunkLoaded__maybe (IIZ)Z
 	METHOD a mayPlace__ (Lnone/atr;Lnone/dt;ZLnone/ej;Lnone/wv;Lnone/amj;)Z
 	METHOD a rayTrace (Lnone/brw;Lnone/brw;ZZZ)Lnone/bru;
-	METHOD a setTypeAndData__ (Lnone/dt;Lnone/bec;I)Z
+	METHOD a setTypeAndData_ (Lnone/dt;Lnone/bec;I)Z
 	METHOD a broadcastEntityEffect_ (Lnone/wv;B)V
 	METHOD a explode__ (Lnone/wv;DDDFZ)Lnone/aqo;
 	METHOD a createExplosion__ (Lnone/wv;DDDFZZ)Lnone/aqo;
+	METHOD a makeSound_ (Lnone/wv;Ljava/lang/String;FF)V
 	METHOD a entityJoinedWorld (Lnone/wv;Z)V
 	METHOD b triggerEffect (ILnone/dt;I)V
 	METHOD b update__ (Lnone/dt;Lnone/atr;)V
 	METHOD b getEntities__ (Lnone/wv;Lnone/brt;)Ljava/util/List;
 	METHOD d containsLiquid (Lnone/brt;)Z
+	METHOD d isEmpty_ (Lnone/dt;)Z
 	METHOD d add_or_addEntity_ (Lnone/wv;)Z
 	METHOD e isLoaded__ (Lnone/dt;)Z
 	METHOD f getChunkAtWorldCoords__ (Lnone/dt;)Lnone/bfh;
@@ -971,29 +1124,67 @@ CLASS none/aqu net/minecraft/server/World
 	METHOD i tickEntities ()V
 	METHOD l getLightLevel__maybe (Lnone/dt;)I
 	METHOD m getHighestBlockYAt__maybe (Lnone/dt;)Lnone/dt;
-	METHOD p getType__maybe (Lnone/dt;)Lnone/bec;
-	METHOD v getWorldChunkManager__ ()Lnone/arz;
+	METHOD p getType_ (Lnone/dt;)Lnone/bec;
+	METHOD v getWorldChunkManager_ ()Lnone/arz;
 CLASS none/ara net/minecraft/server/IWorldAccess
 CLASS none/arb net/minecraft/server/WorldSettings
 CLASS none/ard net/minecraft/server/IBlockAccess
-	METHOD p getType__maybe (Lnone/dt;)Lnone/bec;
+	METHOD d isEmpty_ (Lnone/dt;)Z
+	METHOD p getType_ (Lnone/dt;)Lnone/bec;
+CLASS none/are net/minecraft/server/WorldType
+	FIELD a types
+	FIELD b NORMAL
+	FIELD c FLAT
+	FIELD d LARGE_BIOMES
+	FIELD e AMPLIFIED
+	FIELD f NORMAL_1_1_
+	FIELD h NORMAL_1_1
+	FIELD j name
+	FIELD k version
+	METHOD a name ()Ljava/lang/String;
+	METHOD d getVersion ()I
 CLASS none/arf net/minecraft/server/EnumSkyBlock
 	FIELD a SKY
 	FIELD b BLOCK
 CLASS none/arj net/minecraft/server/ChunkCache
-	METHOD p getType__maybe (Lnone/dt;)Lnone/bec;
+	METHOD d isEmpty_ (Lnone/dt;)Z
+	METHOD p getType_ (Lnone/dt;)Lnone/bec;
+CLASS none/ark net/minecraft/server/NextTickListEntry
 CLASS none/arl net/minecraft/server/BiomeBeach
 CLASS none/arm net/minecraft/server/BiomeBase
+	FIELD A FROZEN_RIVER_
+	FIELD B ICE_PLAINS_
+	FIELD D MUSHROOM_ISLAND_
+	FIELD E MUSHROOM_SHORE_
 	FIELD G DESERT_HILLS__
+	FIELD N DEEP_OCEAN_
+	FIELD Q BIRCH_FOREST_
+	FIELD S ROOFED_FOREST_
+	FIELD T COLD_TAIGA_
+	FIELD Y SAVANNA_
+	FIELD az id_
+	FIELD p OCEAN_
+	FIELD q PLAINS_
 	FIELD r DESERT__
+	FIELD s EXTREME_HILLS_
+	FIELD t FOREST_
+	FIELD u TAIGA_
 	FIELD v SWAMPLAND__
+	FIELD w RIVER_
+	METHOD e getBiome_ (I)Lnone/arm;
 CLASS none/arq net/minecraft/server/BiomeMeta
 	METHOD toString ()Ljava/lang/String;
 CLASS none/arr net/minecraft/server/BiomeCache
 CLASS none/ary net/minecraft/server/BiomeDecorator
 CLASS none/arz net/minecraft/server/WorldChunkManager
+	METHOD a getBiome_ (Lnone/dt;Lnone/arm;)Lnone/arm;
+	METHOD a getBiomes_ ([Lnone/arm;IIII)[Lnone/arm;
+	METHOD b getBiomeBlock_ ([Lnone/arm;IIII)[Lnone/arm;
 CLASS none/asa net/minecraft/server/BiomeDesert
 CLASS none/asb net/minecraft/server/BiomeBigHills
+CLASS none/asc
+	METHOD a getBiomes_ ([Lnone/arm;IIII)[Lnone/arm;
+	METHOD b getBiomeBlock_ ([Lnone/arm;IIII)[Lnone/arm;
 CLASS none/asd net/minecraft/server/BiomeForest
 CLASS none/asg net/minecraft/server/BiomeHell
 CLASS none/ash net/minecraft/server/BiomeIcePlains
@@ -1009,35 +1200,71 @@ CLASS none/asu net/minecraft/server/BiomeTaiga
 CLASS none/asv net/minecraft/server/BiomeTheEnd
 CLASS none/asw net/minecraft/server/BiomeTheEndDecorator
 CLASS none/asy net/minecraft/server/BlockAir
+CLASS none/asz
+	METHOD a updateShape_ (Lnone/ard;Lnone/dt;)V
 CLASS none/atd
 	METHOD a doPhysics__maybe (Lnone/aqu;Lnone/dt;Lnone/bec;Lnone/atr;)V
 CLASS none/ate
 	METHOD a doPhysics__maybe (Lnone/aqu;Lnone/dt;Lnone/bec;Lnone/atr;)V
+	METHOD a updateShape_ (Lnone/ard;Lnone/dt;)V
 CLASS none/atg net/minecraft/server/BlockContainer
 CLASS none/ath
 	METHOD a doPhysics__maybe (Lnone/aqu;Lnone/dt;Lnone/bec;Lnone/atr;)V
+	METHOD a updateShape_ (Lnone/ard;Lnone/dt;)V
 CLASS none/ati net/minecraft/server/BlockMinecartTrackAbstract
 	METHOD a doPhysics__maybe (Lnone/aqu;Lnone/dt;Lnone/bec;Lnone/atr;)V
+	METHOD a updateShape_ (Lnone/ard;Lnone/dt;)V
 CLASS none/atm net/minecraft/server/BlockBeacon
 	METHOD a doPhysics__maybe (Lnone/aqu;Lnone/dt;Lnone/bec;Lnone/atr;)V
 CLASS none/atp net/minecraft/server/BlockBed
 	METHOD a doPhysics__maybe (Lnone/aqu;Lnone/dt;Lnone/bec;Lnone/atr;)V
+	METHOD a updateShape_ (Lnone/ard;Lnone/dt;)V
 CLASS none/atr net/minecraft/server/Block
 	METHOD a doPhysics__maybe (Lnone/aqu;Lnone/dt;Lnone/bec;Lnone/atr;)V
+	METHOD a updateShape_ (Lnone/ard;Lnone/dt;)V
+	METHOD r getMaterial_ ()Lnone/bof;
 CLASS none/att net/minecraft/server/StepSoundLadder
 CLASS none/atu net/minecraft/server/StepSoundAnvil
 CLASS none/atx net/minecraft/server/StepSound
 CLASS none/aty net/minecraft/server/Blocks
+	FIELD A SANDSTONE_
+	FIELD L WOOL_
+	FIELD N YELLOW_FLOWER_
+	FIELD O RED_ROSE_
+	FIELD P BROWN_MUSHROOM_
+	FIELD Q RED_MUSHROOM_
 	FIELD a AIR
-	FIELD aO FENCE__
-	FIELD ab FIRE__
+	FIELD aC REDSTONE_ORE_
+	FIELD aI ICE_
+	FIELD aJ SNOW_BLOCK_
+	FIELD aK CACTUS_
+	FIELD aL CLAY_
+	FIELD aO FENCE_
+	FIELD aU PUMPKIN_
+	FIELD aV NETHERRACK_
+	FIELD aX GLOWSTONE_
+	FIELD aa TORCH_
+	FIELD ab FIRE_
+	FIELD ag DIAMOND_ORE_
+	FIELD ak SOIL_
 	FIELD au LADDER
 	FIELD b STONE
+	FIELD bO SANDSTONE_STAIRS_
+	FIELD bP EMERALD_ORE_
 	FIELD bf SMOOTH_BRICK__
+	FIELD bk MELON_
 	FIELD bn VINE
 	FIELD by NETHER_BRICK
 	FIELD bz NETHER_FENCE__
 	FIELD c GRASS
+	FIELD cB PACKED_ICE_
+	FIELD cF DOUBLE_PLANT_
+	FIELD cG STAINED_GLASS_
+	FIELD cH STAINED_GLASS_PANE_
+	FIELD co QUARTZ_ORE_
+	FIELD cu STAINED_HARDENED_CLAY_
+	FIELD cy WOOL_CARPET_
+	FIELD cz HARDENED_CLAY_
 	FIELD d DIRT
 	FIELD e COBBLESTONE
 	FIELD f WOOD
@@ -1058,23 +1285,28 @@ CLASS none/aty net/minecraft/server/Blocks
 	FIELD u LEAVES2
 	FIELD v SPONGE
 	FIELD w GLASS
+	FIELD x LAPIS_ORE_
 CLASS none/aua net/minecraft/server/BlockBookshelf
 CLASS none/aub net/minecraft/server/BlockBrewingStand
 CLASS none/auc
 	METHOD a doPhysics__maybe (Lnone/aqu;Lnone/dt;Lnone/bec;Lnone/atr;)V
 CLASS none/aud
 	METHOD a doPhysics__maybe (Lnone/aqu;Lnone/dt;Lnone/bec;Lnone/atr;)V
+	METHOD a updateShape_ (Lnone/ard;Lnone/dt;)V
 CLASS none/auf net/minecraft/server/BlockCactus
 	METHOD a doPhysics__maybe (Lnone/aqu;Lnone/dt;Lnone/bec;Lnone/atr;)V
 CLASS none/aug net/minecraft/server/BlockCake
 	METHOD a doPhysics__maybe (Lnone/aqu;Lnone/dt;Lnone/bec;Lnone/atr;)V
+	METHOD a updateShape_ (Lnone/ard;Lnone/dt;)V
 CLASS none/auh net/minecraft/server/BlockCarrots
 CLASS none/aui net/minecraft/server/BlockCauldron
 CLASS none/auj net/minecraft/server/BlockChest
 	METHOD a doPhysics__maybe (Lnone/aqu;Lnone/dt;Lnone/bec;Lnone/atr;)V
+	METHOD a updateShape_ (Lnone/ard;Lnone/dt;)V
 CLASS none/auk net/minecraft/server/BlockClay
 CLASS none/aul net/minecraft/server/BlockCocoa
 	METHOD a doPhysics__maybe (Lnone/aqu;Lnone/dt;Lnone/bec;Lnone/atr;)V
+	METHOD a updateShape_ (Lnone/ard;Lnone/dt;)V
 CLASS none/auo net/minecraft/server/BlockCommand
 	METHOD a doPhysics__maybe (Lnone/aqu;Lnone/dt;Lnone/bec;Lnone/atr;)V
 CLASS none/aup net/minecraft/server/BlockRedstoneComparator
@@ -1082,6 +1314,7 @@ CLASS none/aur net/minecraft/server/EnumComparatorMode
 CLASS none/aus net/minecraft/server/BlockWorkbench
 CLASS none/auu net/minecraft/server/BlockCrops
 CLASS none/auv net/minecraft/server/BlockDaylightDetector
+	METHOD a updateShape_ (Lnone/ard;Lnone/dt;)V
 CLASS none/auw net/minecraft/server/BlockDeadBush
 CLASS none/auy net/minecraft/server/BlockMinecartDetector
 CLASS none/ava
@@ -1095,21 +1328,28 @@ CLASS none/ave net/minecraft/server/BlockDispenser
 	METHOD a doPhysics__maybe (Lnone/aqu;Lnone/dt;Lnone/bec;Lnone/atr;)V
 CLASS none/avf net/minecraft/server/BlockDoor
 	METHOD a doPhysics__maybe (Lnone/aqu;Lnone/dt;Lnone/bec;Lnone/atr;)V
+	METHOD a updateShape_ (Lnone/ard;Lnone/dt;)V
+CLASS none/avi
+	METHOD a updateShape_ (Lnone/ard;Lnone/dt;)V
 CLASS none/avl net/minecraft/server/BlockDragonEgg
 	METHOD a doPhysics__maybe (Lnone/aqu;Lnone/dt;Lnone/bec;Lnone/atr;)V
 CLASS none/avm net/minecraft/server/BlockDropper
 CLASS none/avn net/minecraft/server/BlockFlowing
 CLASS none/avo net/minecraft/server/BlockEnchantmentTable
 CLASS none/avp net/minecraft/server/BlockEnderPortal
+	METHOD a updateShape_ (Lnone/ard;Lnone/dt;)V
 CLASS none/avq net/minecraft/server/BlockEnderPortalFrame
 CLASS none/avr net/minecraft/server/BlockEnderChest
 CLASS none/avt net/minecraft/server/BlockFalling
+	FIELD M instaFall__
 	METHOD a doPhysics__maybe (Lnone/aqu;Lnone/dt;Lnone/bec;Lnone/atr;)V
 CLASS none/avu net/minecraft/server/BlockSoil
 	METHOD a doPhysics__maybe (Lnone/aqu;Lnone/dt;Lnone/bec;Lnone/atr;)V
 CLASS none/avv net/minecraft/server/BlockFence
+	METHOD a updateShape_ (Lnone/ard;Lnone/dt;)V
 CLASS none/avw net/minecraft/server/BlockFenceGate
 	METHOD a doPhysics__maybe (Lnone/aqu;Lnone/dt;Lnone/bec;Lnone/atr;)V
+	METHOD a updateShape_ (Lnone/ard;Lnone/dt;)V
 CLASS none/avx net/minecraft/server/BlockFire
 	METHOD a doPhysics__maybe (Lnone/aqu;Lnone/dt;Lnone/bec;Lnone/atr;)V
 CLASS none/awd net/minecraft/server/BlockFlowerPot
@@ -1118,17 +1358,23 @@ CLASS none/awj net/minecraft/server/BlockFurnace
 CLASS none/awl net/minecraft/server/BlockGlass
 CLASS none/awm net/minecraft/server/BlockLightStone
 CLASS none/awo net/minecraft/server/BlockGravel
+CLASS none/awq net/minecraft/server/BlockStepAbstract
+	METHOD a updateShape_ (Lnone/ard;Lnone/dt;)V
 CLASS none/awv net/minecraft/server/BlockHardenedClay
 CLASS none/aww net/minecraft/server/BlockHay
 CLASS none/awx net/minecraft/server/BlockHopper
 	METHOD a doPhysics__maybe (Lnone/aqu;Lnone/dt;Lnone/bec;Lnone/atr;)V
+	METHOD a updateShape_ (Lnone/ard;Lnone/dt;)V
 CLASS none/axb net/minecraft/server/BlockIce
 CLASS none/axc net/minecraft/server/BlockJukeBox
 CLASS none/axd net/minecraft/server/TileEntityRecordPlayer
 CLASS none/axe net/minecraft/server/BlockLadder
 	METHOD a doPhysics__maybe (Lnone/aqu;Lnone/dt;Lnone/bec;Lnone/atr;)V
+	METHOD a updateShape_ (Lnone/ard;Lnone/dt;)V
+CLASS none/axg net/minecraft/server/BlockLeaves
 CLASS none/axi net/minecraft/server/BlockLever
 	METHOD a doPhysics__maybe (Lnone/aqu;Lnone/dt;Lnone/bec;Lnone/atr;)V
+	METHOD a updateShape_ (Lnone/ard;Lnone/dt;)V
 CLASS none/axl
 	METHOD a doPhysics__maybe (Lnone/aqu;Lnone/dt;Lnone/bec;Lnone/atr;)V
 CLASS none/axo net/minecraft/server/EnumLogAxis
@@ -1144,13 +1390,23 @@ CLASS none/ayc net/minecraft/server/BlockMycel
 CLASS none/ayd net/minecraft/server/BlockBloodStone
 CLASS none/aye net/minecraft/server/BlockNetherWart
 CLASS none/ayi net/minecraft/server/BlockLog2
+CLASS none/aym
+	FIELD a RED_SANDSTONE
 CLASS none/ayn net/minecraft/server/BlockNote
 	METHOD a doPhysics__maybe (Lnone/aqu;Lnone/dt;Lnone/bec;Lnone/atr;)V
 CLASS none/ayo net/minecraft/server/BlockObsidian
 CLASS none/ayu net/minecraft/server/BlockOre
 CLASS none/ayv net/minecraft/server/BlockPackedIce
+CLASS none/ayx
+	FIELD a OAK
+	FIELD b SPRUCE
+	FIELD c BIRCH
+	FIELD d JUNGLE
+	FIELD e ACACIA
+	FIELD f DARK_OAK
 CLASS none/ayy net/minecraft/server/BlockPortal
 	METHOD a doPhysics__maybe (Lnone/aqu;Lnone/dt;Lnone/bec;Lnone/atr;)V
+	METHOD a updateShape_ (Lnone/ard;Lnone/dt;)V
 CLASS none/aza net/minecraft/server/BlockPotatoes
 CLASS none/azb net/minecraft/server/BlockRedstone
 CLASS none/azc net/minecraft/server/BlockPoweredRail
@@ -1158,23 +1414,41 @@ CLASS none/azk net/minecraft/server/BlockPumpkin
 CLASS none/azs net/minecraft/server/BlockRedstoneOre
 CLASS none/azt net/minecraft/server/BlockRedstoneWire
 	METHOD a doPhysics__maybe (Lnone/aqu;Lnone/dt;Lnone/bec;Lnone/atr;)V
+CLASS none/azu
+	FIELD a UP
+	FIELD b SIDE
+	FIELD c NONE
 CLASS none/azv net/minecraft/server/BlockRedstoneLamp
 	METHOD a doPhysics__maybe (Lnone/aqu;Lnone/dt;Lnone/bec;Lnone/atr;)V
 CLASS none/azw net/minecraft/server/BlockRedstoneTorch
 	METHOD a doPhysics__maybe (Lnone/aqu;Lnone/dt;Lnone/bec;Lnone/atr;)V
+CLASS none/azx net/minecraft/server/RedstoneUpdateInfo
 CLASS none/azy net/minecraft/server/BlockReed
 	METHOD a doPhysics__maybe (Lnone/aqu;Lnone/dt;Lnone/bec;Lnone/atr;)V
+CLASS none/bac
+	FIELD a SAND
+	FIELD b RED_SAND
 CLASS none/bad net/minecraft/server/BlockSandStone
+CLASS none/bae
+	FIELD a DEFAULT
+	FIELD b CHISELED
+	FIELD c SMOOTH
 CLASS none/baf net/minecraft/server/BlockSapling
 CLASS none/baj net/minecraft/server/BlockSkull
+	METHOD a updateShape_ (Lnone/ard;Lnone/dt;)V
 CLASS none/ban net/minecraft/server/BlockSnowBlock
 CLASS none/bao net/minecraft/server/BlockSnowLayer
 	METHOD a doPhysics__maybe (Lnone/aqu;Lnone/dt;Lnone/bec;Lnone/atr;)V
+	METHOD a updateShape_ (Lnone/ard;Lnone/dt;)V
 CLASS none/bap net/minecraft/server/BlockSlowSand
 CLASS none/baq
 	METHOD a doPhysics__maybe (Lnone/aqu;Lnone/dt;Lnone/bec;Lnone/atr;)V
 CLASS none/bas net/minecraft/server/BlockStainedGlassPane
 CLASS none/bat net/minecraft/server/BlockStairs
+	METHOD a updateShape_ (Lnone/ard;Lnone/dt;)V
+CLASS none/bau
+	FIELD a TOP
+	FIELD b BOTTOM
 CLASS none/bav net/minecraft/server/EnumStairsShape
 	FIELD a STRAIGHT
 	FIELD b INNER_LEFT
@@ -1186,30 +1460,117 @@ CLASS none/baw
 CLASS none/bax net/minecraft/server/BlockStationary
 	METHOD a doPhysics__maybe (Lnone/aqu;Lnone/dt;Lnone/bec;Lnone/atr;)V
 CLASS none/bay net/minecraft/server/BlockStem
+	METHOD a updateShape_ (Lnone/ard;Lnone/dt;)V
+CLASS none/bbb
+	FIELD a STONE
+	FIELD b GRANITE
+	FIELD c GRANITE_SMOOTH
+	FIELD d DIORITE
+	FIELD e DIORITE_SMOOTH
+	FIELD f ANDESITE
+	FIELD g ANDESITE_SMOOTH
+CLASS none/bbc
+	FIELD M MOSSY__M_
+	FIELD N CRACKED__N_
+	FIELD O CHISILED__O_
+	FIELD b DEFAULT__b_
+CLASS none/bbd
+	FIELD a DEFAULT
+	FIELD b MOSSY
+	FIELD c CRACKED
+	FIELD d CHISELED
 CLASS none/bbe net/minecraft/server/BlockStoneButton
+CLASS none/bbg
+	FIELD a STONE
+	FIELD b SAND
+	FIELD c WOOD
+	FIELD d COBBLESTONE
+	FIELD e BRICK
+	FIELD f SMOOTHBRICK
+	FIELD g NETHERBRICK
+	FIELD h QUARTZ
 CLASS none/bbh net/minecraft/server/BlockLongGrass
+CLASS none/bbi
+	FIELD a DEAD_BUSH
+	FIELD b GRASS
+	FIELD c FERN
 CLASS none/bbj net/minecraft/server/BlockThin
+	METHOD a updateShape_ (Lnone/ard;Lnone/dt;)V
 CLASS none/bbk net/minecraft/server/BlockTNT
 	METHOD a doPhysics__maybe (Lnone/aqu;Lnone/dt;Lnone/bec;Lnone/atr;)V
 CLASS none/bbl net/minecraft/server/BlockTorch
 	METHOD a doPhysics__maybe (Lnone/aqu;Lnone/dt;Lnone/bec;Lnone/atr;)V
+CLASS none/bbo net/minecraft/server/BlockTransparent__
 CLASS none/bbp net/minecraft/server/BlockTrapdoor
 	METHOD a doPhysics__maybe (Lnone/aqu;Lnone/dt;Lnone/bec;Lnone/atr;)V
+	METHOD a updateShape_ (Lnone/ard;Lnone/dt;)V
+CLASS none/bbr
+	FIELD a TOP
+	FIELD b BOTTOM
 CLASS none/bbs net/minecraft/server/BlockTripwire
 	METHOD a doPhysics__maybe (Lnone/aqu;Lnone/dt;Lnone/bec;Lnone/atr;)V
+	METHOD a updateShape_ (Lnone/ard;Lnone/dt;)V
 CLASS none/bbt net/minecraft/server/BlockTripwireHook
 	METHOD a doPhysics__maybe (Lnone/aqu;Lnone/dt;Lnone/bec;Lnone/atr;)V
+	METHOD a updateShape_ (Lnone/ard;Lnone/dt;)V
 CLASS none/bbv net/minecraft/server/BlockVine
 	METHOD a doPhysics__maybe (Lnone/aqu;Lnone/dt;Lnone/bec;Lnone/atr;)V
+	METHOD a updateShape_ (Lnone/ard;Lnone/dt;)V
 CLASS none/bbx net/minecraft/server/BlockCobbleWall
+	METHOD a updateShape_ (Lnone/ard;Lnone/dt;)V
+CLASS none/bby
+	FIELD a NORMAL
+	FIELD b MOSSY
 CLASS none/bbz
 	METHOD a doPhysics__maybe (Lnone/aqu;Lnone/dt;Lnone/bec;Lnone/atr;)V
+	METHOD a updateShape_ (Lnone/ard;Lnone/dt;)V
 CLASS none/bcb net/minecraft/server/BlockWaterLily
 CLASS none/bcc net/minecraft/server/BlockWeb
 CLASS none/bcd net/minecraft/server/BlockPressurePlateWeighted
 CLASS none/bce net/minecraft/server/BlockWoodButton
 CLASS none/bcg net/minecraft/server/BlockCarpet
 	METHOD a doPhysics__maybe (Lnone/aqu;Lnone/dt;Lnone/bec;Lnone/atr;)V
+	METHOD a updateShape_ (Lnone/ard;Lnone/dt;)V
+CLASS none/bcj
+	FIELD A HALF_VERTICAL
+	FIELD B HALF_HORIZONTAL
+	FIELD C HALF_VERTICAL_MIRROR
+	FIELD D HALF_HORIZONTAL_MIRROR
+	FIELD E BORDER
+	FIELD F CURLY_BORDER
+	FIELD G CREEPER
+	FIELD H GRADIENT
+	FIELD I GRADIENT_UP
+	FIELD J BRICKS
+	FIELD K SKULL
+	FIELD L FLOWER
+	FIELD M MOJANG
+	FIELD a BASE
+	FIELD b SQUARE_BOTTOM_LEFT
+	FIELD c SQUARE_BOTTOM_RIGHT
+	FIELD d SQUARE_TOP_LEFT
+	FIELD e SQUARE_TOP_RIGHT
+	FIELD f STRIPE_BOTTOM
+	FIELD g STRIPE_TOP
+	FIELD h STRIPE_LEFT
+	FIELD i STRIPE_RIGHT
+	FIELD j STRIPE_CENTER
+	FIELD k STRIPE_MIDDLE
+	FIELD l STRIPE_DOWNRIGHT
+	FIELD m STRIPE_DOWNLEFT
+	FIELD n STRIPE_SMALL
+	FIELD o CROSS
+	FIELD p STRAIGHT_CROSS
+	FIELD q TRIANGLE_BOTTOM
+	FIELD r TRIANGLE_TOP
+	FIELD s TRIANGLES_BOTTOM
+	FIELD t TRIANGLES_TOP
+	FIELD u DIAGONAL_LEFT
+	FIELD v DIAGONAL_RIGHT
+	FIELD w DIAGONAL_LEFT_MIRROR
+	FIELD x DIAGONAL_RIGHT_MIRROR
+	FIELD y CIRCLE_MIDDLE
+	FIELD z RHOMBUS_MIDDLE
 CLASS none/bck net/minecraft/server/TileEntityBeacon
 	METHOD a getItem_ (I)Lnone/amj;
 	METHOD a setItem_ (ILnone/amj;)V
@@ -1237,6 +1598,7 @@ CLASS none/bcz net/minecraft/server/TileEntityEnchantTable
 CLASS none/bda net/minecraft/server/TileEntityEnderChest
 CLASS none/bdb net/minecraft/server/TileEntityFlowerPot
 CLASS none/bdc net/minecraft/server/TileEntityFurnace
+CLASS none/bdd net/minecraft/server/IHopper
 CLASS none/bde net/minecraft/server/TileEntityHopper
 CLASS none/bdg net/minecraft/server/TileEntityMobSpawner
 CLASS none/bdi net/minecraft/server/TileEntityNote
@@ -1249,52 +1611,106 @@ CLASS none/bdj net/minecraft/server/TileEntitySign
 		METHOD e getWorld ()Lnone/aqu;
 CLASS none/bdm net/minecraft/server/TileEntitySkull
 CLASS none/bdn net/minecraft/server/TileEntityEnderPortal
-CLASS none/bdq
+CLASS none/bdq net/minecraft/server/BlockPiston
 	METHOD a doPhysics__maybe (Lnone/aqu;Lnone/dt;Lnone/bec;Lnone/atr;)V
+	METHOD a updateShape_ (Lnone/ard;Lnone/dt;)V
 CLASS none/bds net/minecraft/server/BlockPistonExtension
 	METHOD a doPhysics__maybe (Lnone/aqu;Lnone/dt;Lnone/bec;Lnone/atr;)V
+	METHOD a updateShape_ (Lnone/ard;Lnone/dt;)V
+CLASS none/bdu
+	FIELD a DEFAULT
+	FIELD b STICKY
 CLASS none/bdv net/minecraft/server/TileEntityPiston
 CLASS none/bdx net/minecraft/server/BlockPistonMoving
 	METHOD a doPhysics__maybe (Lnone/aqu;Lnone/dt;Lnone/bec;Lnone/atr;)V
+	METHOD a updateShape_ (Lnone/ard;Lnone/dt;)V
 CLASS none/bec
 	METHOD c getMaterial__ ()Lnone/atr;
 CLASS none/beg
 	METHOD c getMaterial__ ()Lnone/atr;
+CLASS none/bfa
+	FIELD a GROWING
+	FIELD b SHRINKING
+	FIELD c STATIONARY
 CLASS none/bfe net/minecraft/server/IChunkProvider
+	METHOD d getOrCreateChunk (II)Lnone/bfh;
+	METHOD f getName ()Ljava/lang/String;
 CLASS none/bff net/minecraft/server/NibbleArray
 CLASS none/bfg net/minecraft/server/EmptyChunk
 	METHOD a getBrightness__maybe (Lnone/arf;Lnone/dt;)I
 CLASS none/bfh net/minecraft/server/Chunk
 	METHOD a getBrightness__maybe (Lnone/arf;Lnone/dt;)I
+	METHOD a setHeightMap_ ([I)V
+	METHOD d setDone_ (Z)V
+	METHOD e setLit_ (Z)V
+CLASS none/bfl
+	FIELD a IMMEDIATE
+	FIELD b QUEUED
+	FIELD c CHECK
 CLASS none/bfm net/minecraft/server/ChunkSection
 CLASS none/bfn net/minecraft/server/OldNibbleArray
 CLASS none/bfq net/minecraft/server/IChunkLoader
+CLASS none/bft net/minecraft/server/OldChunkLoader
+CLASS none/bfu net/minecraft/server/OldChunk
 CLASS none/bfv net/minecraft/server/RegionFile
 CLASS none/bfx net/minecraft/server/RegionFileCache
+CLASS none/bfy net/minecraft/server/ChunkRegionLoader
+CLASS none/bfz net/minecraft/server/PendingChunkToSave
+CLASS none/bgd net/minecraft/server/WorldProvider
 CLASS none/bge net/minecraft/server/WorldProviderHell
 CLASS none/bgg net/minecraft/server/WorldProviderNormal
 CLASS none/bgh net/minecraft/server/WorldProviderTheEnd
 CLASS none/bgj net/minecraft/server/WorldGenCanyon
+CLASS none/bgm net/minecraft/server/EmptyClass3
+CLASS none/bgp net/minecraft/server/ChunkProviderDebug
+	METHOD d getOrCreateChunk (II)Lnone/bfh;
+	METHOD f getName ()Ljava/lang/String;
 CLASS none/bgq net/minecraft/server/ChunkProviderFlat
+	METHOD d getOrCreateChunk (II)Lnone/bfh;
+	METHOD f getName ()Ljava/lang/String;
+CLASS none/bgr net/minecraft/server/ChunkProviderHell
+	METHOD d getOrCreateChunk (II)Lnone/bfh;
+	METHOD f getName ()Ljava/lang/String;
 CLASS none/bgs net/minecraft/server/WorldGenCaves
+CLASS none/bgt net/minecraft/server/WorldGenBase
 CLASS none/bgu net/minecraft/server/WorldGenCavesHell
+CLASS none/bgv net/minecraft/server/ChunkProviderGenerate
+	METHOD d getOrCreateChunk (II)Lnone/bfh;
+	METHOD f getName ()Ljava/lang/String;
 CLASS none/bgw net/minecraft/server/ChunkProviderTheEnd
+	METHOD d getOrCreateChunk (II)Lnone/bfh;
+	METHOD f getName ()Ljava/lang/String;
+CLASS none/bhc net/minecraft/server/WorldGenTreeAbstract
 CLASS none/bhd net/minecraft/server/WorldGenBigTree
+CLASS none/bhf net/minecraft/server/WorldGenForest
+CLASS none/bhg net/minecraft/server/WorldGenTaigaStructure
 CLASS none/bhh net/minecraft/server/WorldGenBonusChest
 CLASS none/bhj net/minecraft/server/WorldGenCactus
 CLASS none/bhl net/minecraft/server/WorldGenClay
 CLASS none/bhm net/minecraft/server/WorldGenDeadBush
 CLASS none/bho net/minecraft/server/WorldGenTallPlant
-CLASS none/bhq net/minecraft/server/WorldGenFlowers
+CLASS none/bhp net/minecraft/server/WorldGenerator
+	METHOD a setType_ (Lnone/aqu;Lnone/dt;Lnone/atr;)V
+	METHOD a setTypeAndData_ (Lnone/aqu;Lnone/dt;Lnone/bec;)V
+CLASS none/bhq
+CLASS none/bhr net/minecraft/server/WorldGenGroundBush
+CLASS none/bhs net/minecraft/server/WorldGenFire
+CLASS none/bht net/minecraft/server/WorldGenLightStone1
 CLASS none/bhu net/minecraft/server/WorldGenHellLava
 CLASS none/bhv net/minecraft/server/WorldGenHugeMushroom
+CLASS none/bhw net/minecraft/server/WorldGenPackedIce
+CLASS none/bhx net/minecraft/server/WorldGenPackedIce2
 CLASS none/bhy net/minecraft/server/WorldGenLakes
+CLASS none/bhz net/minecraft/server/WorldGenLightStone2
 CLASS none/bia net/minecraft/server/WorldGenJungleTree
+CLASS none/bib net/minecraft/server/WorldGenMegaTree
+CLASS none/bic net/minecraft/server/WorldGenMegaTreeAbstract
 CLASS none/bid net/minecraft/server/WorldGenMelon
 CLASS none/bie net/minecraft/server/WorldGenDungeons
 CLASS none/bif net/minecraft/server/WorldGenMinable
 CLASS none/bih net/minecraft/server/WorldGenPumpkin
 CLASS none/bii net/minecraft/server/WorldGenReed
+CLASS none/bik net/minecraft/server/WorldGenSand
 CLASS none/bil net/minecraft/server/WorldGenAcaciaTree
 CLASS none/bim net/minecraft/server/WorldGenEnder
 CLASS none/bin net/minecraft/server/WorldGenLiquids
@@ -1343,9 +1759,32 @@ CLASS none/blo net/minecraft/server/WorldGenWitchHut
 CLASS none/blp net/minecraft/server/WorldGenStronghold
 CLASS none/blq net/minecraft/server/WorldGenStronghold2Start
 CLASS none/blr net/minecraft/server/WorldGenStrongholdPieces
+CLASS none/bls net/minecraft/server/WorldGenStrongholdUnknown
+CLASS none/blt net/minecraft/server/WorldGenStrongholdPiece2
+CLASS none/blv net/minecraft/server/WorldGenStrongholdChestCorridor
+CLASS none/blw net/minecraft/server/WorldGenStrongholdCorridor
+CLASS none/blx net/minecraft/server/WorldGenStrongholdCrossing
+CLASS none/bly net/minecraft/server/WorldGenStrongholdLeftTurn
+CLASS none/blz net/minecraft/server/WorldGenStrongholdLibrary
+CLASS none/bma net/minecraft/server/WorldGenStrongholdPieceWeight
+CLASS none/bmb net/minecraft/server/WorldGenStrongholdPortalRoom
+CLASS none/bmc net/minecraft/server/WorldGenStrongholdPrison
+CLASS none/bmd net/minecraft/server/WorldGenStrongholdRightTurn
+CLASS none/bme net/minecraft/server/WorldGenStrongholdRoomCrossing
+CLASS none/bmf net/minecraft/server/WorldGenStrongholdStones
+CLASS none/bmg net/minecraft/server/WorldGenStrongholdStairs2
+CLASS none/bmh net/minecraft/server/WorldGenStrongholdStart
+CLASS none/bmi net/minecraft/server/WorldGenStrongholdStairs
+CLASS none/bmj net/minecraft/server/WorldGenStrongholdStairsStraight
 CLASS none/bmk net/minecraft/server/WorldGenStrongholdPiece
+CLASS none/bml
+	FIELD a OPENING
+	FIELD b WOOD_DOOR
+	FIELD c GRATES
+	FIELD d IRON_DOOR
 CLASS none/bmm net/minecraft/server/StructureGenerator
 CLASS none/bmq net/minecraft/server/WorldGenFactory
+CLASS none/bmr net/minecraft/server/PersistentStructure
 CLASS none/bms net/minecraft/server/StructurePiece
 CLASS none/bmv net/minecraft/server/StructureStart
 CLASS none/bmw net/minecraft/server/WorldGenVillage
@@ -1364,9 +1803,14 @@ CLASS none/bnj net/minecraft/server/WorldGenVillageBlacksmith
 CLASS none/bnk net/minecraft/server/WorldGenVillageStartPiece
 CLASS none/bnl net/minecraft/server/WorldGenVillageRoad
 CLASS none/bnm net/minecraft/server/WorldGenVillageHouse2
+CLASS none/bnn net/minecraft/server/WorldGenVillagePiece
+CLASS none/bno net/minecraft/server/WorldGenVillageRoadPiece
 CLASS none/bnp net/minecraft/server/WorldGenVillageWell
 CLASS none/bnu net/minecraft/server/NoiseGeneratorPerlin
+CLASS none/bnv net/minecraft/server/NoiseGeneratorOctaves
 CLASS none/bnw net/minecraft/server/NoiseGenerator3
+CLASS none/bnz net/minecraft/server/NoiseGenerator3Handler
+CLASS none/boa net/minecraft/server/NoiseGenerator
 CLASS none/boc net/minecraft/server/MaterialDecoration
 	METHOD a isBuildable_ ()Z
 	METHOD b blocksLight_ ()Z
@@ -1432,32 +1876,94 @@ CLASS none/boi net/minecraft/server/MaterialPortal
 	METHOD b blocksLight_ ()Z
 	METHOD c isSolid ()Z
 CLASS none/bok net/minecraft/server/GenLayerDeepOcean
+CLASS none/bol net/minecraft/server/GenLayerSpecial
+CLASS none/bom net/minecraft/server/GenLayerJumpTable
+CLASS none/bon net/minecraft/server/EnumGenLayerSpecial
+	FIELD a COOL_WARM
+	FIELD b HEAT_ICE
+	FIELD c PUFFERFISH
+CLASS none/boo net/minecraft/server/GenLayerIsland
+CLASS none/bop net/minecraft/server/GenLayerMushroomIsland
+CLASS none/boq net/minecraft/server/GenLayerTopSoil
+CLASS none/bor net/minecraft/server/GenLayerDesert
+CLASS none/bos net/minecraft/server/GenLayerBiome
+CLASS none/bow net/minecraft/server/GenLayerZoomFuzzy
 CLASS none/boy net/minecraft/server/IntCache
+CLASS none/boz net/minecraft/server/LayerIsland
 CLASS none/bpa net/minecraft/server/GenLayer
+CLASS none/bpd net/minecraft/server/GenLayerPlains
+CLASS none/bpe net/minecraft/server/GenLayerRegionHills
+CLASS none/bpf net/minecraft/server/GenLayerIcePlains
+CLASS none/bpg net/minecraft/server/GenLayerCleaner
+CLASS none/bph net/minecraft/server/GenLayerRiver
+CLASS none/bpi net/minecraft/server/GenLayerRiverMix
+CLASS none/bpj net/minecraft/server/GenLayerMushroomShore
+CLASS none/bpk net/minecraft/server/GenLayerSmooth
+CLASS none/bpo net/minecraft/server/GenLayerZoomVoronoi
 CLASS none/bpp net/minecraft/server/GenLayerZoom
+CLASS none/bps net/minecraft/server/Path
+CLASS none/bpt net/minecraft/server/PathPoint
 CLASS none/bpv net/minecraft/server/PathEntity
+CLASS none/bqc net/minecraft/server/PersistentBase
 CLASS none/bqe net/minecraft/server/WorldMap
+CLASS none/bqi net/minecraft/server/ServerNBTManager
+CLASS none/bqj net/minecraft/server/WorldLoaderServer
+CLASS none/bql net/minecraft/server/SecondaryWorldData
+CLASS none/bqm net/minecraft/server/WorldNBTStorage
+	METHOD a getDataFile_ (Ljava/lang/String;)Ljava/io/File;
 CLASS none/bqn net/minecraft/server/WorldLoader
 CLASS none/bqo net/minecraft/server/WorldData
 CLASS none/bqy net/minecraft/server/IDataManager
+	METHOD a getDataFile_ (Ljava/lang/String;)Ljava/io/File;
 CLASS none/bra net/minecraft/server/Convertable
 CLASS none/brl net/minecraft/server/IPlayerFileData
+CLASS none/brn net/minecraft/server/PersistentCollection
 CLASS none/brp net/minecraft/server/FileIOThread
+CLASS none/brq net/minecraft/server/IAsyncChunkSaver
 CLASS none/brt net/minecraft/server/AxisAlignedBB
 CLASS none/bru net/minecraft/server/MovingObjectPosition
+CLASS none/brv
+	FIELD a MISS
+	FIELD b BLOCK
+	FIELD c ENTITY
 CLASS none/brw net/minecraft/server/Vec3D
 CLASS none/bry net/minecraft/server/ScoreboardObjective
 CLASS none/brz net/minecraft/server/ScoreboardTeam
+	METHOD a setDisplayName_ (Ljava/lang/String;)V
+	METHOD b getName_ ()Ljava/lang/String;
+	METHOD d getFormattedName_ (Ljava/lang/String;)Ljava/lang/String;
+	METHOD g allowFriendlyFire_ ()Z
 CLASS none/bsa net/minecraft/server/ScoreboardScore
 CLASS none/bsb net/minecraft/server/ScoreboardComparator
 CLASS none/bsd net/minecraft/server/Scoreboard
+CLASS none/bse net/minecraft/server/PersistentScoreboard
+CLASS none/bsf net/minecraft/server/ScoreboardTeamBase
+	METHOD b getName_ ()Ljava/lang/String;
+	METHOD d getFormattedName_ (Ljava/lang/String;)Ljava/lang/String;
+	METHOD g allowFriendlyFire_ ()Z
 CLASS none/bsg net/minecraft/server/EnumTeamVisibility
 	FIELD a ALWAYS
 	FIELD b NEVER
 	FIELD c HIDE_FOR_OTHER_TEAMS
 	FIELD d HIDE_FOR_OWN_TEAM
+CLASS none/bsh
+	METHOD a getName_ ()Ljava/lang/String;
+	METHOD a getScoreModifier_ (Ljava/util/List;)I
+	METHOD b isReadOnly_ ()Z
+CLASS none/bsi net/minecraft/server/ScoreboardBaseCriteria
+	METHOD a getName_ ()Ljava/lang/String;
+	METHOD a getScoreModifier_ (Ljava/util/List;)I
+	METHOD b isReadOnly_ ()Z
 CLASS none/bsj net/minecraft/server/ScoreboardHealthCriteria
+	METHOD a getScoreModifier_ (Ljava/util/List;)I
+	METHOD b isReadOnly_ ()Z
 CLASS none/bsk net/minecraft/server/IScoreboardCriteria
+	METHOD a getName_ ()Ljava/lang/String;
+	METHOD a getScoreModifier_ (Ljava/util/List;)I
+	METHOD b isReadOnly_ ()Z
+CLASS none/bsl
+	FIELD a INTEGER
+	FIELD b HEARTS
 CLASS none/bsm net/minecraft/server/ScoreboardStatisticCriteria
 CLASS none/arr$ars net/minecraft/server/BiomeCacheBlock
 CLASS io/netty/buffer/ByteBuf io/netty/buffer/ByteBuf
